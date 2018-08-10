@@ -1,0 +1,208 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+<script>
+
+    $(function () {
+        //改颜色
+        document.getElementById('Sensitivity_id').style.background = '#48484A';
+        document.getElementById('Sensitivity_id').style.borderButton = '1px solid ';
+        document.getElementById('Sensitivity_id').style.padding = '7px 12px 17px 12px ';
+
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-245之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+                $.ajax({
+                    url: '/Sensitivity/SendData', //后台处理程序
+                    type: 'post',         //数据发送方式
+                    dataType: 'text',     //接受数据格式
+                    data: { deviceID: va, fileName: va1 },        //要传递的数据
+                    success: function (result) {
+
+                        var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                        $('#blingmin1').val(val.blingmin1);
+                        $('#blingmin2').val(val.blingmin2);
+                        $('#blingmin3').val(val.blingmin3);
+                        $('#blingmin4').val(val.blingmin4);
+                        $('#blingmin5').val(val.blingmin5);
+                        $('#blingmin6').val(val.blingmin6);
+                        $('#blingmin7').val(val.blingmin7);
+                        $('#blingmin8').val(val.blingmin8);
+                        $('#blingmin9').val(val.blingmin9);
+                        $('#blingmin10').val(val.blingmin10);
+                        $('#blingmin11').val(val.blingmin11);
+                        $('#blingmin12').val(val.blingmin12);
+                    }
+                });
+            });
+            function postData() {
+                var blingmin1 = $("#blingmin1").val();
+                var blingmin2 = $("#blingmin2").val();
+                var blingmin3 = $("#blingmin3").val();
+                var blingmin4 = $("#blingmin4").val();
+                var blingmin5 = $("#blingmin5").val();
+                var blingmin6 = $("#blingmin6").val();
+                var blingmin7 = $("#blingmin7").val();
+                var blingmin8 = $("#blingmin8").val();
+                var blingmin9 = $("#blingmin9").val();
+                var blingmin10 = $("#blingmin10").val();
+                var blingmin11 = $("#blingmin11").val();
+                var blingmin12 = $("#blingmin12").val();
+
+                var va = getCookie("deviceID");
+                var va1 = getCookie("fileName");
+                $.ajax({
+                    url: '/Sensitivity/BpostData', //后台处理程序
+                    type: 'post',         //数据发送方式
+                    dataType: 'text',     //接受数据格式
+                    data: {
+                        deviceID: va, fileName: va1,
+                        blingmin1: blingmin1, blingmin2: blingmin2, blingmin3: blingmin3, blingmin4: blingmin4, blingmin5: blingmin5, blingmin6: blingmin6, blingmin7: blingmin7, blingmin8: blingmin8, blingmin9: blingmin9, blingmin10: blingmin10, blingmin11: blingmin11, blingmin12: blingmin12
+                    },        //要传递的数据
+                    success: function (result) {
+                        if (result == "Success") {
+                            alert("提交成功！");
+                        }
+                        else {
+                            alert("提交失败！");
+                        }
+                    }
+                });
+            }
+</script>
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="灵敏度类型" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="R灵敏度" iconCls="icon-ok" style="overflow:auto;padding:10px" >
+                <a href="/Sensitivity/Sensitivity" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度</a> <br>
+                <a href="/Sensitivity/rlingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度分量</a> <br>
+            </div>
+            <div title="G灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/glingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度</a> <br>
+                <a href="/Sensitivity/glingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度分量</a> <br>
+            </div>
+            <div title="B灵敏度" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/Sensitivity/blingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度</a> <br>
+                <a href="/Sensitivity/blingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度分量</a> <br>
+            </div>
+            <div title="混色灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/hslingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度</a> <br>
+                <a href="/Sensitivity/hslingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度分量</a> <br>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="B灵敏度" style="padding:10px" data-options="closable:true">
+
+                <table class="dataintable" align="center">
+
+                    <caption>B灵敏度设置</caption>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <td>一次流量
+                            <td>二次流量
+                            <td>三次流量
+                        <tr>
+                            <td>前暗敏感
+                            <td><input type="text" value="" id="blingmin1" />
+                            <td><input type="text" value="" id="blingmin5" />
+                            <td><input type="text" value="" id="blingmin9" />
+                        <tr>
+                            <td>前亮敏感
+                            <td><input type="text" value="" id="blingmin2" />
+                            <td><input type="text" value="" id="blingmin6" />
+                            <td><input type="text" value="" id="blingmin10" />
+                        <tr>
+                            <td>后暗敏感
+                            <td><input type="text" value="" id="blingmin3" />
+                            <td><input type="text" value="" id="blingmin7" />
+                            <td><input type="text" value="" id="blingmin11" />
+                        <tr>
+                            <td>后亮敏感
+                            <td><input type="text" value="" id="blingmin4" />
+                            <td><input type="text" value="" id="blingmin8" />
+                            <td><input type="text" value="" id="blingmin12" />
+
+                    </tbody>
+                </table><br />
+                <center><button id="submit" onclick="postData()">确定</button></center>
+            </div>
+        </div>
+    </div>
+</div>

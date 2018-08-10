@@ -1,0 +1,430 @@
+﻿
+<style type="text/css">
+    table.dataintable {
+        margin-top: 15px;
+        border-collapse: collapse;
+        border: 1px solid #aaa;
+        width: 100%;
+    }
+
+        table.dataintable th {
+            font-size: 15px;
+            vertical-align: baseline;
+            padding: 5px 15px 5px 6px;
+            background-color: #3F3F3F;
+            border: 1px solid #3F3F3F;
+            text-align: center;
+            color: #fff;
+        }
+
+        table.dataintable td {
+            text-align: center;
+            font-size: 15px;
+            vertical-align: text-top;
+            padding: 6px 15px 6px 6px;
+            border: 1px solid #aaa;
+        }
+
+        table.dataintable tr:nth-child(odd) {
+            background-color: #F5F5F5;
+        }
+
+        table.dataintable tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+
+
+    #aa {
+        font: small-caps 13px/2em bold "幼圆", sans-serif;
+        line-height: 1.8em;
+        text-indent: 2em;
+        color: #0f3ba3;
+    }
+</style>
+
+<script>
+   
+    $(function () {
+        document.getElementById('Serve_id').style.background = '#48484A';
+        document.getElementById('Serve_id').style.borderButton = '1px solid ';
+        document.getElementById('Serve_id').style.padding = '7px 12px 17px 12px ';
+
+        $("#deviceID").val(getCookie("deviceID"));
+        var Jurisdiction = getCookie("Jurisdiction");
+        var AdminName = getCookie("AdminName");
+
+        $('#userManagement').datagrid({
+            //title: '用户信息管理',
+            iconCls: 'icon-save',
+            singleSelect: true,
+            fitColumns: true,
+            url: '/ConnectServer/UserInfo',
+            queryParams: {},
+            idField: 'userName',
+            pagination: true,
+            rownumbers: true,
+            width: 'auto',
+            height: $(window).height() - 114,
+            columns: [[
+                { field: 'userName', title: '用户名', width: 100, editor: 'text', align: 'center', fixed: true },
+
+                { field: 'passWord', title: '密码', width: 120, editor: 'text', align: 'center', fixed: true, hidden: true },
+                { field: 'regTime', title: '注册时间', width: 120, editor: 'text', align: 'center', fixed: true },
+               { field: 'Jurisdiction', title: '用户权限', width: 120, editor: 'text', align: 'center', fixed: true, hidden: true }
+            ]],
+            toolbar: [{
+                id: 'btnadd',
+                text: '增加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    if (Jurisdiction=="1") {
+                        $('#xinjian').dialog("open");
+                    }
+                    else {
+                        $.messager.alert("温馨提示", "该用户没有增加权限！");
+                    }
+                }
+            }, '-', {
+                id: 'btncut',
+                text: '删除',
+                iconCls: 'icon-cut',
+                handler: function () {
+                    if (Jurisdiction == "1") {
+                        var row = $('#userManagement').datagrid('getSelected');
+                        if (row) {
+                            if (row.Jurisdiction=="1") {
+                                return;
+                            }
+                            $.messager.confirm('Confirm', '确定删除？', function (r) {
+                                if (r) {
+                                    shanchu(row.userName);
+                                    var index = $('#userManagement').datagrid('getRowIndex', row);
+                                    $('#userManagement').datagrid('deleteRow', index);
+                                }
+                            });
+                        }
+                        else {
+                            $.messager.alert("温馨提示", "请选择需要删除的行!");
+                        }
+                    }
+                    else {
+                        $.messager.alert("温馨提示", "该用户没有删除权限！");
+                    }
+                }
+            }, '-', {
+                id: 'btnedit',
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    var row = $('#userManagement').datagrid('getSelected');
+                        if (row) {
+                            var userName = row.userName;
+                            if (userName == AdminName) {
+                                $('#xiugai').dialog("open");
+                                $("#xg_userName").val(row.userName);
+                                $("#xg_passWord").val(row.passWord);
+                            }
+                            else {
+                                $.messager.alert("温馨提示", "不能修改当前用户!");
+                            }
+                        }
+                        else {
+                            $.messager.alert("温馨提示", "请选择需要修改的行!");
+                        }
+                }
+            }, '-', {
+                id: 'btnreset',
+                text: '重置',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    $('#userManagement').datagrid('options').url = '/ConnectServer/UserInfo';
+                    $('#userManagement').datagrid("reload", {});
+                }
+            }]
+        });
+        var p = $('#userManagement').datagrid('getPager');
+        if (p) {
+            $(p).pagination({
+                pageSize: 10, //每页显示的记录条数，默认为10
+                pageList: [10, 20, 30, 40], //可以设置每页记录条数的列表
+                //beforePageText: '第', //页数文本框前显示的汉字
+                //afterPageText: '页    共 {pages} 页',
+                //displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+            });
+        }
+
+        $('#xj_save').click(function () {
+            var xj_userName = $('#xj_userName').val();
+            var xj_pwd = $('#xj_pwd').val();
+            var xj_checkPwd = $('#xj_checkPwd').val();
+
+            if (!xj_userName) {
+                $.messager.alert("温馨提示", "请输入用户名!");
+                return;
+            }
+            if (!xj_pwd) {
+                $.messager.alert("温馨提示", "请输入密码!");
+                return;
+            }
+            if (!xj_checkPwd) {
+                $("#xj_checkPwdMsg").text("请输入确认密码");
+                return;
+            } 
+            if(xj_pwd!= xj_checkPwd){
+                $("#xj_checkPwdMsg").text("两次密码输入不一致");
+                return;
+            } 
+            else {
+                $("#xj_checkPwdMsg").text("");
+                $.ajax({
+                    url: '/ConnectServer/User_Add',
+                    type: 'post',
+                    //async: false,
+                    data: {
+                        xj_userName: xj_userName, xj_pwd:xj_pwd
+                    },
+                    dataType: 'text',
+                    success: function (result) {
+                        if (result == "OK") {
+                            $("#xinjian").dialog("close");
+                            $.messager.alert("温馨提示", "保存成功!", 'info', function () {
+                                reload();
+                            });
+                            return;
+                        }
+                        else if (result == "Error") {
+                            $.messager.alert("温馨提示", "用户信息重复!");
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#xj_close').click(function () {
+            $("#xinjian").dialog("close");
+        });
+
+        $('#xinjian').dialog({
+            onClose: function () {
+                //关闭时清除数据
+                $("#xj_userName").val('');
+                $("#xj_pwd").val('');
+                $("#xj_checkPwd").val('');
+            }
+        });
+
+        $('#xg_save').click(function () {
+            var xg_userName = $('#xg_userName').val();
+            var xg_passWord = $('#xg_passWord').val();
+            $.ajax({
+                url: '/ConnectServer/User_Modify',
+                type: 'post',
+                //async: false,
+                data: { xg_userName: xg_userName, xg_passWord: xg_passWord },
+                dataType: 'text',
+                success: function (result) {
+                    if (result == "OK") {
+                        $("#xiugai").dialog("close");
+                        $.messager.alert("温馨提示", "用户信息保存成功!", 'info', function () {
+                            reload();
+                        });
+                        return;
+                    }
+                    else if (result == "Error") {
+                        $.messager.alert("温馨提示", "用户信息修改失败!");
+                        return;
+                    }
+                }
+            });
+        });
+
+        $('#xg_close').click(function () {
+            $("#xiugai").dialog("close");
+        });
+
+    });
+    function shanchu(userName) {
+        $.ajax({
+            url: '/ConnectServer/User_Delete',
+            type: 'post',
+            data: { userName: userName },
+            dataType: 'text',
+            success: function (result) {
+                if (result == "OK") {
+                    $.messager.alert("温馨提示", "用户信息删除成功!", 'info', function () {
+                        $('#userManagement').datagrid('loadData', { total: 0, rows: [] });
+                        $('#userManagement').datagrid('options').url = '/ConnectServer/UserInfo';
+                        $('#userManagement').datagrid("reload", {});
+                    });
+                    return;
+                }
+            }
+        });
+
+    }
+
+    function reload() {
+        $('#userManagement').datagrid('options').url = '/ConnectServer/UserInfo',
+        $("#userManagement").datagrid('reload', {});
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="服务" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="远程通信" iconCls="icon-ok" style="overflow:auto;padding:10px" >
+                <a href="/ConnectServer/connServer" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">远程通信</a> <br>
+            </div>
+            <div title="设备管理" iconCls="icon-ok" style="padding:10px">
+                <a href="/ConnectServer/deviceManage" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">设备管理</a> <br>
+            </div>
+            <div title="用户管理" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/ConnectServer/UserManage" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">用户管理</a> <br>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743;">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="用户管理" style="padding:10px" data-options="closable:false">
+                <div>
+                    <table id="userManagement"></table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新建-->
+    <div id="xinjian" class="easyui-dialog" title="新建用户信息" closed="true" modal="true"
+         style="width: 500px; height: 200px; text-align: center; background-color: #CCCCFF">
+        <div align="left">
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                        用户名&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xj_userName" style="width: 150px" />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                        密码&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xj_pwd" style="width: 150px" />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                        确认密码&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xj_checkPwd" style="width: 150px" />
+                    </td>
+                    <td id="xj_checkPwdMsg" width="150" style="text-align: left;font-size:12px;font-family:YouYuan;color:red">
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td width="150"></td>
+                    <td align="right" colspan="2">
+                        <a href="javascript:void(0);" class="easyui-linkbutton" id="xj_save" style="text-align: right;width:50px;">
+                            保存&nbsp;&nbsp;
+                        </a>
+                    </td>
+                    <td width="20"></td>
+                    <td align="right" colspan="2">
+                        <a href="javascript:void(0);" class="easyui-linkbutton" id="xj_close" style="text-align: right;width:50px;">
+                            取消&nbsp;&nbsp;
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--修改-->
+    <div id="xiugai" class="easyui-dialog" title="修改用户信息" closed="true" modal="true"
+         style="width: 500px; height: 400px; text-align: center; background-color: #CCCCFF">
+        <div align="left">
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                       用户名：&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xg_userName"  style="width: 150px" readonly="readonly" />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                        密码：&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xg_passWord" style="width: 150px" />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td width="150"></td>
+                    <td align="right" colspan="2">
+                        <a class="easyui-linkbutton" id="xg_save" style="text-align: right;width:50px;">
+                            保存
+                        </a>
+                    </td>
+                    <td width="20"></td>
+                    <td align="right" colspan="2">
+                        <a class="easyui-linkbutton" id="xg_close" style="text-align: right;width:50px;">
+                            取消
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,261 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+
+<script type="text/javascript">
+    //离开界面提示
+    //window.onbeforeunload = function (e) {
+    //    var e = window.event || e;
+    //    e.returnValue = ("确定离开当前页面吗？");
+    //}
+    $(function () {
+        //改颜色
+        document.getElementById('Advanced_id').style.background = '#48484A';
+        document.getElementById('Advanced_id').style.borderButton = '1px solid ';
+        document.getElementById('Advanced_id').style.padding = '7px 12px 17px 12px ';
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-255之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        //传入初值
+        $.ajax({
+            url: '/AdvancedSetting/SendDataXXLMD', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#xxlmd1').val(val.xxlmd1);
+                $('#xxlmd2').val(val.xxlmd2);
+                $('#xxlmd3').val(val.xxlmd3);
+                $('#xxlmd4').val(val.xxlmd4);
+                $('#xxlmd5').val(val.xxlmd5);
+                $('#xxlmd6').val(val.xxlmd6);
+                $('#xxlmd7').val(val.xxlmd7);
+                $('#xxlmd8').val(val.xxlmd8);
+                $('#xxlmd9').val(val.xxlmd9);
+                $('#xxlmd10').val(val.xxlmd10);
+                $('#xxlmd11').val(val.xxlmd11);
+                $('#xxlmd12').val(val.xxlmd12);
+                $('#xxlmd13').val(val.xxlmd13);
+                $('#xxlmd14').val(val.xxlmd14);
+                $('#xxlmd15').val(val.xxlmd15);
+                $('#xxlmd16').val(val.xxlmd16);
+                $('#xxlmd17').val(val.xxlmd17);
+                $('#xxlmd18').val(val.xxlmd18);
+                $('#xxlmd19').val(val.xxlmd19);
+                $('#xxlmd20').val(val.xxlmd20);
+            }
+        });
+    });
+    function postDataXXLMD() {
+        var xxlmd1 = $("#xxlmd1").val();
+        var xxlmd2 = $("#xxlmd2").val();
+        var xxlmd3 = $("#xxlmd3").val();
+        var xxlmd4 = $("#xxlmd4").val();
+        var xxlmd5 = $("#xxlmd5").val();
+        var xxlmd6 = $("#xxlmd6").val();
+        var xxlmd7 = $("#xxlmd7").val();
+        var xxlmd8 = $("#xxlmd8").val();
+        var xxlmd9 = $("#xxlmd9").val();
+        var xxlmd10 = $("#xxlmd10").val();
+        var xxlmd11 = $("#xxlmd11").val();
+        var xxlmd12 = $("#xxlmd12").val();
+        var xxlmd13 = $("#xxlmd13").val();
+        var xxlmd14 = $("#xxlmd14").val();
+        var xxlmd15 = $("#xxlmd15").val();
+        var xxlmd16 = $("#xxlmd16").val();
+        var xxlmd17 = $("#xxlmd17").val();
+        var xxlmd18 = $("#xxlmd18").val();
+        var xxlmd19 = $("#xxlmd19").val();
+        var xxlmd20 = $("#xxlmd20").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/AdvancedSetting/postDataXXLMD', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                xxlmd1: xxlmd1, xxlmd2: xxlmd2, xxlmd3: xxlmd3, xxlmd4: xxlmd4, xxlmd5: xxlmd5,
+                xxlmd6: xxlmd6, xxlmd7: xxlmd7, xxlmd8: xxlmd8, xxlmd9: xxlmd9, xxlmd10: xxlmd10,
+                xxlmd11: xxlmd11, xxlmd12: xxlmd12, xxlmd13: xxlmd13, xxlmd14: xxlmd14, xxlmd15: xxlmd15,
+                xxlmd16: xxlmd16, xxlmd17: xxlmd17, xxlmd18: xxlmd18, xxlmd19: xxlmd19, xxlmd20: xxlmd20,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="高级设置" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="背景板" iconCls="icon-ok" style="overflow:auto;padding:10px">
+                <a href="/AdvancedSetting/AdvancedSetting" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">背景板</a>
+            </div>
+            <div title="VGA设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/VGASet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">VGA设定</a>
+            </div>
+            <div title="型选设置" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/AdvancedSetting/TypeSelectionSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">型选设置</a> <br>
+                <a href="/AdvancedSetting/TypeSelectionSensitivity" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">型选灵敏度</a> <br>
+                <a href="/AdvancedSetting/AreaFine" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">面积微调设置</a>
+            </div>
+            <div title="延迟设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/DelaySet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">延迟设定</a>
+            </div>
+            <div title="增益设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/RGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R增益</a><br>
+                <a href="/AdvancedSetting/GGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G增益</a><br>
+                <a href="/AdvancedSetting/BGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B增益</a>
+            </div>
+            <div title="采图设置" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/CollectPictureSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">采图设置</a>
+            </div>
+            <div title="平移设定" iconCls="icon-ok" style="padding:10px" >
+                <a href="/AdvancedSetting/TranslationSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">平移设定</a>
+            </div>
+            <div title="相机划分" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/CameraDivision" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">相机划分</a>
+            </div>
+            <div title="灰度忽略" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/GrayIgnore" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度忽略</a>
+            </div>
+            <div title="日期设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/ChangeDate" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">日期设定</a>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="型选灵敏度" style="padding:10px" data-options="closable:true">
+                <table class="dataintable" align="center">
+
+                    <caption>型选灵敏度</caption>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td>前侧
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd1" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd2" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd3" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd4" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd5" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd6" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd7" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd8" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd9" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd10" style="width:50px" />
+                        <tr>
+                            <td>后侧
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd11" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd12" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd13" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd14" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd15" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd16" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd17" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd18" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd19" style="width:50px" />
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="xxlmd20" style="width:50px" />
+
+                    </tbody>
+                </table><br />
+                <center><button id="submit" onclick="postDataXXLMD()">确定</button></center>
+            </div>
+        </div>
+    </div>
+</div>

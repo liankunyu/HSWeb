@@ -1,0 +1,99 @@
+﻿	body{
+	font-size:12px;
+	font-family:Verdana, Geneva, sans-serif;
+	line-height:23px;
+	margin:0;
+	padding:0;
+    background:url(/Images/Login/login.jpg) no-repeat;
+	color:#3b6e81;
+	}
+.second_body{
+	margin:0 auto;
+	width:330px;
+	height:243px;
+	margin-top:10%;
+	padding-left:300px;
+	padding-top:110px;
+	background:url(/Images/Login/login_panel.png) no-repeat;
+    position:relative;
+   
+	}
+#gsname {
+   position:relative;
+   margin-top:0% ;
+   margin-right:90%;
+}
+.title-zh
+{
+    position:absolute;
+    top:50px;
+    left:320px;
+    font-size:20px;
+    font-family:YouYuan;
+    font-weight:900;
+    color:#0074a6;
+}
+
+.title-en
+{
+    position:absolute;
+    top:70px;
+    left:312px;
+    color:#9aa5a9;
+    font-size:15px;
+    font-family:YouYuan;
+    text-align:center;
+    vertical-align: middle;
+    margin:5px;
+    width:60px;
+
+}
+
+ .message
+{   
+    position:absolute;
+    bottom:80px;
+    left:312px;
+    color:red;
+}
+
+.logo
+{
+     position:absolute;
+     left:50px;
+     top:80px;
+     
+     
+}
+
+.login,.login2{
+	width:200px;
+	border:1px solid #7fb5c1;
+	height:22px;
+	vertical-align:text-bottom;
+	}
+.login2{
+	width:125px;
+	}
+.login_button{
+	width:210px;
+	height:34px;
+    line-height:26px;
+	border:none;
+	color:#FFF;
+	font-weight:bold;
+	background-image:url(/Images/Login/login-all-bg.png);                                                                                                       
+    background-repeat:no-repeat;
+    background-position:-50px -39px;
+	
+	}
+    .login_button:hover {
+      background-position:-50px -6px;
+      cursor:pointer;
+    }
+   #imgcode,#remember,#autologin:hover {
+    cursor:pointer;
+}
+.reset_botton{
+	background:url(/Images/Login/reset.jpg);
+	}

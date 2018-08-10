@@ -1,0 +1,56 @@
+
+ [HttpGet]
+
+        public void DownLoadGoodsVideo(string n_name,string o_name)
+
+        {
+
+            if (!string.IsNullOrEmpty(n_name))
+
+            {
+
+                HttpResponse response = System.Web.HttpContext.Current.Response;
+
+                string path = System.Web.HttpContext.Current.Server.MapPath(@"~\\UploadFile\\" + n_name);
+
+                FileInfo fi = new FileInfo(path);
+
+                if (fi.Exists)
+
+                {
+
+                    response.Clear();
+
+                    response.AddHeader("Content-Disposition", "attachment; filename=" + System.Web.HttpContext.Current.Server.UrlEncode(o_name));
+
+                    response.AddHeader("Content-Length", fi.Length.ToString());
+
+                    response.ContentType = "application/octet-stream";
+
+                    response.Filter.Close();
+
+                    response.WriteFile(fi.FullName);
+
+                    response.End();
+
+                }
+
+                else
+
+                {
+
+                    response.Status = "404 File Not Found";
+
+                    response.StatusCode = 404;
+
+                    response.StatusDescription = "File Not Found";
+
+                    response.Write("File Not Found");
+
+                    response.End();
+
+                }
+
+            }
+
+        }

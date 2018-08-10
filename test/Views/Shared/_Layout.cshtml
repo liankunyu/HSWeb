@@ -1,0 +1,255 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">@*禁止缩放*@
+    <title>色选机远程监控与管理系统</title>
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <script src="~/Script/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
+
+    <link href="~/Script/jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Script/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            startTime();
+            $("#Currentdevice").text("当前设备：" + getCookie("deviceID"));
+
+            $("#Pattern_id").mouseover(function () {
+                document.getElementById('Pattern_id').style.color = '#ed1200';
+            });
+
+            $("#Pattern_id").mouseout(function () {
+                document.getElementById('Pattern_id').style.color = '#ffffff';
+            });
+
+            $("#Sensitivity_id").mouseover(function () {
+                document.getElementById('Sensitivity_id').style.color = '#ed1200';
+            });
+
+            $("#Sensitivity_id").mouseout(function () {
+                document.getElementById('Sensitivity_id').style.color = '#ffffff';
+            });
+
+            $("#Flow_id").mouseover(function () {
+                document.getElementById('Flow_id').style.color = '#ed1200';
+            });
+
+            $("#Flow_id").mouseout(function () {
+                document.getElementById('Flow_id').style.color = '#ffffff';
+            });
+
+            $("#Color_id").mouseover(function () {
+                document.getElementById('Color_id').style.color = '#ed1200';
+            });
+
+            $("#Color_id").mouseout(function () {
+                document.getElementById('Color_id').style.color = '#ffffff';
+            });
+
+            $("#Testing_id").mouseover(function () {
+                document.getElementById('Testing_id').style.color = '#ed1200';
+            });
+
+            $("#Testing_id").mouseout(function () {
+                document.getElementById('Testing_id').style.color = '#ffffff';
+            });
+
+            $("#Mod_id").mouseout(function () {
+                document.getElementById('Mod_id').style.color = '#ffffff';
+            });
+
+            $("#Mod_id").mouseover(function () {
+                document.getElementById('Mod_id').style.color = '#ed1200';
+            });
+            $("#Area_id").mouseover(function () {
+                document.getElementById('Area_id').style.color = '#ed1200';
+            });
+
+            $("#Area_id").mouseout(function () {
+                document.getElementById('Area_id').style.color = '#ffffff';
+            });
+
+            $("#Ash_id").mouseover(function () {
+                document.getElementById('Ash_id').style.color = '#ed1200';
+            });
+
+            $("#Ash_id").mouseout(function () {
+                document.getElementById('Ash_id').style.color = '#ffffff';
+            });
+
+            $("#Advanced_id").mouseover(function () {
+                document.getElementById('Advanced_id').style.color = '#ed1200';
+            });
+
+            $("#Advanced_id").mouseout(function () {
+                document.getElementById('Advanced_id').style.color = '#ffffff';
+            });
+            $("#Serve_id").mouseover(function () {
+                document.getElementById('Advanced_id').style.color = '#ed1200';
+            });
+
+            $("#Serve_id").mouseout(function () {
+                document.getElementById('Advanced_id').style.color = '#ffffff';
+            }); 
+        });
+
+
+        //Cookie设定
+        function setCookie(name, value) {//两个参数，一个是cookie的名字，一个是值
+            document.cookie = name + "=" + escape(value) + ";path=/";
+            //escape()函数用于对字符串按 URL 编码方法来编码，并返回一个可在所有计算机上读取的编码字符串。
+        }
+        //取cookies函数
+        function getCookie(name) {
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if (arr != null) return unescape(arr[2]); return ""; //为什么是arr[2],因为arr是正则表达式获得的值，其中返回很多，value排在第三位所以是arr[2]
+        }
+        function changeDeviceID() {
+            //设备编号修改
+            var deviceID = prompt("请输入您要修改的设备编号：");
+
+            var kong = /^\s*(\S+)\s*$/;
+
+            if (!kong.test(deviceID)) {
+                alert("设备编号不能为空!");
+                return;
+            }
+            else {
+                $.ajax({
+                    url: '/LoginIndex/VerifyDevice',
+                    type: 'post',
+                    dataType: 'text',
+                    data: { deviceID: deviceID },
+                    success: function (result) {
+                        if (result == "Nofound") {
+                            alert("设备编号错误，请重新输入");
+                            return;
+                        }
+                        else {
+                            //利用cookie保存设备ID
+                            setCookie("deviceID", deviceID);
+                            alert("修改成功！");
+                            window.location.href = "/Pattern/Pattern";
+                        }
+                    }
+                });
+            }
+        }
+        //点击退出按钮
+        function log_out() {
+            $.messager.confirm("温馨提示", "确定要注销?", function (r) {
+                if (r) {
+                    setCookie("AdminName", null);
+                    setCookie("AdminPass", null);
+                    setCookie("Authority", null);
+                    setCookie("deviceID", null);
+                    setCookie("fileName", null);
+                    setCookie("note", null);
+                    window.location.href = "/LoginIndex/LoginIndex";
+                }
+            });
+        }
+ 
+        //显示日期
+        function startTime() {
+            var today = new Date();//定义日期对象
+            var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年
+            var MM = today.getMonth() + 1;//通过日期对象的getMonth()方法返回月
+            var dd = today.getDate();//通过日期对象的getDate()方法返回年
+            var hh = today.getHours();//通过日期对象的getHours方法返回小时
+            var mm = today.getMinutes();//通过日期对象的getMinutes方法返回分钟
+            var ss = today.getSeconds();//通过日期对象的getSeconds方法返回秒
+            // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09
+            MM = checkTime(MM);
+            dd = checkTime(dd);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            var day; //用于保存星期（getDay()方法得到星期编号）
+            if (today.getDay() == 0) day = "星期日 "
+            if (today.getDay() == 1) day = "星期一 "
+            if (today.getDay() == 2) day = "星期二 "
+            if (today.getDay() == 3) day = "星期三 "
+            if (today.getDay() == 4) day = "星期四 "
+            if (today.getDay() == 5) day = "星期五 "
+            if (today.getDay() == 6) day = "星期六 "
+            document.getElementById('nowDateTimeSpan').innerHTML = yyyy + "-" + MM + "-" + dd + " " + hh + ":" + mm + ":" + ss + "   " + day;
+            setTimeout('startTime()', 1000);//每一秒中重新加载startTime()方法
+        }
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+    </script>
+
+    <style>
+        #btnalter {
+           width: 100px;
+            padding: 8px;
+            background-color: #428bca;
+            border-color: #357ebd;
+            color: #fff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px; /* future proofing */
+            cursor: pointer;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            font-weight: 900;
+            font-size: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div style="position: absolute;top:0;left:0;width: 100%; height: 80px;overflow: hidden; background: #323642; color: #ffffff; border: 0px solid #484A56">
+        <div style="margin-left:10px;margin-top:7px;float:left">
+            <img src="~/Images/main/logo2.jpg" alt="" />
+        </div>
+        <div style="width:auto; height: 35px; margin-left: 10px; margin-top: 5px;border:0px solid red;float:left">
+            <span id="names" style="font-weight: bolder; font-size: 30px; font-family: YouYuan; color: #EFFBF8">
+                色选机远程监控与管理系统
+            </span>
+        </div>
+
+        <div style="position: fixed; width: 250px; right: 220px; top: 15px">
+            <span style="color: #ffffff; font-weight: 900; font-size: 14px; font-family: YouYuan;" id="Currentdevice"></span>
+            <button id="btnalter" onclick="changeDeviceID()">添加/修改</button>
+        </div>
+        <div style="position: fixed; width: 200px; right: 5px; top: 23px">
+            <span id="nowDateTimeSpan" style="color: #ffffff; font-weight: 900; font-size: 14px; font-family: YouYuan;"></span>
+        </div>
+        <div style="width: 100%;">
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 2%"> </td>
+                    <td style="text-align: left; padding-top: 15px;">
+                        <a href="/Pattern/Pattern?pa" class="l-btn-plain" id="Pattern_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 模式选择</a>
+                        <a href="/Sensitivity/Sensitivity?sen" class="l-btn-plain" id="Sensitivity_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 灵敏度</a>
+                        <a href="/FlowSet/FlowSet?fl" class="l-btn-plain" id="Flow_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 流量设定</a>
+                        <a href="/ColorSensitive/ColorSensitive?co" class="l-btn-plain" id="Color_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 颜色敏感</a>
+                        <a href="/ValveTesting/ValveTesting?va" class="l-btn-plain" id="Testing_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 阀门测试</a>
+                        <a href="/ModSet/ModSet?mod" class="l-btn-plain" id="Mod_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan;text-decoration:none"> MOD设定</a>
+                        <a href="/AreaSet/AreaSet?ar" class="l-btn-plain" id="Area_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 面积设定</a>
+                        <a href="/AshRemovalSet/AshRemovalSet?ash" class="l-btn-plain" id="Ash_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 清灰设定</a>
+                        <a href="/AdvancedSetting/AdvancedSetting?ad" class="l-btn-plain" id="Advanced_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 高级设置</a>
+                        <a href="/ConnectServer/connServer?cs" class="l-btn-plain" id="Serve_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 服务</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="log_out" style="position: fixed; width: 30px; height: 30px; right: 0px; top: -5px; border: 0px solid red; text-align: center; font-size: 25px;" onclick="log_out()">
+            ×
+        </div>
+    </div>
+    <div style="width: 100%;position: absolute;top: 80px;bottom: 0px;left: 0px;">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+    
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+             font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+             font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+
+<script type="text/javascript">
+    //离开界面提示
+    //window.onbeforeunload = function (e) {
+    //    var e = window.event || e;
+    //    e.returnValue = ("确定离开当前页面吗？");
+    //}
+    $(function () {
+        //改颜色
+        document.getElementById('Sensitivity_id').style.background = '#48484A';
+        document.getElementById('Sensitivity_id').style.borderButton = '1px solid ';
+        document.getElementById('Sensitivity_id').style.padding = '7px 12px 17px 12px ';
+        var oldValue="0";
+        $("input").focus(function(){
+            oldValue = $(this).val();
+        });
+
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-245之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else
+            {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        //传入初值
+        $.ajax({
+            url: '/Sensitivity/SendData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#rlingmin1').val(val.rlingmin1);
+                $('#rlingmin2').val(val.rlingmin2);
+                $('#rlingmin3').val(val.rlingmin3);
+                $('#rlingmin4').val(val.rlingmin4);
+                $('#rlingmin5').val(val.rlingmin5);
+                $('#rlingmin6').val(val.rlingmin6);
+                $('#rlingmin7').val(val.rlingmin7);
+                $('#rlingmin8').val(val.rlingmin8);
+                $('#rlingmin9').val(val.rlingmin9);
+                $('#rlingmin10').val(val.rlingmin10);
+                $('#rlingmin11').val(val.rlingmin11);
+                $('#rlingmin12').val(val.rlingmin12);
+            }
+        });
+    });
+    function postData() {
+        var rlingmin1 = $("#rlingmin1").val();
+        var rlingmin2 = $("#rlingmin2").val();
+        var rlingmin3 = $("#rlingmin3").val();
+        var rlingmin4 = $("#rlingmin4").val();
+        var rlingmin5 = $("#rlingmin5").val();
+        var rlingmin6 = $("#rlingmin6").val();
+        var rlingmin7 = $("#rlingmin7").val();
+        var rlingmin8 = $("#rlingmin8").val();
+        var rlingmin9 = $("#rlingmin9").val();
+        var rlingmin10 = $("#rlingmin10").val();
+        var rlingmin11 = $("#rlingmin11").val();
+        var rlingmin12 = $("#rlingmin12").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/Sensitivity/RpostData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                rlingmin1: rlingmin1, rlingmin2: rlingmin2, rlingmin3: rlingmin3, rlingmin4: rlingmin4, rlingmin5: rlingmin5, rlingmin6: rlingmin6, rlingmin7: rlingmin7, rlingmin8: rlingmin8, rlingmin9: rlingmin9, rlingmin10: rlingmin10, rlingmin11: rlingmin11, rlingmin12: rlingmin12
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="灵敏度类型" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="R灵敏度" iconCls="icon-ok" style="overflow:auto;padding:10px" selected="true">
+                <a href="/Sensitivity/Sensitivity" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度</a> <br>
+                <a href="/Sensitivity/rlingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度分量</a> <br>
+            </div>
+            <div title="G灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/glingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度</a> <br>
+                <a href="/Sensitivity/glingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度分量</a> <br>
+            </div>
+            <div title="B灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/blingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度</a> <br>
+                <a href="/Sensitivity/blingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度分量</a> <br>
+            </div>
+            <div title="混色灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/hslingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度</a> <br>
+                <a href="/Sensitivity/hslingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度分量</a> <br>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="R灵敏度" style="padding:10px" data-options="closable:true">
+
+                <table class="dataintable" align="center">
+
+                    <caption>R灵敏度设置</caption>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <td>一次流量
+                            <td>二次流量
+                            <td>三次流量
+                        <tr>
+                            <td>前暗敏感
+                            <td><input type="text" value="" id="rlingmin1" />
+                            <td><input type="text" value="" id="rlingmin5" />
+                            <td><input type="text" value="" id="rlingmin9" />
+                        <tr>
+                            <td>前亮敏感
+                            <td><input type="text" value="" id="rlingmin2" />
+                            <td><input type="text" value="" id="rlingmin6" />
+                            <td><input type="text" value="" id="rlingmin10" />
+                        <tr>
+                            <td>后暗敏感
+                            <td><input type="text" value="" id="rlingmin3" />
+                            <td><input type="text" value="" id="rlingmin7" />
+                            <td><input type="text" value="" id="rlingmin11" />
+                        <tr>
+                            <td>后亮敏感
+                            <td><input type="text" value="" id="rlingmin4" />
+                            <td><input type="text" value="" id="rlingmin8" />
+                            <td><input type="text" value="" id="rlingmin12" />
+
+                    </tbody>
+                </table><br />
+                <center><button id="submit" onclick="postData()">确定</button></center>
+            </div>
+        </div>
+    </div>
+</div>
+
+

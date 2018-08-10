@@ -1,0 +1,354 @@
+﻿<style>
+    .pl {
+        margin-top: 20px;
+        width: 100px;
+        padding: 7px;
+        background-color: #428bca;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border: solid 1px #4d4e53;
+        border-radius: 10px 40px 40px 10px;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 900;
+        font-size: 110%;
+    }
+   
+    table.FlowSettable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+
+        table.FlowSettable th {
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.FlowSettable td {
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    #aa {
+        font: small-caps 13px/2em bold "幼圆", sans-serif;
+        line-height: 1.8em;
+        text-indent: 2em;
+        color: #0f3ba3;
+    }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 900;
+        font-size: 115%;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        document.getElementById('Flow_id').style.background = '#48484A';
+        document.getElementById('Flow_id').style.borderButton = '1px solid ';
+        document.getElementById('Flow_id').style.padding = '7px 12px 17px 12px ';
+
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+        $(".ppp input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (1 <= parseInt(newValue) && parseInt(newValue) <= 100) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入1-100之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        $(".FlowSettable input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 50) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-50之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/FlowSet/SendData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#firsttd').val(val.firsttd);
+                $('#twotd').val(val.twotd);
+                $('#threetd').val(val.threetd);
+                $('#fourtd').val(val.fourtd);
+                $('#fivetd').val(val.fivetd);
+                $('#sixtd').val(val.sixtd);
+                $('#seventd').val(val.seventd);
+                $('#eighttd').val(val.eighttd);
+                $('#ninetd').val(val.ninetd);
+                $('#tentd').val(val.tentd);
+                $('#ycll').val(val.ycll);
+                $('#ecll').val(val.ecll);
+                $('#scll').val(val.scll);
+                $('#yitongdao').val(val.yitongdao);
+                $('#ertongdao').val(val.ertongdao);
+                $('#santongdao').val(val.santongdao);
+                $('#sitongdao').val(val.sitongdao);
+                $('#wutongdao').val(val.wutongdao);
+                $('#liutongdao').val(val.liutongdao);
+                $('#qitongdao').val(val.qitongdao);
+                $('#batongdao').val(val.batongdao);
+                $('#jiutongdao').val(val.jiutongdao);
+                $('#shitongdao').val(val.shitongdao);
+            }
+        });
+    });
+    ////Cookie设定
+    //function setCookie(name, value) {//两个参数，一个是cookie的名字，一个是值
+    //    document.cookie = name + "=" + escape(value) + ";path=/";
+    //    //escape()函数用于对字符串按 URL 编码方法来编码，并返回一个可在所有计算机上读取的编码字符串。
+    //}
+    ////取cookies函数
+    //function getCookie(name) {
+    //    var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+    //    if (arr != null) return unescape(arr[2]); return ""; //为什么是arr[2],因为arr是正则表达式获得的值，其中返回很多，value排在第三位所以是arr[2]
+    //}
+    function postData() {
+        var firsttd = $("#firsttd").val();
+        var twotd = $("#twotd").val();
+        var threetd = $("#threetd").val();
+        var fourtd = $("#fourtd").val();
+        var fivetd = $("#fivetd").val();
+        var sixtd = $("#sixtd").val();
+        var seventd = $("#seventd").val();
+        var eighttd = $("#eighttd").val();
+        var ninetd = $("#ninetd").val();
+        var tentd = $("#tentd").val();
+        var ycll = $("#ycll").val();
+        var ecll = $("#ecll").val();
+        var scll = $("#scll").val();
+
+        var yitongdao = $("#yitongdao option:selected").val();
+        var ertongdao = $("#ertongdao option:selected").val();
+        var santongdao = $("#santongdao option:selected").val();
+        var sitongdao = $("#sitongdao option:selected").val();
+        var wutongdao = $("#wutongdao option:selected").val();
+        var liutongdao = $("#liutongdao option:selected").val();
+        var qitongdao = $("#qitongdao option:selected").val();
+        var batongdao = $("#batongdao option:selected").val();
+        var jiutongdao = $("#jiutongdao option:selected").val();
+        var shitongdao = $("#shitongdao option:selected").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/FlowSet/postData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {deviceID: va, fileName: va1,
+                firsttd: firsttd, twotd: twotd, threetd: threetd, fourtd: fourtd, fivetd: fivetd, sixtd: sixtd, seventd: seventd, eighttd: eighttd, ninetd: ninetd, tentd: tentd, ycll: ycll, ecll: ecll, scll: scll,
+                yitongdao: yitongdao, ertongdao: ertongdao, santongdao: santongdao, sitongdao: sitongdao, wutongdao: wutongdao, liutongdao: liutongdao, qitongdao: qitongdao, batongdao: batongdao, jiutongdao: jiutongdao, shitongdao: shitongdao,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="修改说明" split="true">
+        <div id="aa" style="width:auto;height:auto">
+            <p>系统提供批量修改和精细修改两种修改模式。</p>
+            <p>1. 批量修改。一次修改十通道，有三种模式选择；</p>
+            <p>2. 精细修改。一次修改一通道，每通道有三种模式选择；</p>
+            <p>祝您使用愉快。</p>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="流量设定" style="padding:10px" data-options="closable:false">
+                <div class="ppp">
+                    <div class="pl"> 批量修改：</div><br />
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp一次流量
+                    <input type="text" value="" name="" id="ycll" />
+
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp二次流量
+                    <input type="text" value="" name="" id="ecll" />
+
+
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp三次流量
+                    <input type="text" value="" name="" id="scll" />
+                    &nbsp&nbsp&nbsp&nbsp&nbsp  <button id="submit" onclick="postData()" >确定</button>
+                </div>
+                <div>
+                    <div class="pl"> 精细修改：</div>
+                    <table class="FlowSettable" align="center">
+                        <tbody>
+                            <tr>
+                                <td>1通道
+                                <td>
+                                    <select id="yitongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="firsttd" />
+                                <td>
+                            <tr>
+                                <td>2通道
+                                <td>
+                                    <select id="ertongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="twotd" />
+                                <td>
+                            <tr>
+                                <td>3通道
+                                <td>
+                                    <select id="santongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="threetd" />
+                                <td>
+                            <tr>
+                                <td>4通道
+                                <td>
+                                    <select id="sitongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="fourtd" />
+                                <td>
+                            <tr>
+                                <td>5通道
+                                <td>
+                                    <select id="wutongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="fivetd" />
+                                <td>
+                            <tr>
+                                <td>6通道
+                                <td>
+                                    <select id="liutongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="sixtd" />
+                                <td>
+                            <tr>
+                                <td>7通道
+                                <td>
+                                    <select id="qitongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="seventd" />
+                                <td>
+                            <tr>
+                                <td>8通道
+                                <td>
+                                    <select id="batongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="eighttd" />
+                                <td>
+                            <tr>
+                                <td>9通道
+                                <td>
+                                    <select id="jiutongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="ninetd" />
+                                <td>
+                            <tr>
+                                <td>10通道
+                                <td>
+                                    <select id="shitongdao">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td><input type="text" maxlength="2" title="请输入0-50之间的整数" name="" id="tentd" />
+                                <td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

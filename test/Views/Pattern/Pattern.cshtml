@@ -1,0 +1,253 @@
+﻿  <style type="text/css">
+        table.dataintable {
+           
+            margin-top: 15px;
+            border-collapse: collapse;
+            border: 1px solid #aaa;
+            width: 100%;
+        }
+
+            table.dataintable th {
+                font-size: 15px;
+                vertical-align: baseline;
+                padding: 5px 15px 5px 6px;
+                background-color: #3F3F3F;
+                border: 1px solid #3F3F3F;
+                text-align: center;
+                color: #fff;
+            }
+
+            table.dataintable td {
+                  text-align: center;
+                font-size: 15px;
+                vertical-align: text-top;
+                padding: 6px 15px 6px 6px;
+                border: 1px solid #aaa;
+            }
+
+            table.dataintable tr:nth-child(odd) {
+                background-color: #F5F5F5;
+            }
+
+            table.dataintable tr:nth-child(even) {
+                background-color: #fff;
+            }
+           #aa {
+            font: small-caps 13px/2em bold "幼圆", sans-serif;
+            line-height: 1.8em;
+            text-indent: 2em;
+            color: #0f3ba3;
+        }
+    </style>
+
+<script>
+        //传pattern名字
+        $(function () {
+            //主Tab 状态设置
+                document.getElementById('Pattern_id').style.background = '#48484A';
+                document.getElementById('Pattern_id').style.borderButton = '1px solid ';
+                document.getElementById('Pattern_id').style.padding = '7px 12px 17px 12px ';
+
+                var va = getCookie("deviceID");
+                var va1 = getCookie("fileName");
+                $("#lasttime").text("当前模式："+getCookie("fileName"));
+            $.ajax({
+                url: '/Pattern/SendData', //后台处理程序
+                type: 'post',         //数据发送方式
+                dataType: 'text',     //接受数据格式
+                data: {deviceID:va,fileName:va1},        //要传递的数据
+                success: function (result) {
+                    var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                    $('#p1').text(val.p1);
+                    $('#p2').text(val.p2);
+                    $('#p3').text(val.p3);
+                    $('#p4').text(val.p4);
+                    $('#p5').text(val.p5);
+                    $('#p6').text(val.p6);
+                    $('#p7').text(val.p7);
+                    $('#p8').text(val.p8);
+                    $('#p9').text(val.p9);
+                    $('#p10').text(val.p10);
+                    $('#p11').text(val.p11);
+                    $('#p12').text(val.p12);
+                    $('#p13').text(val.p13);
+                    $('#p14').text(val.p14);
+                    $('#p15').text(val.p15);
+
+                }
+            });
+            //读取模式
+            $(".button1").click(function () {
+                var name = $(this).attr("id");
+                setCookie("fileName", name);
+                $("#lasttime").text("当前模式：" + getCookie("fileName"));
+                alert("模式更换到"+name);
+                //$.ajax({
+                //    url: '/Pattern/Read', //后台处理程序
+                //    type: 'post',         //数据发送方式
+                //    dataType: 'text',     //接受数据格式
+                //    data: { name: name },        //要传递的数据
+                //    success: function (result) {
+                //        if (result == "Success") {
+                //            alert("读取成功！");
+                //        }
+                //        else {
+                //            alert("读取失败！");
+                //        }
+                //    }
+                //});
+            });
+            //保存模式
+            $(".button2").click(function () {
+                var name = $(this).attr("id");
+                $.ajax({
+                    url: '/Pattern/Write', //后台处理程序
+                    type: 'post',         //数据发送方式
+                    dataType: 'text',     //接受数据格式
+                    data: {deviceID:va,fileName:va1, name: name },        //要传递的数据
+                    success: function (result) {
+                        if (result == "Success") {
+                            alert("成功将 "+va1+"保存到 "+name);
+                        }
+                        else {
+                            alert("保存失败！");
+                        }
+                    }
+                });
+            });
+        });
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="修改说明" split="true">
+        <div id="aa" style="width:auto;height:auto">
+            <p id="lasttime" style="font-weight: 900; font-size: 15px;text-align:center;"></p>
+            <p>系统预设15种常见物料的分选方案，请谨慎修改和保存。</p>
+            <p>若未选择则默认为上次关机前的模式，退出系统时自动保存。</p>
+            <p>祝您使用愉快。</p>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743;">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="模式选择" style="padding:10px" data-options="closable:false">
+                <div id="xz">
+                    <div id="patternxz" style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">
+                        预设色选模式选择 
+                    </div>  
+                    <table class="dataintable">
+                        <tr>
+                            <th>序号</th>
+                            <th>方案名称</th>
+                            <th>读取数据</th>
+                            <th>保存数据</th>
+                        </tr>
+
+                        <tr>
+                            <td><i>1</i></td>
+                            <td id="p1"></td>
+                            <td><button class="button1" id="mode1">读取数据</button></td>
+                            <td><button class="button2" id="mode1">保存数据</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><i>2</i></td>
+                            <td id="p2"></td>
+                            <td><button class="button1" id="mode2">读取数据</button></td>
+                            <td><button class="button2" id="mode2">保存数据</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><i>3</i></td>
+                            <td id="p3"></td>
+                            <td><button class="button1" id="mode3">读取数据</button></td>
+                            <td><button class="button2" id="mode3">保存数据</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><i>4</i></td>
+                            <td id="p4"></td>
+                            <td><button class="button1" id="mode4">读取数据</button></td>
+                            <td><button class="button2" id="mode4">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>5</i></td>
+                            <td id="p5"></td>
+                            <td><button class="button1" id="mode5">读取数据</button></td>
+                            <td><button class="button2" id="mode5">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>6</i></td>
+                            <td id="p6"></td>
+                            <td><button class="button1" id="mode6">读取数据</button></td>
+                            <td><button class="button2" id="mode6">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>7</i></td>
+                            <td id="p7"></td>
+                            <td><button class="button1" id="mode7">读取数据</button></td>
+                            <td><button class="button2" id="mode7">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>8</i></td>
+                            <td id="p8"></td>
+                            <td><button class="button1" id="mode8">读取数据</button></td>
+                            <td><button class="button2" id="mode8">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>9</i></td>
+                            <td id="p9"></td>
+                            <td><button class="button1" id="mode9">读取数据</button></td>
+                            <td><button class="button2" id="mode9">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>10</i></td>
+                            <td id="p10"></td>
+                            <td><button class="button1" id="mode10">读取数据</button></td>
+                            <td><button class="button2" id="mode10">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>11</i></td>
+                            <td id="p11"></td>
+                            <td><button class="button1" id="mode11">读取数据</button></td>
+                            <td><button class="button2" id="mode11">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>12</i></td>
+                            <td id="p12"></td>
+                            <td><button class="button1" id="mode12">读取数据</button></td>
+                            <td><button class="button2" id="mode12">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>13</i></td>
+                            <td id="p13"></td>
+                            <td><button class="button1" id="mode13">读取数据</button></td>
+                            <td><button class="button2" id="mode13">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>14</i></td>
+                            <td id="p14"></td>
+                            <td><button class="button1" id="mode14">读取数据</button></td>
+                            <td><button class="button2" id="mode14">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>15</i></td>
+                            <td id="p15"></td>
+                            <td><button class="button1" id="mode15">读取数据</button></td>
+                            <td><button class="button2" id="mode15">保存数据</button></td>
+                        </tr>
+                        <tr>
+                            <td><i>16</i></td>
+                            <td>上次退出前的数据</td>
+                            <td><button class="button1" id="lasttime">读取数据</button></td>
+                            <td><button class="button2" id="lasttime">保存数据</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+

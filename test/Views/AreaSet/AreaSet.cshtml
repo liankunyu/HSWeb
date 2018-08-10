@@ -1,0 +1,234 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+          #aa {
+        font: small-caps 13px/2em bold "幼圆", sans-serif;
+        line-height: 1.8em;
+        text-indent: 2em;
+        color: #0f3ba3;
+    }
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+
+<script type="text/javascript">
+    //离开界面提示
+    //window.onbeforeunload = function (e) {
+    //    var e = window.event || e;
+    //    e.returnValue = ("确定离开当前页面吗？");
+    //}
+    $(function () {
+        //改颜色
+        document.getElementById('Area_id').style.background = '#48484A';
+        document.getElementById('Area_id').style.borderButton = '1px solid ';
+        document.getElementById('Area_id').style.padding = '7px 12px 17px 12px ';
+        var oldValue="0";
+        $("input").focus(function(){
+            oldValue = $(this).val();
+        });
+
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-255之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else
+            {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        //传入初值
+        $.ajax({
+            url: '/AreaSet/SendData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#mian1').val(val.mian1);
+                $('#mian2').val(val.mian2);
+                $('#mian3').val(val.mian3);
+                $('#mian4').val(val.mian4);
+                $('#mian5').val(val.mian5);
+                $('#mian6').val(val.mian6);
+                $('#mian7').val(val.mian7);
+                $('#mian8').val(val.mian8);
+                $('#mian9').val(val.mian9);
+                $('#mian10').val(val.mian10);
+                $('#mian11').val(val.mian11);
+                $('#mian12').val(val.mian12);
+                $('#mian13').val(val.mian13);
+                $('#mian14').val(val.mian14);
+                $('#mian15').val(val.mian15);
+                $('#mian16').val(val.mian16);
+                $('#mian17').val(val.mian17);
+                $('#mian18').val(val.mian18);
+            }
+        });
+    });
+    function postData() {
+        var mian1 = $("#mian1").val();
+        var mian2 = $("#mian2").val();
+        var mian3 = $("#mian3").val();
+        var mian4 = $("#mian4").val();
+        var mian5 = $("#mian5").val();
+        var mian6 = $("#mian6").val();
+        var mian7 = $("#mian7").val();
+        var mian8 = $("#mian8").val();
+        var mian9 = $("#mian9").val();
+        var mian10 = $("#mian10").val();
+        var mian11 = $("#mian11").val();
+        var mian12 = $("#mian12").val();
+        var mian13 = $("#mian13").val();
+        var mian14 = $("#mian14").val();
+        var mian15 = $("#mian15").val();
+        var mian16 = $("#mian16").val();
+        var mian17 = $("#mian17").val();
+        var mian18 = $("#mian18").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/AreaSet/postData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                mian1: mian1, mian2: mian2, mian3: mian3, mian4: mian4, mian5: mian5,
+                mian6: mian6, mian7: mian7, mian8: mian8, mian9: mian9, mian10: mian10,
+                mian11: mian11, mian12: mian12, mian13: mian13, mian14: mian14, mian15: mian15,
+                mian16: mian16, mian17: mian17, mian18: mian18,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="修改说明" split="true">
+        <div id="aa" style="width:auto;height:auto">
+            <p>初始值为上次关机前的默认值，请在右侧输入框内修改，修改后点击确定。</p>
+            <p>各项取值范围为0-255。</p>
+            <p>祝您使用愉快。</p>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="面积设定" style="padding:10px" data-options="closable:true">
+
+                <table class="dataintable" align="center">
+
+                    <caption>面积设定</caption>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <td>一次
+                            <td>二次
+                            <td>三次
+                        <tr>
+                            <td>前颜色面积
+                            <td><input type="text" maxlength="3" id="mian1" />
+                            <td><input type="text" maxlength="3" id="mian7" />
+                            <td><input type="text" maxlength="3" id="mian13" />
+                        <tr>
+                            <td>后颜色面积
+                            <td><input type="text" maxlength="3" id="mian2" />
+                            <td><input type="text" maxlength="3" id="mian8" />
+                            <td><input type="text" maxlength="3" id="mian14" />
+                        <tr>
+                            <td>前暗面积
+                            <td><input type="text" maxlength="3" id="mian3" />
+                            <td><input type="text" maxlength="3" id="mian9" />
+                            <td><input type="text" maxlength="3" id="mian15" />
+                        <tr>
+                            <td>后暗面积
+                            <td><input type="text" maxlength="3" id="mian4" />
+                            <td><input type="text" maxlength="3" id="mian10" />
+                            <td><input type="text" maxlength="3" id="mian16" />
+                        <tr>
+                            <td>前亮面积
+                            <td><input type="text" maxlength="3" id="mian5" />
+                            <td><input type="text" maxlength="3" id="mian11" />
+                            <td><input type="text" maxlength="3" id="mian17" />
+                        <tr>
+                            <td>后亮面积
+                            <td><input type="text" maxlength="3" id="mian6" />
+                            <td><input type="text" maxlength="3" id="mian12" />
+                            <td><input type="text" maxlength="3" id="mian18" />
+
+                    </tbody>
+                </table><br />
+                <center><button id="submit" onclick="postData()">确定</button></center>
+            </div>
+        </div>
+    </div>
+</div>
+
+

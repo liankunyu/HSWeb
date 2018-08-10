@@ -1,0 +1,397 @@
+﻿
+<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+
+        document.getElementById('Color_id').style.background = '#48484A';
+        document.getElementById('Color_id').style.borderButton = '1px solid ';
+        document.getElementById('Color_id').style.padding = '7px 12px 17px 12px ';
+
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+
+        $(".pL input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (1 <= parseInt(newValue) && parseInt(newValue) <= 100) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-245之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        $(".pM input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 50) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-10之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ColorSensitive/SendDataSD2', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#shenduer1').val(val.shenduer1);
+                $('#shenduer2').val(val.shenduer2);
+                $('#shenduer3').val(val.shenduer3);
+                $('#shenduer4').val(val.shenduer4);
+                $('#shenduer5').val(val.shenduer5);
+                $('#shenduer6').val(val.shenduer6);
+                $('#shenduer7').val(val.shenduer7);
+                $('#shenduer8').val(val.shenduer8);
+                $('#shenduer9').val(val.shenduer9);
+                $('#shenduer10').val(val.shenduer10);
+                $('#shenduer11').val(val.shenduer11);
+                $('#shenduer12').val(val.shenduer12);
+
+                $('#shenduerf1').val(val.shenduerf1);
+                $('#shenduerf2').val(val.shenduerf2);
+                $('#shenduerf3').val(val.shenduerf3);
+                $('#shenduerf4').val(val.shenduerf4);
+                $('#shenduerf5').val(val.shenduerf5);
+                $('#shenduerf6').val(val.shenduerf6);
+                $('#shenduerf7').val(val.shenduerf7);
+                $('#shenduerf8').val(val.shenduerf8);
+                $('#shenduerf9').val(val.shenduerf9);
+                $('#shenduerf10').val(val.shenduerf10);
+                $('#shenduerf11').val(val.shenduerf11);
+                $('#shenduerf12').val(val.shenduerf12);
+                $('#shenduerf13').val(val.shenduerf13);
+                $('#shenduerf14').val(val.shenduerf14);
+                $('#shenduerf15').val(val.shenduerf15);
+                $('#shenduerf16').val(val.shenduerf16);
+                $('#shenduerf17').val(val.shenduerf17);
+                $('#shenduerf18').val(val.shenduerf18);
+                $('#shenduerf19').val(val.shenduerf19);
+                $('#shenduerf20').val(val.shenduerf20);
+                $('#shenduerf21').val(val.shenduerf21);
+                $('#shenduerf22').val(val.shenduerf22);
+                $('#shenduerf23').val(val.shenduerf23);
+                $('#shenduerf24').val(val.shenduerf24);
+                $('#shenduerf25').val(val.shenduerf25);
+                $('#shenduerf26').val(val.shenduerf26);
+                $('#shenduerf27').val(val.shenduerf27);
+                $('#shenduerf28').val(val.shenduerf28);
+                $('#shenduerf29').val(val.shenduerf29);
+                $('#shenduerf30').val(val.shenduerf30);
+                $('#shenduerf31').val(val.shenduerf31);
+                $('#shenduerf32').val(val.shenduerf32);
+                $('#shenduerf33').val(val.shenduerf33);
+                $('#shenduerf34').val(val.shenduerf34);
+                $('#shenduerf35').val(val.shenduerf35);
+                $('#shenduerf36').val(val.shenduerf36);
+                $('#shenduerf37').val(val.shenduerf37);
+                $('#shenduerf38').val(val.shenduerf38);
+                $('#shenduerf39').val(val.shenduerf39);
+                $('#shenduerf40').val(val.shenduerf40);
+            }
+        });
+    });
+    function postData() {
+        var shenduer1 = $("#shenduer1").val();
+        var shenduer2 = $("#shenduer2").val();
+        var shenduer3 = $("#shenduer3").val();
+        var shenduer4 = $("#shenduer4").val();
+        var shenduer5 = $("#shenduer5").val();
+        var shenduer6 = $("#shenduer6").val();
+        var shenduer7 = $("#shenduer7").val();
+        var shenduer8 = $("#shenduer8").val();
+        var shenduer9 = $("#shenduer9").val();
+        var shenduer10 = $("#shenduer10").val();
+        var shenduer11 = $("#shenduer11").val();
+        var shenduer12 = $("#shenduer12").val();
+
+        var shenduerf1 = $("#shenduerf1").val();
+        var shenduerf2 = $("#shenduerf2").val();
+        var shenduerf3 = $("#shenduerf3").val();
+        var shenduerf4 = $("#shenduerf4").val();
+        var shenduerf5 = $("#shenduerf5").val();
+        var shenduerf6 = $("#shenduerf6").val();
+        var shenduerf7 = $("#shenduerf7").val();
+        var shenduerf8 = $("#shenduerf8").val();
+        var shenduerf9 = $("#shenduerf9").val();
+        var shenduerf10 = $("#shenduerf10").val();
+        var shenduerf11 = $("#shenduerf11").val();
+        var shenduerf12 = $("#shenduerf12").val();
+        var shenduerf13 = $("#shenduerf13").val();
+        var shenduerf14 = $("#shenduerf14").val();
+        var shenduerf15 = $("#shenduerf15").val();
+        var shenduerf16 = $("#shenduerf16").val();
+        var shenduerf17 = $("#shenduerf17").val();
+        var shenduerf18 = $("#shenduerf18").val();
+        var shenduerf19 = $("#shenduerf19").val();
+        var shenduerf20 = $("#shenduerf20").val();
+        var shenduerf21 = $("#shenduerf21").val();
+        var shenduerf22 = $("#shenduerf22").val();
+        var shenduerf23 = $("#shenduerf23").val();
+        var shenduerf24 = $("#shenduerf24").val();
+        var shenduerf25 = $("#shenduerf25").val();
+        var shenduerf26 = $("#shenduerf26").val();
+        var shenduerf27 = $("#shenduerf27").val();
+        var shenduerf28 = $("#shenduerf28").val();
+        var shenduerf29 = $("#shenduerf29").val();
+        var shenduerf30 = $("#shenduerf30").val();
+        var shenduerf31 = $("#shenduerf31").val();
+        var shenduerf32 = $("#shenduerf32").val();
+        var shenduerf33 = $("#shenduerf33").val();
+        var shenduerf34 = $("#shenduerf34").val();
+        var shenduerf35 = $("#shenduerf35").val();
+        var shenduerf36 = $("#shenduerf36").val();
+        var shenduerf37 = $("#shenduerf37").val();
+        var shenduerf38 = $("#shenduerf38").val();
+        var shenduerf39 = $("#shenduerf39").val();
+        var shenduerf40 = $("#shenduerf40").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ColorSensitive/postDataSD2', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                shenduer1: shenduer1, shenduer2: shenduer2, shenduer3: shenduer3, shenduer4: shenduer4, shenduer5: shenduer5, shenduer6: shenduer6,
+                shenduer7: shenduer7, shenduer8: shenduer8, shenduer9: shenduer9, shenduer10: shenduer10, shenduer11: shenduer11, shenduer12: shenduer12,
+                shenduerf1: shenduerf1, shenduerf2: shenduerf2, shenduerf3: shenduerf3, shenduerf4: shenduerf4, shenduerf5: shenduerf5,
+                shenduerf6: shenduerf6, shenduerf7: shenduerf7, shenduerf8: shenduerf8, shenduerf9: shenduerf9, shenduerf10: shenduerf10,
+                shenduerf11: shenduerf11, shenduerf12: shenduerf12, shenduerf13: shenduerf13, shenduerf14: shenduerf14, shenduerf15: shenduerf15,
+                shenduerf16: shenduerf16, shenduerf17: shenduerf17, shenduerf18: shenduerf18, shenduerf19: shenduerf19, shenduerf20: shenduerf20,
+                shenduerf21: shenduerf21, shenduerf22: shenduerf22, shenduerf23: shenduerf23, shenduerf24: shenduerf24, shenduerf25: shenduerf25,
+                shenduerf26: shenduerf26, shenduerf27: shenduerf27, shenduerf28: shenduerf28, shenduerf29: shenduerf29, shenduerf30: shenduerf30,
+                shenduerf31: shenduerf31, shenduerf32: shenduerf32, shenduerf33: shenduerf33, shenduerf34: shenduerf34, shenduerf35: shenduerf35,
+                shenduerf36: shenduerf36, shenduerf37: shenduerf37, shenduerf38: shenduerf38, shenduerf39: shenduerf39, shenduerf40: shenduerf40,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+
+</script>
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="颜色敏感" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="区域" id="aa" iconCls="icon-ok" style="overflow:auto;padding:5px;">
+                <a href="/ColorSensitive/ColorSensitive" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域1</a> <br>
+                <a href="/ColorSensitive/quyu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域2</a> <br>
+                <a href="/ColorSensitive/quyu3" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域3</a> <br>
+                <a href="/ColorSensitive/quyu4" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域4</a> <br>
+                <a href="/ColorSensitive/quyu5" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域5</a> <br>
+            </div>
+            <div title="灰度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/huidu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度1</a> <br>
+                <a href="/ColorSensitive/huidu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度2</a> <br>
+            </div>
+            <div title="深度" iconCls="icon-ok" style="padding:10px" selected="true ">
+                <a href="/ColorSensitive/shendu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度1</a> <br>
+                <a href="/ColorSensitive/shendu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度2</a> <br>
+
+            </div>
+            <div title="颜色行面积" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yansehangmianji" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色行面积</a>
+            </div>
+            <div title="背景阈值" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/beijingyuzhi" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">背景阈值</a>
+            </div>
+            <div title="颜色敏感强度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yanseminganqiangdu" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色敏感强度</a>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="深度2" style="padding:10px" data-options="closable:true">
+                <table class="dataintable" align="center">
+                    <caption>深度2</caption>
+                    <tbody class="pL">
+                        <tr>
+                            <td>
+                            <td>一次流量
+                            <td>二次流量
+                            <td>三次流量
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="shenduer1" />
+                            <td><input type="text" value="" id="shenduer5" />
+                            <td><input type="text" value="" id="shenduer9" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="shenduer2" />
+                            <td><input type="text" value="" id="shenduer6" />
+                            <td><input type="text" value="" id="shenduer10" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="shenduer3" />
+                            <td><input type="text" value="" id="shenduer7" />
+                            <td><input type="text" value="" id="shenduer11" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="shenduer4" />
+                            <td><input type="text" value="" id="shenduer8" />
+                            <td>
+                                <input type="text" value="" id="shenduer12" />
+                                <button id="submit" onclick="postData()" style="position:absolute; right:100px;">确定</button>
+                    </tbody>
+                </table>
+
+
+                <table class="dataintable" align="center">
+
+                    <caption>深度2分量设置</caption>
+
+                    <tbody class="pM">
+                        <tr>
+                            <td>
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="shenduerf1" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf2" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf3" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf4" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf5" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf6" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf7" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf8" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf9" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf10" style="width:50px" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="shenduerf11" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf12" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf13" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf14" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf15" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf16" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf17" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf18" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf19" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf20" style="width:50px" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="shenduerf21" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf22" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf23" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf24" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf25" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf26" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf27" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf28" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf29" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf30" style="width:50px" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="shenduerf31" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf32" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf33" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf34" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf35" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf36" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf37" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf38" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf39" style="width:50px" />
+                            <td><input type="text" value="" id="shenduerf40" style="width:50px" />
+                    </tbody>
+                </table>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

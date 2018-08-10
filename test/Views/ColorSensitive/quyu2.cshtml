@@ -1,0 +1,399 @@
+﻿
+
+<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+<script>
+    $(function () {
+        document.getElementById('Color_id').style.background = '#48484A';
+        document.getElementById('Color_id').style.borderButton = '1px solid ';
+        document.getElementById('Color_id').style.padding = '7px 12px 17px 12px ';
+
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+
+        $(".pL input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (1 <= parseInt(newValue) && parseInt(newValue) <= 100) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-245之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        $(".pM input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 50) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-10之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ColorSensitive/SendData2', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#quyuer1').val(val.quyuer1);
+                $('#quyuer2').val(val.quyuer2);
+                $('#quyuer3').val(val.quyuer3);
+                $('#quyuer4').val(val.quyuer4);
+                $('#quyuer5').val(val.quyuer5);
+                $('#quyuer6').val(val.quyuer6);
+                $('#quyuer7').val(val.quyuer7);
+                $('#quyuer8').val(val.quyuer8);
+                $('#quyuer9').val(val.quyuer9);
+                $('#quyuer10').val(val.quyuer10);
+                $('#quyuer11').val(val.quyuer11);
+                $('#quyuer12').val(val.quyuer12);
+
+                $('#quyuerf1').val(val.quyuerf1);
+                $('#quyuerf2').val(val.quyuerf2);
+                $('#quyuerf3').val(val.quyuerf3);
+                $('#quyuerf4').val(val.quyuerf4);
+                $('#quyuerf5').val(val.quyuerf5);
+                $('#quyuerf6').val(val.quyuerf6);
+                $('#quyuerf7').val(val.quyuerf7);
+                $('#quyuerf8').val(val.quyuerf8);
+                $('#quyuerf9').val(val.quyuerf9);
+                $('#quyuerf10').val(val.quyuerf10);
+                $('#quyuerf11').val(val.quyuerf11);
+                $('#quyuerf12').val(val.quyuerf12);
+                $('#quyuerf13').val(val.quyuerf13);
+                $('#quyuerf14').val(val.quyuerf14);
+                $('#quyuerf15').val(val.quyuerf15);
+                $('#quyuerf16').val(val.quyuerf16);
+                $('#quyuerf17').val(val.quyuerf17);
+                $('#quyuerf18').val(val.quyuerf18);
+                $('#quyuerf19').val(val.quyuerf19);
+                $('#quyuerf20').val(val.quyuerf20);
+                $('#quyuerf21').val(val.quyuerf21);
+                $('#quyuerf22').val(val.quyuerf22);
+                $('#quyuerf23').val(val.quyuerf23);
+                $('#quyuerf24').val(val.quyuerf24);
+                $('#quyuerf25').val(val.quyuerf25);
+                $('#quyuerf26').val(val.quyuerf26);
+                $('#quyuerf27').val(val.quyuerf27);
+                $('#quyuerf28').val(val.quyuerf28);
+                $('#quyuerf29').val(val.quyuerf29);
+                $('#quyuerf30').val(val.quyuerf30);
+                $('#quyuerf31').val(val.quyuerf31);
+                $('#quyuerf32').val(val.quyuerf32);
+                $('#quyuerf33').val(val.quyuerf33);
+                $('#quyuerf34').val(val.quyuerf34);
+                $('#quyuerf35').val(val.quyuerf35);
+                $('#quyuerf36').val(val.quyuerf36);
+                $('#quyuerf37').val(val.quyuerf37);
+                $('#quyuerf38').val(val.quyuerf38);
+                $('#quyuerf39').val(val.quyuerf39);
+                $('#quyuerf40').val(val.quyuerf40);
+            }
+        });
+    });
+    function postData2() {
+        var quyuer1 = $("#quyuer1").val();
+        var quyuer2 = $("#quyuer2").val();
+        var quyuer3 = $("#quyuer3").val();
+        var quyuer4 = $("#quyuer4").val();
+        var quyuer5 = $("#quyuer5").val();
+        var quyuer6 = $("#quyuer6").val();
+        var quyuer7 = $("#quyuer7").val();
+        var quyuer8 = $("#quyuer8").val();
+        var quyuer9 = $("#quyuer9").val();
+        var quyuer10 = $("#quyuer10").val();
+        var quyuer11 = $("#quyuer11").val();
+        var quyuer12 = $("#quyuer12").val();
+
+        var quyuerf1 = $("#quyuerf1").val();
+        var quyuerf2 = $("#quyuerf2").val();
+        var quyuerf3 = $("#quyuerf3").val();
+        var quyuerf4 = $("#quyuerf4").val();
+        var quyuerf5 = $("#quyuerf5").val();
+        var quyuerf6 = $("#quyuerf6").val();
+        var quyuerf7 = $("#quyuerf7").val();
+        var quyuerf8 = $("#quyuerf8").val();
+        var quyuerf9 = $("#quyuerf9").val();
+        var quyuerf10 = $("#quyuerf10").val();
+        var quyuerf11 = $("#quyuerf11").val();
+        var quyuerf12 = $("#quyuerf12").val();
+        var quyuerf13 = $("#quyuerf13").val();
+        var quyuerf14 = $("#quyuerf14").val();
+        var quyuerf15 = $("#quyuerf15").val();
+        var quyuerf16 = $("#quyuerf16").val();
+        var quyuerf17 = $("#quyuerf17").val();
+        var quyuerf18 = $("#quyuerf18").val();
+        var quyuerf19 = $("#quyuerf19").val();
+        var quyuerf20 = $("#quyuerf20").val();
+        var quyuerf21 = $("#quyuerf21").val();
+        var quyuerf22 = $("#quyuerf22").val();
+        var quyuerf23 = $("#quyuerf23").val();
+        var quyuerf24 = $("#quyuerf24").val();
+        var quyuerf25 = $("#quyuerf25").val();
+        var quyuerf26 = $("#quyuerf26").val();
+        var quyuerf27 = $("#quyuerf27").val();
+        var quyuerf28 = $("#quyuerf28").val();
+        var quyuerf29 = $("#quyuerf29").val();
+        var quyuerf30 = $("#quyuerf30").val();
+        var quyuerf31 = $("#quyuerf31").val();
+        var quyuerf32 = $("#quyuerf32").val();
+        var quyuerf33 = $("#quyuerf33").val();
+        var quyuerf34 = $("#quyuerf34").val();
+        var quyuerf35 = $("#quyuerf35").val();
+        var quyuerf36 = $("#quyuerf36").val();
+        var quyuerf37 = $("#quyuerf37").val();
+        var quyuerf38 = $("#quyuerf38").val();
+        var quyuerf39 = $("#quyuerf39").val();
+        var quyuerf40 = $("#quyuerf40").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ColorSensitive/postData2', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                quyuer1: quyuer1, quyuer2: quyuer2, quyuer3: quyuer3, quyuer4: quyuer4, quyuer5: quyuer5, quyuer6: quyuer6,
+                quyuer7: quyuer7, quyuer8: quyuer8, quyuer9: quyuer9, quyuer10: quyuer10, quyuer11: quyuer11, quyuer12: quyuer12,
+                quyuerf1: quyuerf1, quyuerf2: quyuerf2, quyuerf3: quyuerf3, quyuerf4: quyuerf4, quyuerf5: quyuerf5,
+                quyuerf6: quyuerf6, quyuerf7: quyuerf7, quyuerf8: quyuerf8, quyuerf9: quyuerf9, quyuerf10: quyuerf10,
+                quyuerf11: quyuerf11, quyuerf12: quyuerf12, quyuerf13: quyuerf13, quyuerf14: quyuerf14, quyuerf15: quyuerf15,
+                quyuerf16: quyuerf16, quyuerf17: quyuerf17, quyuerf18: quyuerf18, quyuerf19: quyuerf19, quyuerf20: quyuerf20,
+                quyuerf21: quyuerf21, quyuerf22: quyuerf22, quyuerf23: quyuerf23, quyuerf24: quyuerf24, quyuerf25: quyuerf25,
+                quyuerf26: quyuerf26, quyuerf27: quyuerf27, quyuerf28: quyuerf28, quyuerf29: quyuerf29, quyuerf30: quyuerf30,
+                quyuerf31: quyuerf31, quyuerf32: quyuerf32, quyuerf33: quyuerf33, quyuerf34: quyuerf34, quyuerf35: quyuerf35,
+                quyuerf36: quyuerf36, quyuerf37: quyuerf37, quyuerf38: quyuerf38, quyuerf39: quyuerf39, quyuerf40: quyuerf40,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="颜色敏感" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="区域" id="aa" iconCls="icon-ok" style="overflow:auto;padding:5px;" selected="true ">
+                <a href="/ColorSensitive/ColorSensitive" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域1</a> <br>
+                <a href="/ColorSensitive/quyu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域2</a> <br>
+                <a href="/ColorSensitive/quyu3" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域3</a> <br>
+                <a href="/ColorSensitive/quyu4" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域4</a> <br>
+                <a href="/ColorSensitive/quyu5" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域5</a> <br>
+            </div>
+            <div title="灰度" iconCls="icon-ok" style="padding:10px" >
+                <a href="/ColorSensitive/huidu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度1</a> <br>
+                <a href="/ColorSensitive/huidu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度2</a> <br>
+            </div>
+            <div title="深度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/shendu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度1</a> <br>
+                <a href="/ColorSensitive/shendu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度2</a> <br>
+
+            </div>
+            <div title="颜色行面积" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yansehangmianji" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色行面积</a>
+            </div>
+            <div title="背景阈值" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/beijingyuzhi" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">背景阈值</a>
+            </div>
+            <div title="颜色敏感强度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yanseminganqiangdu" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色敏感强度</a>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="区域2" style="padding:10px" data-options="closable:true">
+                <table class="dataintable" align="center">
+
+                    <caption>区域2</caption>
+
+                    <tbody class="pL">
+                        <tr>
+                            <td>
+                            <td>一次流量
+                            <td>二次流量
+                            <td>三次流量
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="quyuer1" />
+                            <td><input type="text" value="" id="quyuer5" />
+                            <td><input type="text" value="" id="quyuer9" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="quyuer2" />
+                            <td><input type="text" value="" id="quyuer6" />
+                            <td><input type="text" value="" id="quyuer10" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="quyuer3" />
+                            <td><input type="text" value="" id="quyuer7" />
+                            <td><input type="text" value="" id="quyuer11" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="quyuer4" />
+                            <td><input type="text" value="" id="quyuer8" />
+                            <td>
+                                <input type="text" value="" id="quyuer12" />
+                                <button id="submit" onclick="postData2()" style="position:absolute; right:100px;">确定</button>
+                    </tbody>
+                </table>
+
+                <table class="dataintable" align="center">
+
+                    <caption>区域2分量设置</caption>
+
+                    <tbody class="pM">
+                        <tr>
+                            <td>
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="quyuerf1" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf2" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf3" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf4" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf5" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf6" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf7" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf8" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf9" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf10" style="width:50px" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="quyuerf11" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf12" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf13" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf14" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf15" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf16" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf17" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf18" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf19" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf20" style="width:50px" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="quyuerf21" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf22" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf23" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf24" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf25" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf26" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf27" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf28" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf29" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf30" style="width:50px" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="quyuerf31" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf32" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf33" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf34" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf35" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf36" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf37" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf38" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf39" style="width:50px" />
+                            <td><input type="text" value="" id="quyuerf40" style="width:50px" />
+                    </tbody>
+                </table>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

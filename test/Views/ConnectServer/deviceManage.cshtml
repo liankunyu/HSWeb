@@ -1,0 +1,268 @@
+﻿
+<style type="text/css">
+    table.dataintable {
+        margin-top: 15px;
+        border-collapse: collapse;
+        border: 1px solid #aaa;
+        width: 100%;
+    }
+
+        table.dataintable th {
+            font-size: 15px;
+            vertical-align: baseline;
+            padding: 5px 15px 5px 6px;
+            background-color: #3F3F3F;
+            border: 1px solid #3F3F3F;
+            text-align: center;
+            color: #fff;
+        }
+
+        table.dataintable td {
+            text-align: center;
+            font-size: 15px;
+            vertical-align: text-top;
+            padding: 6px 15px 6px 6px;
+            border: 1px solid #aaa;
+        }
+
+        table.dataintable tr:nth-child(odd) {
+            background-color: #F5F5F5;
+        }
+
+        table.dataintable tr:nth-child(even) {
+            background-color: #fff;
+        }
+
+
+
+    #aa {
+        font: small-caps 13px/2em bold "幼圆", sans-serif;
+        line-height: 1.8em;
+        text-indent: 2em;
+        color: #0f3ba3;
+    }
+</style>
+
+<script>
+    // 打开一个 web socket
+    $(function () {
+        document.getElementById('Serve_id').style.background = '#48484A';
+        document.getElementById('Serve_id').style.borderButton = '1px solid ';
+        document.getElementById('Serve_id').style.padding = '7px 12px 17px 12px ';
+        $("#deviceID").val(getCookie("deviceID"));
+
+
+        $('#deviceManagement').datagrid({
+            //title: '用户信息管理',
+            iconCls: 'icon-save',
+            singleSelect: true,
+            fitColumns: true,
+            url: '/ConnectServer/DeviceInfo',
+            queryParams: {},
+            idField: 'DeviceID',
+            pagination: true,
+            rownumbers: true,
+            width: 'auto',
+            height: $(window).height() - 114,
+            columns: [[
+                { field: 'DeviceID', title: '设备ID', width: 100, editor: 'text', align: 'center', fixed: true },
+
+                { field: 'ip', title: 'IP地址', width: 120, editor: 'text', align: 'center', fixed: true },
+                { field: 'connectDT', title: '连入时间', width: 120, editor: 'text', align: 'center', fixed: true },
+               { field: 'activeDT', title: '活动时间', width: 120, editor: 'text', align: 'center', fixed: true }
+            ]],
+            toolbar: [{
+                id: 'btnadd',
+                text: '增加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    $('#xinjian').dialog("open");
+                }
+            }, '-', {
+                id: 'btncut',
+                text: '删除',
+                iconCls: 'icon-cut',
+                handler: function () {
+                    var row = $('#deviceManagement').datagrid('getSelected');
+                    if (row) {
+                        $.messager.confirm('Confirm', '确定删除？', function (r) {
+                            if (r) {
+                                shanchu(row.DeviceID);
+                                var index = $('#deviceManagement').datagrid('getRowIndex', row);
+                                $('#deviceManagement').datagrid('deleteRow', index);
+                            }
+                        });
+                    }
+                    else {
+                        $.messager.alert("温馨提示", "请选择需要删除的行!");
+                    }
+                }
+            }, '-', {
+                id: 'btnreset',
+                text: '重置',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    $('#deviceManagement').datagrid('options').url = '/ConnectServer/DeviceInfo';
+                    $('#deviceManagement').datagrid("reload", {});
+                }
+            }]
+        });
+        var p = $('#deviceManagement').datagrid('getPager');
+        if (p) {
+            $(p).pagination({
+                pageSize: 10, //每页显示的记录条数，默认为10
+                pageList: [10, 20, 30, 40], //可以设置每页记录条数的列表
+                //beforePageText: '第', //页数文本框前显示的汉字
+                //afterPageText: '页    共 {pages} 页',
+                //displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+            });
+        }
+
+        $('#xj_save').click(function () {
+            var xj_DeviceID = document.getElementById("xj_DeviceID").value;
+
+            if (xj_DeviceID.length !=8) {
+                $.messager.alert("温馨提示", "请正确输入设备ID!");
+                return;
+            }
+
+            else {
+                $.ajax({
+                    url: '/ConnectServer/Device_Add',
+                    type: 'post',
+                    //async: false,
+                    data: {
+                        xj_DeviceID: xj_DeviceID
+                    },
+                    dataType: 'text',
+                    success: function (result) {
+                        if (result == "OK") {
+                            $("#xinjian").dialog("close");
+                            $.messager.alert("温馨提示", "保存成功!", 'info', function () {
+                                reload();
+                            });
+                            return;
+                        }
+                        else if (result == "Error") {
+                            $.messager.alert("温馨提示", "用户信息重复!");
+                            return;
+                        }
+                    }
+                });
+            }
+        });
+
+        $('#xj_close').click(function () {
+            $("#xinjian").dialog("close");
+        });
+
+        $('#xinjian').dialog({
+            onClose: function () {
+                //关闭时清除数据
+                $("#xj_DeviceID").val('');
+            }
+        });
+    });
+    function shanchu(DeviceID) {
+        $.ajax({
+            url: '/ConnectServer/Device_Delete',
+            type: 'post',
+            data: { DeviceID: DeviceID },
+            dataType: 'text',
+            success: function (result) {
+                if (result == "OK") {
+                    $.messager.alert("温馨提示", "设备信息删除成功!", 'info', function () {
+                        $('#deviceManagement').datagrid('loadData', { total: 0, rows: [] });
+                        $('#deviceManagement').datagrid('options').url = '/ConnectServer/DeviceInfo';
+                        $('#deviceManagement').datagrid("reload", {});
+                    });
+                    return;
+                }
+            }
+        });
+
+    }
+
+    function reload() {
+        $('#deviceManagement').datagrid('options').url = '/ConnectServer/DeviceInfo',
+        $("#deviceManagement").datagrid('reload', {});
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="服务" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="远程通信" iconCls="icon-ok" style="overflow:auto;padding:10px">
+                <a href="/ConnectServer/connServer" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">远程通信</a> <br>
+            </div>
+            <div title="设备管理" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/ConnectServer/deviceManage" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">设备管理</a> <br>
+            </div>
+            <div title="用户管理" iconCls="icon-ok" style="padding:10px">
+                <a href="/ConnectServer/UserManage" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">用户管理</a> <br>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743;">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="设备管理" style="padding:10px" data-options="closable:false">
+                <div>
+                    <table id="deviceManagement"></table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--新建-->
+    <div id="xinjian" class="easyui-dialog" title="新建设备信息" closed="true" modal="true"
+         style="width: 500px; height: 200px; text-align: center; background-color: #CCCCFF">
+        <div align="left">
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td class="common" width="150" style="text-align: right">
+                        设备ID&nbsp;
+                    </td>
+                    <td>
+                        <input class="common" id="xj_DeviceID" style="width: 150px" />
+                    </td>
+                </tr>
+            </table>
+
+
+
+            <table>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+                <tr>
+                    <td width="150"></td>
+                    <td align="right" colspan="2">
+                        <a  class="easyui-linkbutton" id="xj_save" style="text-align: right;width:50px;">
+                            保存&nbsp;&nbsp;
+                        </a>
+                    </td>
+                    <td width="20"></td>
+                    <td align="right" colspan="2">
+                        <a  class="easyui-linkbutton" id="xj_close" style="text-align: right;width:50px;">
+                            取消&nbsp;&nbsp;
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="10"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+

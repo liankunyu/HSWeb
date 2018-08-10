@@ -1,0 +1,395 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+<script>
+        $(function () {
+            document.getElementById('Color_id').style.background = '#48484A';
+            document.getElementById('Color_id').style.borderButton = '1px solid ';
+            document.getElementById('Color_id').style.padding = '7px 12px 17px 12px ';
+
+            var oldValue = "0";
+            $("input").focus(function () {
+                oldValue = $(this).val();
+            });
+
+            $(".pL input").blur(function () {
+                var newValue = $(this).val();
+                if (!isNaN(newValue)) {
+                    if (1 <= parseInt(newValue) && parseInt(newValue) <= 100) {
+                        $(this).val() = parseInt(newValue);
+                        return;
+                    }
+                    else {
+                        alert("请输入0-245之间的整数");
+                        $(this).val(oldValue);
+                    }
+                }
+                else {
+                    alert("请输入整数");
+                    $(this).val(oldValue);
+                }
+            });
+            $(".pM input").blur(function () {
+                var newValue = $(this).val();
+                if (!isNaN(newValue)) {
+                    if (0 <= parseInt(newValue) && parseInt(newValue) <= 50) {
+                        $(this).val() = parseInt(newValue);
+                        return;
+                    }
+                    else {
+                        alert("请输入0-10之间的整数");
+                        $(this).val(oldValue);
+                    }
+                }
+                else {
+                    alert("请输入整数");
+                    $(this).val(oldValue);
+                }
+            });
+
+            var va = getCookie("deviceID");
+            var va1 = getCookie("fileName");
+            $.ajax({
+                url: '/ColorSensitive/SendData5', //后台处理程序
+                type: 'post',         //数据发送方式
+                dataType: 'text',     //接受数据格式
+                data: { deviceID: va, fileName: va1 },        //要传递的数据
+                success: function (result) {
+
+                    var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                    $('#quyuwu1').val(val.quyuwu1);
+                    $('#quyuwu2').val(val.quyuwu2);
+                    $('#quyuwu3').val(val.quyuwu3);
+                    $('#quyuwu4').val(val.quyuwu4);
+                    $('#quyuwu5').val(val.quyuwu5);
+                    $('#quyuwu6').val(val.quyuwu6);
+                    $('#quyuwu7').val(val.quyuwu7);
+                    $('#quyuwu8').val(val.quyuwu8);
+                    $('#quyuwu9').val(val.quyuwu9);
+                    $('#quyuwu10').val(val.quyuwu10);
+                    $('#quyuwu11').val(val.quyuwu11);
+                    $('#quyuwu12').val(val.quyuwu12);
+
+                    $('#quyuwuf1').val(val.quyuwuf1);
+                    $('#quyuwuf2').val(val.quyuwuf2);
+                    $('#quyuwuf3').val(val.quyuwuf3);
+                    $('#quyuwuf4').val(val.quyuwuf4);
+                    $('#quyuwuf5').val(val.quyuwuf5);
+                    $('#quyuwuf6').val(val.quyuwuf6);
+                    $('#quyuwuf7').val(val.quyuwuf7);
+                    $('#quyuwuf8').val(val.quyuwuf8);
+                    $('#quyuwuf9').val(val.quyuwuf9);
+                    $('#quyuwuf10').val(val.quyuwuf10);
+                    $('#quyuwuf11').val(val.quyuwuf11);
+                    $('#quyuwuf12').val(val.quyuwuf12);
+                    $('#quyuwuf13').val(val.quyuwuf13);
+                    $('#quyuwuf14').val(val.quyuwuf14);
+                    $('#quyuwuf15').val(val.quyuwuf15);
+                    $('#quyuwuf16').val(val.quyuwuf16);
+                    $('#quyuwuf17').val(val.quyuwuf17);
+                    $('#quyuwuf18').val(val.quyuwuf18);
+                    $('#quyuwuf19').val(val.quyuwuf19);
+                    $('#quyuwuf20').val(val.quyuwuf20);
+                    $('#quyuwuf21').val(val.quyuwuf21);
+                    $('#quyuwuf22').val(val.quyuwuf22);
+                    $('#quyuwuf23').val(val.quyuwuf23);
+                    $('#quyuwuf24').val(val.quyuwuf24);
+                    $('#quyuwuf25').val(val.quyuwuf25);
+                    $('#quyuwuf26').val(val.quyuwuf26);
+                    $('#quyuwuf27').val(val.quyuwuf27);
+                    $('#quyuwuf28').val(val.quyuwuf28);
+                    $('#quyuwuf29').val(val.quyuwuf29);
+                    $('#quyuwuf30').val(val.quyuwuf30);
+                    $('#quyuwuf31').val(val.quyuwuf31);
+                    $('#quyuwuf32').val(val.quyuwuf32);
+                    $('#quyuwuf33').val(val.quyuwuf33);
+                    $('#quyuwuf34').val(val.quyuwuf34);
+                    $('#quyuwuf35').val(val.quyuwuf35);
+                    $('#quyuwuf36').val(val.quyuwuf36);
+                    $('#quyuwuf37').val(val.quyuwuf37);
+                    $('#quyuwuf38').val(val.quyuwuf38);
+                    $('#quyuwuf39').val(val.quyuwuf39);
+                    $('#quyuwuf40').val(val.quyuwuf40);
+                }
+            });
+        });
+        function postData5() {
+            var quyuwu1 = $("#quyuwu1").val();
+            var quyuwu2 = $("#quyuwu2").val();
+            var quyuwu3 = $("#quyuwu3").val();
+            var quyuwu4 = $("#quyuwu4").val();
+            var quyuwu5 = $("#quyuwu5").val();
+            var quyuwu6 = $("#quyuwu6").val();
+            var quyuwu7 = $("#quyuwu7").val();
+            var quyuwu8 = $("#quyuwu8").val();
+            var quyuwu9 = $("#quyuwu9").val();
+            var quyuwu10 = $("#quyuwu10").val();
+            var quyuwu11 = $("#quyuwu11").val();
+            var quyuwu12 = $("#quyuwu12").val();
+
+
+            var quyuwuf1 = $("#quyuwuf1").val();
+            var quyuwuf2 = $("#quyuwuf2").val();
+            var quyuwuf3 = $("#quyuwuf3").val();
+            var quyuwuf4 = $("#quyuwuf4").val();
+            var quyuwuf5 = $("#quyuwuf5").val();
+            var quyuwuf6 = $("#quyuwuf6").val();
+            var quyuwuf7 = $("#quyuwuf7").val();
+            var quyuwuf8 = $("#quyuwuf8").val();
+            var quyuwuf9 = $("#quyuwuf9").val();
+            var quyuwuf10 = $("#quyuwuf10").val();
+            var quyuwuf11 = $("#quyuwuf11").val();
+            var quyuwuf12 = $("#quyuwuf12").val();
+            var quyuwuf13 = $("#quyuwuf13").val();
+            var quyuwuf14 = $("#quyuwuf14").val();
+            var quyuwuf15 = $("#quyuwuf15").val();
+            var quyuwuf16 = $("#quyuwuf16").val();
+            var quyuwuf17 = $("#quyuwuf17").val();
+            var quyuwuf18 = $("#quyuwuf18").val();
+            var quyuwuf19 = $("#quyuwuf19").val();
+            var quyuwuf20 = $("#quyuwuf20").val();
+            var quyuwuf21 = $("#quyuwuf21").val();
+            var quyuwuf22 = $("#quyuwuf22").val();
+            var quyuwuf23 = $("#quyuwuf23").val();
+            var quyuwuf24 = $("#quyuwuf24").val();
+            var quyuwuf25 = $("#quyuwuf25").val();
+            var quyuwuf26 = $("#quyuwuf26").val();
+            var quyuwuf27 = $("#quyuwuf27").val();
+            var quyuwuf28 = $("#quyuwuf28").val();
+            var quyuwuf29 = $("#quyuwuf29").val();
+            var quyuwuf30 = $("#quyuwuf30").val();
+            var quyuwuf31 = $("#quyuwuf31").val();
+            var quyuwuf32 = $("#quyuwuf32").val();
+            var quyuwuf33 = $("#quyuwuf33").val();
+            var quyuwuf34 = $("#quyuwuf34").val();
+            var quyuwuf35 = $("#quyuwuf35").val();
+            var quyuwuf36 = $("#quyuwuf36").val();
+            var quyuwuf37 = $("#quyuwuf37").val();
+            var quyuwuf38 = $("#quyuwuf38").val();
+            var quyuwuf39 = $("#quyuwuf39").val();
+            var quyuwuf40 = $("#quyuwuf40").val();
+
+            var va = getCookie("deviceID");
+            var va1 = getCookie("fileName");
+            $.ajax({
+                url: '/ColorSensitive/postData5', //后台处理程序
+                type: 'post',         //数据发送方式
+                dataType: 'text',     //接受数据格式
+                data: {
+                    deviceID: va, fileName: va1,
+                    quyuwu1: quyuwu1, quyuwu2: quyuwu2, quyuwu3: quyuwu3, quyuwu4: quyuwu4, quyuwu5: quyuwu5, quyuwu6: quyuwu6,
+                    quyuwu7: quyuwu7, quyuwu8: quyuwu8, quyuwu9: quyuwu9, quyuwu10: quyuwu10, quyuwu11: quyuwu11, quyuwu12: quyuwu12,
+                    quyuwuf1: quyuwuf1, quyuwuf2: quyuwuf2, quyuwuf3: quyuwuf3, quyuwuf4: quyuwuf4, quyuwuf5: quyuwuf5,
+                    quyuwuf6: quyuwuf6, quyuwuf7: quyuwuf7, quyuwuf8: quyuwuf8, quyuwuf9: quyuwuf9, quyuwuf10: quyuwuf10,
+                    quyuwuf11: quyuwuf11, quyuwuf12: quyuwuf12, quyuwuf13: quyuwuf13, quyuwuf14: quyuwuf14, quyuwuf15: quyuwuf15,
+                    quyuwuf16: quyuwuf16, quyuwuf17: quyuwuf17, quyuwuf18: quyuwuf18, quyuwuf19: quyuwuf19, quyuwuf20: quyuwuf20,
+                    quyuwuf21: quyuwuf21, quyuwuf22: quyuwuf22, quyuwuf23: quyuwuf23, quyuwuf24: quyuwuf24, quyuwuf25: quyuwuf25,
+                    quyuwuf26: quyuwuf26, quyuwuf27: quyuwuf27, quyuwuf28: quyuwuf28, quyuwuf29: quyuwuf29, quyuwuf30: quyuwuf30,
+                    quyuwuf31: quyuwuf31, quyuwuf32: quyuwuf32, quyuwuf33: quyuwuf33, quyuwuf34: quyuwuf34, quyuwuf35: quyuwuf35,
+                    quyuwuf36: quyuwuf36, quyuwuf37: quyuwuf37, quyuwuf38: quyuwuf38, quyuwuf39: quyuwuf39, quyuwuf40: quyuwuf40,
+                },        //要传递的数据
+                success: function (result) {
+                    if (result == "Success") {
+                        alert("提交成功！");
+                    }
+                    else {
+                        alert("提交失败！");
+                    }
+                }
+            });
+        }
+</script>
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="颜色敏感" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="区域" id="aa" iconCls="icon-ok" style="overflow:auto;padding:5px;" selected="true ">
+                <a href="/ColorSensitive/ColorSensitive" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域1</a> <br>
+                <a href="/ColorSensitive/quyu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域2</a> <br>
+                <a href="/ColorSensitive/quyu3" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">区域3</a> <br>
+                <a href="/ColorSensitive/quyu4" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域4</a> <br>
+                <a href="/ColorSensitive/quyu5" style="line-height: 150%;  font-size: 14px; font-family: YouYuan; text-decoration: none">区域5</a> <br>
+            </div>
+            <div title="灰度" iconCls="icon-ok" style="padding:10px" >
+                <a href="/ColorSensitive/huidu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度1</a> <br>
+                <a href="/ColorSensitive/huidu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度2</a> <br>
+            </div>
+            <div title="深度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/shendu1" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度1</a> <br>
+                <a href="/ColorSensitive/shendu2" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">深度2</a> <br>
+
+            </div>
+            <div title="颜色行面积" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yansehangmianji" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色行面积</a>
+            </div>
+            <div title="背景阈值" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/beijingyuzhi" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">背景阈值</a>
+            </div>
+            <div title="颜色敏感强度" iconCls="icon-ok" style="padding:10px">
+                <a href="/ColorSensitive/yanseminganqiangdu" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">颜色敏感强度</a>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="区域5" style="padding:10px" data-options="closable:true">
+                <table class="dataintable" align="center">
+
+                    <caption>区域5</caption>
+
+                    <tbody class="pL">
+                        <tr>
+                            <td>
+                            <td>一次流量
+                            <td>二次流量
+                            <td>三次流量
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="quyuwu1" />
+                            <td><input type="text" value="" id="quyuwu5" />
+                            <td><input type="text" value="" id="quyuwu9" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="quyuwu2" />
+                            <td><input type="text" value="" id="quyuwu6" />
+                            <td><input type="text" value="" id="quyuwu10" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="quyuwu3" />
+                            <td><input type="text" value="" id="quyuwu7" />
+                            <td><input type="text" value="" id="quyuwu11" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="quyuwu4" />
+                            <td><input type="text" value="" id="quyuwu8" />
+                            <td>
+                                <input type="text" value="" id="quyuwu12" />
+                                <button id="submit" onclick="postData5()" style="position:absolute; right:100px;">确定</button>
+                    </tbody>
+                </table>
+
+
+
+
+                <table class="dataintable"  align="center">
+
+                    <caption>区域5分量设置</caption>
+
+                    <tbody class="pM">
+                        <tr>
+                            <td>
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td>前上限
+                            <td><input type="text" value="" id="quyuwuf1" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf2" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf3" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf4" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf5" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf6" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf7" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf8" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf9" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf10" style="width:50px" />
+                        <tr>
+                            <td>前下限
+                            <td><input type="text" value="" id="quyuwuf11" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf12" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf13" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf14" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf15" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf16" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf17" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf18" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf19" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf20" style="width:50px" />
+                        <tr>
+                            <td>后上限
+                            <td><input type="text" value="" id="quyuwuf21" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf22" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf23" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf24" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf25" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf26" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf27" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf28" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf29" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf30" style="width:50px" />
+                        <tr>
+                            <td>后下限
+                            <td><input type="text" value="" id="quyuwuf31" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf32" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf33" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf34" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf35" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf36" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf37" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf38" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf39" style="width:50px" />
+                            <td><input type="text" value="" id="quyuwuf40" style="width:50px" />
+                    </tbody>
+                </table>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

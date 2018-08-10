@@ -1,0 +1,319 @@
+﻿@{
+    ViewBag.Title = "LoginIndex";
+    Layout = null;
+}
+<html>
+<head>
+    <title>色选机远程监控与管理系统</title>
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <link href="~/Script/jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Verdana, Geneva, sans-serif;
+            line-height: 23px;
+            margin: 0;
+            padding: 0;
+            background: url(/Images/Login/true.jpg); /*login_bg*/
+            /*background: #333743;*/
+            color: #3b6e81;
+        }
+
+        .second_body {
+            margin: 0 auto;
+            width: 330px;
+            height: 243px;
+            margin-top: 10%;
+            padding-left: 300px;
+            padding-top: 110px;
+            background: url(/Images/Login/login_panel.jpg) no-repeat;
+            position: relative;
+            /*border:2px solid red;*/
+        }
+    </style>
+
+</head>
+<body>
+    <div class="second_body">
+        <div class="logo">
+            <img src="/Images/Login/hslogo.jpg" alt="" />
+        </div>
+        <div class="title-zh"><span>色选机远程监控与管理系统</span></div>
+        <div class="title-en"><span>Remote&nbspmonitoring&nbspand&nbspmanagement&nbspsystem</span></div>
+        <div class="message" data-bind="html: message"></div>
+
+        <table border="0" style="width: 300px;">
+            <tr>
+                <td style="width: 80px; vertical-align: middle; text-align: right; font-family: YouYuan">用户名</td>
+                <td colspan="2">
+                    <input type="text" style="height: 35px; font-family: YouYuan;" class="login" id="usercode" name="usercode" placeholder="用户名" />
+                </td>
+            </tr>
+            <tr>
+                <td class="lable" style="width: 80px; vertical-align: middle; text-align: right; font-family: YouYuan">密  码</td>
+                <td colspan="2">
+                    <input type="password" style="height: 35px; font-family: YouYuan" class="login" id="password" name="password" placeholder="密 码" />
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 5px"></td>
+            </tr>
+            <tr>
+                <td style="width: 80px; vertical-align: middle; text-align: right; font-family: YouYuan">验证码</td>
+                <td>
+                    <input type="text" style="height: 35px; width: 80px; font-family: YouYuan; margin: 0px 2px 0px 20px; border: 1px solid #7FB5C1" class="logincode" id="logincode" name="logincode" placeholder="验证码" />
+                </td>
+                <td style="width: 90px">
+                    <div>
+                        <img id="imgcode" style="height: 35px; width: 80px" src="~/ValidateCode/Validatecode" alt="点击刷新" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2" style="font-family: YouYuan; height: 30px">
+                    <input type="checkbox" id="remember" name="remember" /><span>记住密码</span>
+                    <input type="checkbox" id="autologin" name="autologin" /><span>自动登录</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 5px"></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center">
+                    <input type="button" value="" class="login_button" id="Login" onclick="Login()" />
+                </td>
+            </tr>
+        </table>
+        <div id="gsname" style="width: 300px; text-align: center; border: 0px solid red; font-family: YouYuan; color: #01709D; font-weight: 400"><span>Copyright © 2018 安徽宏实光机电高科有限公司</span></div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+    //Cookie设定
+    function setCookie(name, value) {//两个参数，一个是cookie的名字，一个是值
+        document.cookie = name + "=" + escape(value) + ";path=/";
+        //escape()函数用于对字符串按 URL 编码方法来编码，并返回一个可在所有计算机上读取的编码字符串。
+    }
+    function setCheckCookie(name, value) {//两个参数，一个是cookie的名字，一个是值
+        var Days = 30; //此 cookie 将被保存 30 天
+        var exp = new Date();    //new Date("December 31, 9998");
+        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);// 24 小时x 60 分 x 60 秒 x 1000 毫秒
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";;
+        /*设定Cookie的时效日期都是用GMT格式的时间,exp储存着失效日期，不指定失效日期则默认是在关闭浏览器之后过期。
+        path表示cookie所在的目录。”/”表示根目录，所有页面都能访问根目录下面的cookie*/
+    }
+    //取cookies函数
+    function getCookie(name) {
+        var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+        if (arr != null) return unescape(arr[2]); return null; //为什么是arr[2],因为arr是正则表达式获得的值，其中返回很多，value排在第三位所以是arr[2]
+    }
+    //界面登录
+    function Login() {
+        var usercode = $("#usercode").val();
+        /* $()构造了一个jQuery对象 “#”表示HTML中的ID，表示“ID为usercode所在的标签”
+           val() 方法返回或设置被选元素的值*/
+        var password = $("#password").val();
+        var logincode = $("#logincode").val();
+        var kong = /^\s*(\S+)\s*$/;
+
+        if (!kong.test(usercode)) {
+            alert("请输入用户名!");
+            return;
+        }
+        if (!kong.test(password)) {
+            alert("请输入密码!");
+            return;
+        }
+        if (!kong.test(logincode)) {
+            alert("请输入验证码!");
+            return;
+        }
+        //判断验证码
+        var ncode = getCookie("CheckCode");
+        var arr = ncode.split('=');
+        var new_ncode = arr[1];
+        if (logincode.toLowerCase() == new_ncode.toLowerCase()) {
+            $.ajax({
+                url: '/LoginIndex/Verify',
+                type: 'post',
+                dataType: 'text',
+                data: { txtuser: usercode, txtpass: password },
+                success: function (result) {
+                    if (result == "Nodata") {
+                        alert("用户名或密码错误!");
+                        $("#imgcode").attr("src", "/ValidateCode/Validatecode" + '?' + Math.random());
+                        return;
+                    }
+                    else {
+                        var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+                        setCookie("Jurisdiction", val.Jurisdiction);
+                        setCookie("AdminName", usercode);
+                        setCookie("AdminPass", password);
+                        //Server.UrlEncode("中文")
+                        //setCookie("yhm", Server.UrlEncode(result[0].yhm));//中文编码
+                        //setCookie("entname", Server.UrlEncode(result[0].yhbz));
+                        //setCookie("yhm", result[0].yhm);
+                        //setCookie("entname", result[0].yhbz);
+                        //setCookie("yhqx", result[0].yhqx);  //用户等级
+                        //setCookie("yhid", result[0].yhid);
+
+                        if (document.getElementById("remember").checked) {
+                            setCheckCookie("remember", "是");
+                            setCheckCookie("Name", usercode);
+                            setCheckCookie("Pass", password);
+                        }
+                        else {
+                            setCheckCookie("remember", "否");
+                        }
+                        if (document.getElementById("autologin").checked) {
+                            setCheckCookie("autologin", "是");
+                        }
+                        else {
+                            setCheckCookie("autologin", "否");
+                        }
+
+                        //设置默认文件名
+                        setCookie("fileName", "lasttime");
+                        window.location.href = "/Pattern/Pattern";
+                    }
+                }
+            });
+        }
+        else {
+            alert("验证码不正确!");
+            $("#imgcode").attr("src", "/ValidateCode/Validatecode" + '?' + Math.random());
+        }
+    }
+
+
+
+    //点击验证码重载
+    $("#imgcode").click(function () {
+        $("#imgcode").attr("src", "/ValidateCode/Validatecode" + '?' + Math.random());
+    });
+    //敲入键盘的enter建进行提交登陆
+    $(document).keydown(function (e) {
+        if (e.keyCode == 13) {
+            //触发登陆按钮的事件
+            $("#Login").trigger("click");
+        }
+    });
+    $("#escbut").click(function () {
+        window.open('', '_self', '');
+        window.close();
+    });
+    //状态处理函数
+    $(function () {
+        if (getCookie("remember") == "是") {
+            $("#remember").attr("checked", true);
+            $("#usercode").val(getCookie("Name"));
+            $("#password").val(getCookie("Pass"));
+            //$("#logincode").val("●●●●");
+        }
+        else {
+            $("#remember").attr("checked", false);
+            $("#usercode").val("");
+            $("#password").val("");
+            $("#logincode").val("");
+        }
+        if (getCookie("autologin") == "是") {
+            $("#autologin").attr("checked", true);
+        }
+        else {
+            $("#autologin").attr("checked", false);
+        }
+
+        if ((getCookie("AdminName") == "null")) {     //注意用户名不允许用“null”,通过不同的null的类型区分一个是string的“null”,一个是object的null
+            $("#usercode").val("");
+            $("#password").val("");
+            $("#logincode").val("");
+            $("#remember").attr("checked", false);
+            $("#autologin").attr("checked", false);
+        }
+        else {
+            if (getCookie("autologin") == "是" && getCookie("remember") == "是") {
+                //var lang = getCookie("Lang");
+                var usercode = getCookie("Name");
+                var password = getCookie("Pass");
+                $("#usercode").val(usercode);
+                $("#password").val(password);
+                //$("#logincode").val("●●●●");
+                $.ajax({
+                    url: '/LoginIndex/Verify',
+                    type: 'post',
+                    dataType: 'text',
+                    data: { txtuser: usercode, txtpass: password },
+                    success: function (result) {
+                        if (result == "Nodata") {
+                            alert("用户名或密码错误!");
+                            $("#imgcode").attr("src", "/ValidateCode/Validatecode" + '?' + Math.random());
+                            return;
+                        }
+                        else {
+                            var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+                            setCookie("Jurisdiction", val.Jurisdiction);
+                            setCookie("AdminName", usercode);
+                            setCookie("AdminPass", password);
+
+                            if (document.getElementById("remember").checked) {
+                                setCheckCookie("remember", "是");
+                                setCheckCookie("Name", usercode);
+                                setCheckCookie("Pass", password);
+                            }
+                            else {
+                                setCheckCookie("remember", "否");
+                            }
+                            if (document.getElementById("autologin").checked) {
+                                setCheckCookie("autologin", "是");
+                            }
+                            else {
+                                setCheckCookie("autologin", "否");
+                            }
+                            //设置默认文件名
+                            setCookie("fileName", "lasttime");
+                            window.location.href = "/Pattern/Pattern?pa";
+                            //设备编号判断
+
+
+                            //var deviceID = prompt("请输入设备编号：");
+
+                            //var kong = /^\s*(\S+)\s*$/;
+
+                            //if (!kong.test(deviceID)) {
+                            //    alert("设备编号不能为空!");
+                            //    return;
+                            //}
+                            //else {
+                            //    $.ajax({
+                            //        url: '/LoginIndex/VerifyDevice',
+                            //        type: 'post',
+                            //        dataType: 'text',
+                            //        data: { deviceID: deviceID },
+                            //        success: function (result) {
+                            //            if (result == "Nofound") {
+                            //                alert("设备编号错误，请重新输入");
+
+                            //                return;
+                            //            }
+                            //            else {
+                            //                window.location.href = "/Pattern/Pattern?pa";
+
+                            //            }
+                            //        }
+                            //    });
+                            //}
+
+                        }
+                    }
+                });
+            }
+        }
+    });
+</script>
+

@@ -1,0 +1,408 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+
+<script type="text/javascript">
+    //离开界面提示
+    //window.onbeforeunload = function (e) {
+    //    var e = window.event || e;
+    //    e.returnValue = ("确定离开当前页面吗？");
+    //}
+    $(function () {
+        //改颜色
+        document.getElementById('Advanced_id').style.background = '#48484A';
+        document.getElementById('Advanced_id').style.borderButton = '1px solid ';
+        document.getElementById('Advanced_id').style.padding = '7px 12px 17px 12px ';
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-255之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        $("#vga24").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (0 <= parseInt(newValue) && parseInt(newValue) <= 245) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入0-10之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        //传入初值
+        $.ajax({
+            url: '/AdvancedSetting/SendData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#vga1').val(val.vga1);
+                $('#vga2').val(val.vga2);
+                $('#vga3').val(val.vga3);
+                $('#vga4').val(val.vga4);
+                $('#vga5').val(val.vga5);
+                $('#vga6').val(val.vga6);
+                $('#vga7').val(val.vga7);
+                $('#vga8').val(val.vga8);
+                $('#vga9').val(val.vga9);
+                $('#vga10').val(val.vga10);
+                $('#vga11').val(val.vga11);
+                $('#vga12').val(val.vga12);
+                $('#vga13').val(val.vga13);
+                $('#vga14').val(val.vga14);
+                $('#vga15').val(val.vga15);
+                $('#vga16').val(val.vga16);
+                $('#vga17').val(val.vga17);
+                $('#vga18').val(val.vga18);
+                $('#vga19').val(val.vga19);
+                $('#vga20').val(val.vga20);
+                $('#vga21').val(val.vga21);
+                $('#vga22').val(val.vga22);
+                $('#vga23').val(val.vga23);
+                $('#vga24').val(val.vga24);
+            }
+        });
+    });
+    function postData() {
+        var vga1 = $("#vga1 option:selected").val();
+        var vga2 = $("#vga2 option:selected").val();
+        var vga3 = $("#vga3 option:selected").val();
+        var vga4 = $("#vga4 option:selected").val();
+        var vga5 = $("#vga5 option:selected").val();
+        var vga6 = $("#vga6 option:selected").val();
+        var vga7 = $("#vga7 option:selected").val();
+        var vga8 = $("#vga8 option:selected").val();
+        var vga9 = $("#vga9 option:selected").val();
+        var vga10 = $("#vga10 option:selected").val();
+        var vga11 = $("#vga11 option:selected").val();
+        var vga12 = $("#vga12 option:selected").val();
+        var vga13 = $("#vga13 option:selected").val();
+        var vga14 = $("#vga14 option:selected").val();
+        var vga15 = $("#vga15 option:selected").val();
+        var vga16 = $("#vga16 option:selected").val();
+        var vga17 = $("#vga17 option:selected").val();
+        var vga18 = $("#vga18 option:selected").val();
+        var vga19 = $("#vga19 option:selected").val();
+        var vga20 = $("#vga20 option:selected").val();
+        var vga21 = $("#vga21").val();
+        var vga22 = $("#vga22").val();
+        var vga23 = $("#vga23").val();
+        var vga24 = $("#vga24").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/AdvancedSetting/postData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                vga1: vga1, vga2: vga2, vga3: vga3, vga4: vga4, vga5: vga5,
+                vga6: vga6, vga7: vga7, vga8: vga8, vga9: vga9, vga10: vga10,
+                vga11: vga11, vga12: vga12, vga13: vga13, vga14: vga14, vga15: vga15,
+                vga16: vga16, vga17: vga17, vga18: vga18, vga19: vga19, vga20: vga20,
+                vga21: vga21, vga22: vga22, vga23: vga23, vga24: vga24
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="高级设置" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="背景板" iconCls="icon-ok" style="overflow:auto;padding:10px">
+                <a href="/AdvancedSetting/AdvancedSetting" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">背景板</a>
+            </div>
+            <div title="VGA设定" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/AdvancedSetting/VGASet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">VGA设定</a>
+            </div>
+            <div title="型选设置" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/TypeSelectionSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">型选设置</a> <br>
+                <a href="/AdvancedSetting/TypeSelectionSensitivity" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">型选灵敏度</a> <br>
+                <a href="/AdvancedSetting/AreaFine" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">面积微调设置</a>
+            </div>
+            <div title="延迟设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/DelaySet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">延迟设定</a>
+            </div>
+            <div title="增益设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/RGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R增益</a><br>
+                <a href="/AdvancedSetting/GGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G增益</a><br>
+                <a href="/AdvancedSetting/BGainSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B增益</a>
+            </div>
+            <div title="采图设置" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/CollectPictureSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">采图设置</a>
+            </div>
+            <div title="平移设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/TranslationSet" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">平移设定</a>
+            </div>
+            <div title="相机划分" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/CameraDivision" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">相机划分</a>
+            </div>
+            <div title="灰度忽略" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/GrayIgnore" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">灰度忽略</a>
+            </div>
+            <div title="日期设定" iconCls="icon-ok" style="padding:10px">
+                <a href="/AdvancedSetting/ChangeDate" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">日期设定</a>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="VGA设定" style="padding:10px" data-options="closable:true">
+                <table class="dataintable" align="center">
+                    <caption>VGA设定</caption>
+                    <tbody>
+                        <tr>
+                            <td>地址
+                            <td>0
+                            <td>2
+                            <td>4
+                            <td>6
+                            <td>8
+                            <td>10
+                            <td>12
+                            <td>14
+                            <td>16
+                            <td>18
+                        <tr>
+                            <td>前侧
+                            <td>
+                                <select id="vga1">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga3">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga5">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga7">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga9">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga11">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga13">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga15">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga17">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga19">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                        <tr>
+                            <td>地址
+                            <td>1
+                            <td>3
+                            <td>5
+                            <td>7
+                            <td>9
+                            <td>11
+                            <td>13
+                            <td>15
+                            <td>17
+                            <td>19
+                        <tr>
+                            <td>前侧
+                            <td>
+                                <select id="vga2">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga4">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga6">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga8">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga10">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga12">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga14">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga16">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga18">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                            <td>
+                                <select id="vga20">
+                                    <option value="ON">ON</option>
+                                    <option value="OFF">OFF</option>
+                                </select>
+                    </tbody>
+                </table><br />
+                <table class="dataintable" align="center">
+                    <tbody>
+                        <tr>
+                            <td>1
+                            <td>
+                            <td>V-FI
+                            <td>
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="vga21" />
+                            <td>
+                        <tr>
+                            <td>2
+                            <td>
+                            <td>V-POINT
+                            <td>
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="vga22" />
+                            <td>
+                        <tr>
+                            <td>3
+                            <td>
+                            <td>V-GRAY
+                            <td>&nbsp
+                            <td><input type="text" maxlength="3" title="请输入0-255之间的整数" id="vga23" />
+                            <td>
+                        <tr>
+                            <td>4
+                            <td>
+                            <td>使单孔增益
+                            <td>
+                            <td><input type="text" maxlength="2" title="请输入0-10之间的整数" id="vga24" />
+                            <td>
+                    </tbody>
+                </table>
+                <center><button id="submit" onclick="postData()">确定</button></center><br />
+            </div>
+        </div>
+    </div>
+</div>

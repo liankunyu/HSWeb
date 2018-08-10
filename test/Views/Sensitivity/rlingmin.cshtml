@@ -1,0 +1,147 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script src="~/Script/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+    <link href="~/Script/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            font-family: Futura, Arial, sans-serif;
+        }
+
+        caption {
+            font-size: larger;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        th, td {
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        button {
+            width: 60px;
+            padding: 8px;
+            background-color: #428bca;
+            border-color: #357ebd;
+            color: #fff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px; /* future proofing */
+            cursor: pointer;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            font-weight: 800;
+            font-size: 105%;
+        }
+    </style>
+    <script>
+
+            $(function () {
+                $.ajax({
+                    url: '/Sensitivity/SendData', //后台处理程序
+                    type: 'post',         //数据发送方式
+                    dataType: 'text',     //接受数据格式
+                    data: {},        //要传递的数据
+                    success: function (result) {
+
+                        var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                        $('#rlingmin1').val(val.rlingmin1);
+                        $('#rlingmin2').val(val.rlingmin2);
+                        $('#rlingmin3').val(val.rlingmin3);
+                        $('#rlingmin4').val(val.rlingmin4);
+                        $('#rlingmin5').val(val.rlingmin5);
+                        $('#rlingmin6').val(val.rlingmin6);
+                        $('#rlingmin7').val(val.rlingmin7);
+                        $('#rlingmin8').val(val.rlingmin8);
+                        $('#rlingmin9').val(val.rlingmin9);
+                        $('#rlingmin10').val(val.rlingmin10);
+                        $('#rlingmin11').val(val.rlingmin11);
+                        $('#rlingmin12').val(val.rlingmin12);
+                    }
+                });
+            });
+            function postData() {
+                var rlingmin1 = $("#rlingmin1").val();
+                var rlingmin2 = $("#rlingmin2").val();
+                var rlingmin3 = $("#rlingmin3").val();
+                var rlingmin4 = $("#rlingmin4").val();
+                var rlingmin5 = $("#rlingmin5").val();
+                var rlingmin6 = $("#rlingmin6").val();
+                var rlingmin7 = $("#rlingmin7").val();
+                var rlingmin8 = $("#rlingmin8").val();
+                var rlingmin9 = $("#rlingmin9").val();
+                var rlingmin10 = $("#rlingmin10").val();
+                var rlingmin11 = $("#rlingmin11").val();
+                var rlingmin12 = $("#rlingmin12").val();
+                $.ajax({
+                    url: '/Sensitivity/RpostData', //后台处理程序
+                    type: 'post',         //数据发送方式
+                    dataType: 'text',     //接受数据格式
+                    data: { rlingmin1: rlingmin1, rlingmin2: rlingmin2, rlingmin3: rlingmin3, rlingmin4: rlingmin4, rlingmin5: rlingmin5, rlingmin6: rlingmin6, rlingmin7: rlingmin7, rlingmin8: rlingmin8, rlingmin9: rlingmin9, rlingmin10: rlingmin10, rlingmin11: rlingmin11, rlingmin12: rlingmin12 },        //要传递的数据
+                    success: function (result) {
+                        if (result == "Success") {
+                            alert("提交成功！");
+                        }
+                        else {
+                            alert("提交失败！");
+                        }
+                    }
+                });
+            }
+    </script>
+</head>
+<body>
+    <div>
+        <table align="center">
+
+            <caption>R灵敏度设置</caption>
+
+            <tbody>
+                <tr>
+                    <td>
+                    <td>一次流量
+                    <td>二次流量
+                    <td>三次流量
+                <tr>
+                    <td>前暗敏感
+                    <td><input type="text" value="" id="rlingmin1" />
+                    <td><input type="text" value="" id="rlingmin5" />
+                    <td><input type="text" value="" id="rlingmin9" />
+                <tr>
+                    <td>前亮敏感
+                    <td><input type="text" value="" id="rlingmin2" />
+                    <td><input type="text" value="" id="rlingmin6" />
+                    <td><input type="text" value="" id="rlingmin10" />
+                <tr>
+                    <td>后暗敏感
+                    <td><input type="text" value="" id="rlingmin3" />
+                    <td><input type="text" value="" id="rlingmin7" />
+                    <td><input type="text" value="" id="rlingmin11" />
+                <tr>
+                    <td>后亮敏感
+                    <td><input type="text" value="" id="rlingmin4" />
+                    <td><input type="text" value="" id="rlingmin8" />
+                    <td><input type="text" value="" id="rlingmin12" />
+
+            </tbody>
+        </table><br />
+        <center><button id="submit" onclick="postData()">确定</button></center>
+    </div>
+
+</body>
+</html>

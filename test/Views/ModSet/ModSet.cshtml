@@ -1,0 +1,349 @@
+﻿<style>
+   table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+             font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+             font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+              #aa {
+        font: small-caps 13px/2em bold "幼圆", sans-serif;
+        line-height: 1.8em;
+        text-indent: 2em;
+        color: #0f3ba3;
+    }
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        //改颜色
+        document.getElementById('Mod_id').style.background = '#48484A';
+        document.getElementById('Mod_id').style.borderButton = '1px solid ';
+        document.getElementById('Mod_id').style.padding = '7px 12px 17px 12px ';
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ModSet/SendData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1 },        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#mod1').val(val.mod1);
+                $('#mod2').val(val.mod2);
+                $('#mod3').val(val.mod3);
+                $('#mod4').val(val.mod4);
+                $('#mod5').val(val.mod5);
+                $('#mod6').val(val.mod6);
+                $('#mod7').val(val.mod7);
+                $('#mod8').val(val.mod8);
+                $('#mod9').val(val.mod9);
+                $('#mod10').val(val.mod10);
+                $('#mod11').val(val.mod11);
+                $('#mod12').val(val.mod12);
+                $('#mod13').val(val.mod13);
+                $('#mod14').val(val.mod14);
+                $('#mod15').val(val.mod15);
+                $('#mod16').val(val.mod16);
+                $('#mod17').val(val.mod17);
+                $('#mod18').val(val.mod18);
+                $('#mod19').val(val.mod19);
+                $('#mod20').val(val.mod20);
+                $('#mod22').val(val.mod22);
+            }
+        });
+
+    });
+    function postData() {
+        var mod1 = $("#mod1 option:selected").val();
+        var mod2 = $("#mod2 option:selected").val();
+        var mod3 = $("#mod3 option:selected").val();
+        var mod4 = $("#mod4 option:selected").val();
+        var mod5 = $("#mod5 option:selected").val();
+        var mod6 = $("#mod6 option:selected").val();
+        var mod7 = $("#mod7 option:selected").val();
+        var mod8 = $("#mod8 option:selected").val();
+        var mod9 = $("#mod9 option:selected").val();
+        var mod10 = $("#mod10 option:selected").val();
+        var mod11 = $("#mod11 option:selected").val();
+        var mod12 = $("#mod12 option:selected").val();
+        var mod13 = $("#mod13 option:selected").val();
+        var mod14 = $("#mod14 option:selected").val();
+        var mod15 = $("#mod15 option:selected").val();
+        var mod16 = $("#mod16 option:selected").val();
+        var mod17 = $("#mod17 option:selected").val();
+        var mod18 = $("#mod18 option:selected").val();
+        var mod19 = $("#mod19 option:selected").val();
+        var mod20 = $("#mod20 option:selected").val();
+        var mod22 = $("#mod22 option:selected").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/ModSet/postData', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                mod1: mod1, mod2: mod2, mod3: mod3, mod4: mod4, mod5: mod5,
+                mod6: mod6, mod7: mod7, mod8: mod8, mod9: mod9, mod10: mod10,
+                mod11: mod11, mod12: mod12, mod13: mod13, mod14: mod14, mod15: mod15,
+                mod16: mod16, mod17: mod17, mod18: mod18, mod19: mod19, mod20: mod20,
+                mod22: mod22
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="修改说明" split="true">
+        <div id="aa" style="width:auto;height:auto">
+            <p>Mod设定包括颜色模式选择及相机模式选择。</p>
+            <p>1. 颜色模式选择。包括RGB1及RGB2两种模式选择；</p>
+            <p>2. 相机模式选择 。包括一/二/三次流量/OFF四种模式选择；</p>
+            <p>祝您使用愉快。</p>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="MOD设定" style="padding:10px" data-options="closable:false">
+                <div>
+                    <select id="mod22">
+                        <option value="1">RGB1</option>
+                        <option value="2">RGB2</option>
+                    </select>
+                </div>
+                <div>
+
+                    <table class="dataintable" align="center">
+                        <caption>Mod设定</caption>
+                        <tbody>
+                            <tr>
+                                <td>地址
+                                <td>0
+                                <td>2
+                                <td>4
+                                <td>6
+                                <td>8
+                                <td>10
+                                <td>12
+                                <td>14
+                                <td>16
+                                <td>18
+                            <tr>
+                                <td>前侧
+                                <td>
+                                    <select id="mod1">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod3">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod5">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod7">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod9">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod11">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod13">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod15">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod17">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod19">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                            <tr>
+                                <td>地址
+                                <td>1
+                                <td>3
+                                <td>5
+                                <td>7
+                                <td>9
+                                <td>11
+                                <td>13
+                                <td>15
+                                <td>17
+                                <td>19
+                            <tr>
+                                <td>后侧
+                                <td>
+                                    <select id="mod2">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod4">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod6">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod8">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod10">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod12">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod14">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod16">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod18">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                                <td>
+                                    <select id="mod20">
+                                        <option value="1">一次流量</option>
+                                        <option value="2">二次流量</option>
+                                        <option value="3">三次流量</option>
+                                        <option value="OFF">OFF</option>
+                                    </select>
+                        </tbody>
+                    </table><br />
+                    <center><button id="submit" onclick="postData()">确定</button></center>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

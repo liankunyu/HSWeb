@@ -1,0 +1,305 @@
+﻿<style>
+    .detail {
+        font: small-caps 13px/1.5em "幼圆", sans-serif;
+        line-height: 1.8em;
+        cursor: pointer;
+    }
+
+    table.dataintable {
+        border-collapse: collapse;
+        font-family: Futura, Arial, sans-serif;
+    }
+
+        table.dataintable caption {
+            font-size: 15px;
+            margin: 1em auto;
+            font-weight: bold;
+        }
+
+        table.dataintable th {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table.dataintable td {
+            font-size: 15px;
+            padding: .65em;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+
+    button {
+        width: 60px;
+        padding: 8px;
+        background-color: #428bca;
+        border-color: #357ebd;
+        color: #fff;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; /* future proofing */
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid transparent;
+        font-weight: 800;
+        font-size: 105%;
+    }
+</style>
+<script>
+
+    $(function () {
+        //改颜色
+        document.getElementById('Sensitivity_id').style.background = '#48484A';
+        document.getElementById('Sensitivity_id').style.borderButton = '1px solid ';
+        document.getElementById('Sensitivity_id').style.padding = '7px 12px 17px 12px ';
+
+        var oldValue = "0";
+        $("input").focus(function () {
+            oldValue = $(this).val();
+        });
+        $("input").blur(function () {
+            var newValue = $(this).val();
+            if (!isNaN(newValue)) {
+                if (1 <= parseInt(newValue) && parseInt(newValue) <= 100) {
+                    $(this).val() = parseInt(newValue);
+                    return;
+                }
+                else {
+                    alert("请输入1-10之间的整数");
+                    $(this).val(oldValue);
+                }
+            }
+            else {
+                alert("请输入整数");
+                $(this).val(oldValue);
+            }
+        });
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/Sensitivity/SendDataHS', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { deviceID: va, fileName: va1},        //要传递的数据
+            success: function (result) {
+
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+
+                $('#hunlingminf1').val(val.hunlingminf1);
+                $('#hunlingminf2').val(val.hunlingminf2);
+                $('#hunlingminf3').val(val.hunlingminf3);
+                $('#hunlingminf4').val(val.hunlingminf4);
+                $('#hunlingminf5').val(val.hunlingminf5);
+                $('#hunlingminf6').val(val.hunlingminf6);
+                $('#hunlingminf7').val(val.hunlingminf7);
+                $('#hunlingminf8').val(val.hunlingminf8);
+                $('#hunlingminf9').val(val.hunlingminf9);
+                $('#hunlingminf10').val(val.hunlingminf10);
+                $('#hunlingminf11').val(val.hunlingminf11);
+                $('#hunlingminf12').val(val.hunlingminf12);
+                $('#hunlingminf13').val(val.hunlingminf13);
+                $('#hunlingminf14').val(val.hunlingminf14);
+                $('#hunlingminf15').val(val.hunlingminf15);
+                $('#hunlingminf16').val(val.hunlingminf16);
+                $('#hunlingminf17').val(val.hunlingminf17);
+                $('#hunlingminf18').val(val.hunlingminf18);
+                $('#hunlingminf19').val(val.hunlingminf19);
+                $('#hunlingminf20').val(val.hunlingminf20);
+                $('#hunlingminf21').val(val.hunlingminf21);
+                $('#hunlingminf22').val(val.hunlingminf22);
+                $('#hunlingminf23').val(val.hunlingminf23);
+                $('#hunlingminf24').val(val.hunlingminf24);
+                $('#hunlingminf25').val(val.hunlingminf25);
+                $('#hunlingminf26').val(val.hunlingminf26);
+                $('#hunlingminf27').val(val.hunlingminf27);
+                $('#hunlingminf28').val(val.hunlingminf28);
+                $('#hunlingminf29').val(val.hunlingminf29);
+                $('#hunlingminf30').val(val.hunlingminf30);
+                $('#hunlingminf31').val(val.hunlingminf31);
+                $('#hunlingminf32').val(val.hunlingminf32);
+                $('#hunlingminf33').val(val.hunlingminf33);
+                $('#hunlingminf34').val(val.hunlingminf34);
+                $('#hunlingminf35').val(val.hunlingminf35);
+                $('#hunlingminf36').val(val.hunlingminf36);
+                $('#hunlingminf37').val(val.hunlingminf37);
+                $('#hunlingminf38').val(val.hunlingminf38);
+                $('#hunlingminf39').val(val.hunlingminf39);
+                $('#hunlingminf40').val(val.hunlingminf40);
+            }
+        });
+    });
+    function postDataHS() {
+        var hunlingminf1 = $("#hunlingminf1").val();
+        var hunlingminf2 = $("#hunlingminf2").val();
+        var hunlingminf3 = $("#hunlingminf3").val();
+        var hunlingminf4 = $("#hunlingminf4").val();
+        var hunlingminf5 = $("#hunlingminf5").val();
+        var hunlingminf6 = $("#hunlingminf6").val();
+        var hunlingminf7 = $("#hunlingminf7").val();
+        var hunlingminf8 = $("#hunlingminf8").val();
+        var hunlingminf9 = $("#hunlingminf9").val();
+        var hunlingminf10 = $("#hunlingminf10").val();
+        var hunlingminf11 = $("#hunlingminf11").val();
+        var hunlingminf12 = $("#hunlingminf12").val();
+        var hunlingminf13 = $("#hunlingminf13").val();
+        var hunlingminf14 = $("#hunlingminf14").val();
+        var hunlingminf15 = $("#hunlingminf15").val();
+        var hunlingminf16 = $("#hunlingminf16").val();
+        var hunlingminf17 = $("#hunlingminf17").val();
+        var hunlingminf18 = $("#hunlingminf18").val();
+        var hunlingminf19 = $("#hunlingminf19").val();
+        var hunlingminf20 = $("#hunlingminf20").val();
+        var hunlingminf21 = $("#hunlingminf21").val();
+        var hunlingminf22 = $("#hunlingminf22").val();
+        var hunlingminf23 = $("#hunlingminf23").val();
+        var hunlingminf24 = $("#hunlingminf24").val();
+        var hunlingminf25 = $("#hunlingminf25").val();
+        var hunlingminf26 = $("#hunlingminf26").val();
+        var hunlingminf27 = $("#hunlingminf27").val();
+        var hunlingminf28 = $("#hunlingminf28").val();
+        var hunlingminf29 = $("#hunlingminf29").val();
+        var hunlingminf30 = $("#hunlingminf30").val();
+        var hunlingminf31 = $("#hunlingminf31").val();
+        var hunlingminf32 = $("#hunlingminf32").val();
+        var hunlingminf33 = $("#hunlingminf33").val();
+        var hunlingminf34 = $("#hunlingminf34").val();
+        var hunlingminf35 = $("#hunlingminf35").val();
+        var hunlingminf36 = $("#hunlingminf36").val();
+        var hunlingminf37 = $("#hunlingminf37").val();
+        var hunlingminf38 = $("#hunlingminf38").val();
+        var hunlingminf39 = $("#hunlingminf39").val();
+        var hunlingminf40 = $("#hunlingminf40").val();
+
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/Sensitivity/postDataHS', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                hunlingminf1: hunlingminf1, hunlingminf2: hunlingminf2, hunlingminf3: hunlingminf3, hunlingminf4: hunlingminf4, hunlingminf5: hunlingminf5,
+                hunlingminf6: hunlingminf6, hunlingminf7: hunlingminf7, hunlingminf8: hunlingminf8, hunlingminf9: hunlingminf9, hunlingminf10: hunlingminf10,
+                hunlingminf11: hunlingminf11, hunlingminf12: hunlingminf12, hunlingminf13: hunlingminf13, hunlingminf14: hunlingminf14, hunlingminf15: hunlingminf15,
+                hunlingminf16: hunlingminf16, hunlingminf17: hunlingminf17, hunlingminf18: hunlingminf18, hunlingminf19: hunlingminf19, hunlingminf20: hunlingminf20,
+                hunlingminf21: hunlingminf21, hunlingminf22: hunlingminf22, hunlingminf23: hunlingminf23, hunlingminf24: hunlingminf24, hunlingminf25: hunlingminf25,
+                hunlingminf26: hunlingminf26, hunlingminf27: hunlingminf27, hunlingminf28: hunlingminf28, hunlingminf29: hunlingminf29, hunlingminf30: hunlingminf30,
+                hunlingminf31: hunlingminf31, hunlingminf32: hunlingminf32, hunlingminf33: hunlingminf33, hunlingminf34: hunlingminf34, hunlingminf35: hunlingminf35,
+                hunlingminf36: hunlingminf36, hunlingminf37: hunlingminf37, hunlingminf38: hunlingminf38, hunlingminf39: hunlingminf39, hunlingminf40: hunlingminf40,
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
+    }
+</script>
+
+<div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
+    <!--左边布局-->
+    <div region="west" style="width:200px; padding:2px;" title="灵敏度类型" split="true">
+        <div id="aa" class="easyui-accordion" style="width:auto;height:auto">
+            <div title="R灵敏度" iconCls="icon-ok" style="overflow:auto;padding:10px">
+                <a href="/Sensitivity/Sensitivity" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度</a> <br>
+                <a href="/Sensitivity/rlingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">R灵敏度分量</a> <br>
+            </div>
+            <div title="G灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/glingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度</a> <br>
+                <a href="/Sensitivity/glingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">G灵敏度分量</a> <br>
+            </div>
+            <div title="B灵敏度" iconCls="icon-ok" style="padding:10px">
+                <a href="/Sensitivity/blingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度</a> <br>
+                <a href="/Sensitivity/blingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">B灵敏度分量</a> <br>
+            </div>
+            <div title="混色灵敏度" iconCls="icon-ok" style="padding:10px" selected="true">
+                <a href="/Sensitivity/hslingmin" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度</a> <br>
+                <a href="/Sensitivity/hslingminf" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">混色灵敏度分量</a> <br>
+            </div>
+        </div>
+    </div>
+    <!--中间布局-->
+    <div region="center" style="width: 100%; float: left; background: #333743">
+        <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
+            <div title="混色灵敏度分量" style="padding:10px" data-options="closable:true">
+
+                <table class="dataintable" align="center">
+
+                    <caption>混色灵敏度分量设置</caption>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td>前暗敏感
+                            <td><input type="text" value="" id="hunlingminf1" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf2" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf3" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf4" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf5" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf6" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf7" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf8" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf9" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf10" style="width:50px" />
+                        <tr>
+                            <td>前亮敏感
+                            <td><input type="text" value="" id="hunlingminf11" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf12" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf13" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf14" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf15" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf16" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf17" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf18" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf19" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf20" style="width:50px" />
+                        <tr>
+                            <td>后暗敏感
+                            <td><input type="text" value="" id="hunlingminf21" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf22" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf23" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf24" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf25" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf26" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf27" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf28" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf29" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf30" style="width:50px" />
+                        <tr>
+                            <td>后亮敏感
+                            <td><input type="text" value="" id="hunlingminf31" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf32" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf33" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf34" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf35" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf36" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf37" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf38" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf39" style="width:50px" />
+                            <td><input type="text" value="" id="hunlingminf40" style="width:50px" />
+
+                    </tbody>
+                </table><br />
+                <center><button id="submit" onclick="postDataHS()">确定</button></center>
+            </div>
+        </div>
+    </div>
+</div>
