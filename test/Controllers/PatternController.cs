@@ -1,6 +1,7 @@
 ﻿using DA;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,13 +20,54 @@ namespace test.Controllers
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath, json;
             string[] pattern = new string[20];
+            string[] fileTime = new string[20];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
             hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
             path = DbHelperSQL.ExecuteQuery(hs_sql);
             newPath = System.IO.Path.Combine(path, "name.xml");
-            //读取值
+            //读取各个文件上传时间和name.xml值
+            try
+            {
+                FileInfo fi;
+                fi = new FileInfo(path + @"\lasttime.xml");
+                fileTime[0] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode1.xml");
+                fileTime[1] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode2.xml");
+                fileTime[2] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode3.xml");
+                fileTime[3] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode4.xml");
+                fileTime[4] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode5.xml");
+                fileTime[5] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode6.xml");
+                fileTime[6] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode7.xml");
+                fileTime[7] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode8.xml");
+                fileTime[8] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode9.xml");
+                fileTime[9] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode10.xml");
+                fileTime[10] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode11.xml");
+                fileTime[11] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode12.xml");
+                fileTime[12] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode13.xml");
+                fileTime[13] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode14.xml");
+                fileTime[14] = fi.LastWriteTime.ToString();
+                fi = new FileInfo(path + @"\mode15.xml");
+                fileTime[15] = fi.LastWriteTime.ToString();
+            }
+            catch 
+            {
+            	
+            }
             XMLHelper opXML = new XMLHelper(newPath);
             pattern[1] = opXML.QueryNodeText("name1");
             pattern[2] = opXML.QueryNodeText("name2");
@@ -42,8 +84,8 @@ namespace test.Controllers
             pattern[13] = opXML.QueryNodeText("name13");
             pattern[14] = opXML.QueryNodeText("name14");
             pattern[15] = opXML.QueryNodeText("name15");
-            pattern[16] = opXML.QueryNodeText("name16");
-            pattern[17] = opXML.QueryNodeText("name17");
+            pattern[16] = opXML.QueryNodeText("name96");
+            pattern[17] = opXML.QueryNodeText("name97");
 
             json = "{\"p1\":\"" + pattern[1] + "\","
              + "\"p2\":\"" + pattern[2] + "\","
@@ -61,7 +103,24 @@ namespace test.Controllers
              + "\"p14\":\"" + pattern[14] + "\","
              + "\"p15\":\"" + pattern[15] + "\","
              + "\"p96\":\"" + pattern[16] + "\","
-             + "\"p97\":\"" + pattern[17] + "\"}";
+             + "\"p96\":\"" + pattern[17] + "\","
+
+             + "\"time1\":\"" + fileTime[1] + "\","
+             + "\"time2\":\"" + fileTime[2] + "\","
+             + "\"time3\":\"" + fileTime[3] + "\","
+             + "\"time4\":\"" + fileTime[4] + "\","
+             + "\"time5\":\"" + fileTime[5] + "\","
+             + "\"time6\":\"" + fileTime[6] + "\","
+             + "\"time7\":\"" + fileTime[7] + "\","
+             + "\"time8\":\"" + fileTime[8] + "\","
+             + "\"time9\":\"" + fileTime[9] + "\","
+             + "\"time10\":\"" + fileTime[10] + "\","
+             + "\"time11\":\"" + fileTime[11] + "\","
+             + "\"time12\":\"" + fileTime[12] + "\","
+             + "\"time13\":\"" + fileTime[13] + "\","
+             + "\"time14\":\"" + fileTime[14] + "\","
+             + "\"time15\":\"" + fileTime[15] + "\","
+             + "\"time0\":\"" + fileTime[0] + "\"}";
            
             return Content(json);
 

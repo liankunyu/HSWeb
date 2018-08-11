@@ -59,6 +59,23 @@
                 success: function (result) {
                     var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
 
+                    $('#time0').text(val.time0);
+                    $('#time1').text(val.time1);
+                    $('#time2').text(val.time2);
+                    $('#time3').text(val.time3);
+                    $('#time4').text(val.time4);
+                    $('#time5').text(val.time5);
+                    $('#time6').text(val.time6);
+                    $('#time7').text(val.time7);
+                    $('#time8').text(val.time8);
+                    $('#time9').text(val.time9);
+                    $('#time10').text(val.time10);
+                    $('#time11').text(val.time11);
+                    $('#time12').text(val.time12);
+                    $('#time13').text(val.time13);
+                    $('#time14').text(val.time14);
+                    $('#time15').text(val.time15);
+
                     $('#p1').text(val.p1);
                     $('#p2').text(val.p2);
                     $('#p3').text(val.p3);
@@ -143,6 +160,7 @@
                             <th>方案名称</th>
                             <th>读取数据</th>
                             <th>保存数据</th>
+                            <th>文件日期</th>
                         </tr>
 
                         <tr>
@@ -150,6 +168,7 @@
                             <td id="p1"></td>
                             <td><button class="button1" id="mode1">读取数据</button></td>
                             <td><button class="button2" id="mode1">保存数据</button></td>
+                            <td id="time1"></td>
                         </tr>
 
                         <tr>
@@ -157,6 +176,7 @@
                             <td id="p2"></td>
                             <td><button class="button1" id="mode2">读取数据</button></td>
                             <td><button class="button2" id="mode2">保存数据</button></td>
+                            <td id="time2"></td>
                         </tr>
 
                         <tr>
@@ -164,6 +184,7 @@
                             <td id="p3"></td>
                             <td><button class="button1" id="mode3">读取数据</button></td>
                             <td><button class="button2" id="mode3">保存数据</button></td>
+                            <td id="time3"></td>
                         </tr>
 
                         <tr>
@@ -171,79 +192,92 @@
                             <td id="p4"></td>
                             <td><button class="button1" id="mode4">读取数据</button></td>
                             <td><button class="button2" id="mode4">保存数据</button></td>
+                            <td id="time4"></td>
                         </tr>
                         <tr>
                             <td><i>5</i></td>
                             <td id="p5"></td>
                             <td><button class="button1" id="mode5">读取数据</button></td>
                             <td><button class="button2" id="mode5">保存数据</button></td>
+                            <td id="time5"></td>
                         </tr>
                         <tr>
                             <td><i>6</i></td>
                             <td id="p6"></td>
                             <td><button class="button1" id="mode6">读取数据</button></td>
                             <td><button class="button2" id="mode6">保存数据</button></td>
+                            <td id="time6"></td>
                         </tr>
                         <tr>
                             <td><i>7</i></td>
                             <td id="p7"></td>
                             <td><button class="button1" id="mode7">读取数据</button></td>
                             <td><button class="button2" id="mode7">保存数据</button></td>
+                            <td id="time7"></td>
                         </tr>
                         <tr>
                             <td><i>8</i></td>
                             <td id="p8"></td>
                             <td><button class="button1" id="mode8">读取数据</button></td>
                             <td><button class="button2" id="mode8">保存数据</button></td>
+                            <td id="time8"></td>
                         </tr>
                         <tr>
                             <td><i>9</i></td>
                             <td id="p9"></td>
                             <td><button class="button1" id="mode9">读取数据</button></td>
                             <td><button class="button2" id="mode9">保存数据</button></td>
+                            <td id="time9"></td>
                         </tr>
                         <tr>
                             <td><i>10</i></td>
                             <td id="p10"></td>
                             <td><button class="button1" id="mode10">读取数据</button></td>
                             <td><button class="button2" id="mode10">保存数据</button></td>
-                        </tr>
+                            <td id="time10"></td>
+                         </tr>
                         <tr>
                             <td><i>11</i></td>
                             <td id="p11"></td>
                             <td><button class="button1" id="mode11">读取数据</button></td>
                             <td><button class="button2" id="mode11">保存数据</button></td>
+                            <td id="time11"></td>
                         </tr>
                         <tr>
                             <td><i>12</i></td>
                             <td id="p12"></td>
                             <td><button class="button1" id="mode12">读取数据</button></td>
                             <td><button class="button2" id="mode12">保存数据</button></td>
+                            <td id="time12"></td>
                         </tr>
                         <tr>
                             <td><i>13</i></td>
                             <td id="p13"></td>
                             <td><button class="button1" id="mode13">读取数据</button></td>
                             <td><button class="button2" id="mode13">保存数据</button></td>
-                        </tr>
+                            <td id="time13"></td>
+                         </tr>
                         <tr>
                             <td><i>14</i></td>
                             <td id="p14"></td>
                             <td><button class="button1" id="mode14">读取数据</button></td>
                             <td><button class="button2" id="mode14">保存数据</button></td>
-                        </tr>
+                            <td id="time14"></td>
+                         </tr>
                         <tr>
                             <td><i>15</i></td>
                             <td id="p15"></td>
                             <td><button class="button1" id="mode15">读取数据</button></td>
                             <td><button class="button2" id="mode15">保存数据</button></td>
+                            <td id="time15"></td>
                         </tr>
                         <tr>
                             <td><i>16</i></td>
                             <td>上次退出前的数据</td>
                             <td><button class="button1" id="lasttime">读取数据</button></td>
                             <td><button class="button2" id="lasttime">保存数据</button></td>
-                        </tr>
+                            <td id="time0"></td>
+                         </tr>
                     </table>
                 </div>
             </div>
