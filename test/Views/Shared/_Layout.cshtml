@@ -109,7 +109,7 @@
         function changeDeviceID() {
             //设备编号修改
             var deviceID = prompt("请输入您要修改的设备编号：");
-
+            var fileName = getCookie("fileName");
             var kong = /^\s*(\S+)\s*$/;
 
             if (!kong.test(deviceID)) {
@@ -121,17 +121,21 @@
                     url: '/LoginIndex/VerifyDevice',
                     type: 'post',
                     dataType: 'text',
-                    data: { deviceID: deviceID },
+                    data: { deviceID: deviceID, fileName: fileName },
                     success: function (result) {
                         if (result == "Nofound") {
                             alert("设备编号错误，请重新输入");
+                            return;
+                        }
+                        if (result == "Nodata") {
+                            alert("没有找到该设备数据");
                             return;
                         }
                         else {
                             //利用cookie保存设备ID
                             setCookie("deviceID", deviceID);
                             alert("修改成功！");
-                            window.location.href = "/Pattern/Pattern";
+                            window.location.href = "/Sensitivity/Sensitivity";
                         }
                     }
                 });
@@ -228,7 +232,7 @@
                 <tr>
                     <td style="width: 2%"> </td>
                     <td style="text-align: left; padding-top: 15px;">
-                        <a href="/Pattern/Pattern?pa" class="l-btn-plain" id="Pattern_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 模式选择</a>
+                        @*<a href="/Pattern/Pattern?pa" class="l-btn-plain" id="Pattern_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 模式选择</a>*@
                         <a href="/Sensitivity/Sensitivity?sen" class="l-btn-plain" id="Sensitivity_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 灵敏度</a>
                         <a href="/FlowSet/FlowSet?fl" class="l-btn-plain" id="Flow_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 流量设定</a>
                         <a href="/ColorSensitive/ColorSensitive?co" class="l-btn-plain" id="Color_id" style="color: #ffffff; background: #323642; padding: 5px 10px 15px 10px; font-weight: 900; font-size: 14px; font-family: YouYuan; text-decoration: none"> 颜色敏感</a>

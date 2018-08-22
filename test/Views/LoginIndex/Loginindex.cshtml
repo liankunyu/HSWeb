@@ -2,6 +2,7 @@
     ViewBag.Title = "LoginIndex";
     Layout = null;
 }
+<!DOCTYPE html>
 <html>
 <head>
     <title>色选机远程监控与管理系统</title>
@@ -179,8 +180,9 @@
                         }
 
                         //设置默认文件名
-                        setCookie("fileName", "lasttime");
-                        window.location.href = "/Pattern/Pattern";
+                        setCookie("fileName", "tmp");
+                        //window.location.href = "/Pattern/Pattern";
+                        window.location.href = "/Sensitivity/Sensitivity";
                     }
                 }
             });
@@ -276,8 +278,10 @@
                                 setCheckCookie("autologin", "否");
                             }
                             //设置默认文件名
-                            setCookie("fileName", "lasttime");
-                            window.location.href = "/Pattern/Pattern?pa";
+                            setCookie("fileName", "tmp");
+                            //window.location.href = "/Pattern/Pattern?pa";
+                            window.location.href = "/Sensitivity/Sensitivity";
+
                             //设备编号判断
 
 

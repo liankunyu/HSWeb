@@ -54,19 +54,30 @@ namespace TMC_SZ.Controllers
         }
         public ActionResult VerifyDevice()
         {
-            string deviceID = Request.Form["deviceID"];
-
+            string deviceID, fileName, hs_sql, path, newPath;
+            deviceID = Request.Form["deviceID"];
+            fileName = Request.Form["fileName"];
             DataTable dt1 = new DataTable();
-            string hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
+            hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
             dt1 = DbHelperSQL.OpenTable(hs_sql);
             if (dt1.Rows.Count > 0)
             {
-                //string path = DbHelperSQL.ExecuteQuery(hs_sql);
-                //string newPath = System.IO.Path.Combine(path, "name.xml");
-                //test.common.ReadName(newPath);
-                //newPath = System.IO.Path.Combine(path, "lasttime.xml");
-                //test.common.ReadXML(newPath);
-                return Content("Success");
+                //获得文件路径
+                hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
+                path = DbHelperSQL.ExecuteQuery(hs_sql);
+                newPath = System.IO.Path.Combine(path, fileName);
+                newPath += ".xml";
+                path = System.IO.Path.Combine(path, "lasttime.xml");
+                try
+                {
+                    //c#实现把一个文件从一个文件夹复制到另外一个文件夹并改名
+                    System.IO.File.Copy(path, newPath, true);//允许覆盖目的地的同名文件
+                    return Content("Success");
+                }
+                catch
+                {
+                    return Content("Nodata");
+                }
             }
             else
             {
