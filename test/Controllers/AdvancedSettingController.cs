@@ -1547,7 +1547,7 @@ namespace test.Controllers
                 //获得文件路径
                 hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
                 path = DbHelperSQL.ExecuteQuery(hs_sql);
-                newPath = System.IO.Path.Combine(path, "lasttime.xml");
+                newPath = System.IO.Path.Combine(path, "tmp.xml");
                 XMLHelper opXML = new XMLHelper(newPath);
                 opXML.ModifyNode("jzsj", expiryDate);
                 opXML.saveFile();
