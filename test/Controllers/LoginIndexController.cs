@@ -58,7 +58,7 @@ namespace TMC_SZ.Controllers
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             DataTable dt1 = new DataTable();
-            hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
+            hs_sql = "select * from DevicePing where DeviceID='" + deviceID + "'";
             dt1 = DbHelperSQL.OpenTable(hs_sql);
             if (dt1.Rows.Count > 0)
             {
