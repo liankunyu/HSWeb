@@ -31,17 +31,36 @@ namespace test.Controllers
         public ActionResult VerifyDevice()
         {
             string deviceID = Request.Form["deviceID"];
-
-            DataTable dt1 = new DataTable();
-            string hs_sql = "select * from DevicePing where DeviceID='" + deviceID + "'";
-            dt1 = DbHelperSQL.OpenTable(hs_sql);
-            if (dt1.Rows.Count > 0)
+            string AdminName = Request.Form["AdminName"];
+            string SendTime = Request.Form["SendTime"];
+            string hs_sql = "INSERT INTO SendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
+            int row = DbHelperSQL.Execute(hs_sql);
+            hs_sql = "INSERT INTO HistSendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
+            int row1 = DbHelperSQL.Execute(hs_sql);
+            if (row > 0 && row1 > 0)
             {
                 return Content("Success");
             }
             else
             {
-                return Content("Nofound");
+                return Content("Error");
+            }
+        }
+        //查询发送后的状态
+        public ActionResult QuerySend()
+        {
+            string SendTime = Request.Form["SendTime"];
+            DataTable dt = new DataTable();
+            string hs_sql = "select * from HistSendTable where SendTime='" + SendTime + "'";
+            dt = DbHelperSQL.OpenTable(hs_sql);
+            if (dt.Rows.Count > 0)
+            {
+                string json = "{\"SendResult\":\"" + dt.Rows[0][4].ToString().Trim() + "\"}";
+                return Content(json);
+            }
+            else
+            {
+                return Content("NoFound");
             }
         }
 
@@ -193,7 +212,7 @@ namespace test.Controllers
         {
             string xg_userName = Request.Form["xg_userName"];
             string xg_passWord = Request.Form["xg_passWord"];
-            string hs_sql = "UPDATE UserInfo SET passWord = '"+xg_passWord+"' WHERE userName = '"+xg_userName+"'";
+            string hs_sql = "UPDATE UserInfo SET passWord = '" + xg_passWord + "' WHERE userName = '" + xg_userName + "'";
             int row = DbHelperSQL.Execute(hs_sql);
             if (row > 0)
             {

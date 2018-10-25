@@ -42,48 +42,94 @@
         document.getElementById('Serve_id').style.borderButton = '1px solid ';
         document.getElementById('Serve_id').style.padding = '7px 12px 17px 12px ';
         $("#deviceID").val(getCookie("deviceID"));
-        $("#serverIP").val("ws://127.0.0.1:9999/");
-        $("#fileCode").val(0);
+        //$("#serverIP").val("ws://127.0.0.1:9999/");
+        //$("#fileCode").val(0);
     });
-    var ws;
-    function ToggleConnectionClicked() {
-        try {
-            ws = new WebSocket($("#serverIP").val());//连接服务器
-            ws.onopen = function () { alert("已经与服务器建立了连接\r\n当前连接状态：" + this.readyState); };
-            ws.onmessage = function (event) { alert("接收到服务器发送的数据：\r\n" + event.data); };
-            ws.onclose = function (event) { alert("已经与服务器断开连接\r\n当前连接状态：" + this.readyState); };
-            ws.onerror = function (event) { alert("WebSocket异常！"); };
-        } catch (ex) {
-            alert(ex.message);
-        }
+    //var ws;
+    //function ToggleConnectionClicked() {
+    //    try {
+    //        ws = new WebSocket($("#serverIP").val());//连接服务器
+    //        ws.onopen = function () { alert("已经与服务器建立了连接\r\n当前连接状态：" + this.readyState); };
+    //        ws.onmessage = function (event) { alert("接收到服务器发送的数据：\r\n" + event.data); };
+    //        ws.onclose = function (event) { alert("已经与服务器断开连接\r\n当前连接状态：" + this.readyState); };
+    //        ws.onerror = function (event) { alert("WebSocket异常！"); };
+    //    } catch (ex) {
+    //        alert(ex.message);
+    //    }
+    //};
+    Date.prototype.Format=function(fmt){
+        var o = {
+            "y+": this.getYear(),//年
+            "M+":this.getMonth()+1,//月
+            "d+":this.getDate(),//日
+            "H+":this.getHours(),//时
+            "m+":this.getMinutes(),//分
+            "s+":this.getSeconds(),//秒
+            "f+": this.getMilliseconds()//毫秒
+        };
+        if(/(y+)/.test(fmt)) fmt=fmt.replace(RegExp.$1,(this.getFullYear()+"").substr(4-RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
     };
-
     function SendData() {
         var deviceID = $("#deviceID").val();
         var fileCode = $("#fileCode").val();
+        var AdminName=getCookie("AdminName");
+        var SendTime = new Date().Format("yyyy-MM-dd HH:mm:ss.fff");
+        setCookie("SendTime", SendTime);
         $.ajax({
             url: '/ConnectServer/VerifyDevice', //后台处理程序
             type: 'post',         //数据发送方式
             dataType: 'text',     //接受数据格式
-            data: { deviceID: deviceID },        //要传递的数据
+            data: { AdminName: AdminName, SendTime: SendTime, deviceID: deviceID },        //要传递的数据
             success: function (result) {
                 if (result == "Success") {
-                    try {
-                        ws.send(deviceID + "-" + fileCode);
-                    } catch (ex) {
-                        alert(ex.message);
-                    }
+                    alert("已发送！");
                 }
                 else {
-                    alert("此设备未连接！");
+                    alert("指令发送失败！");
                 }
             }
         });
 
     };
+    //function SendData() {
+    //    var deviceID = $("#deviceID").val();
+    //    var fileCode = $("#fileCode").val();
+    //    $.ajax({
+    //        url: '/ConnectServer/VerifyDevice', //后台处理程序
+    //        type: 'post',         //数据发送方式
+    //        dataType: 'text',     //接受数据格式
+    //        data: { deviceID: deviceID },        //要传递的数据
+    //        success: function (result) {
+    //            if (result == "Success") {
+    //                try {
+    //                    ws.send(deviceID + "-" + fileCode);
+    //                } catch (ex) {
+    //                    alert(ex.message);
+    //                }
+    //            }
+    //            else {
+    //                alert("此设备未连接！");
+    //            }
+    //        }
+    //    });
+
+    //};
 
     function seestate() {
-        alert(ws.readyState);
+        var SendTime =getCookie("SendTime");
+        $.ajax({
+            url: '/ConnectServer/QuerySend', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: { SendTime: SendTime },        //要传递的数据
+            success: function (result) {
+                var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
+                alert(val.SendResult);
+            }
+        });
     }
 </script>
 
@@ -113,10 +159,6 @@
                         <tr>
                             <td>设备ID:
                             <td><input type="text" value="" id="deviceID" />
-                            <td><input type="text" value="" id="fileCode" style="width:50px" />
-                        <tr>
-                            <td>服务器地址:
-                            <td><input type="text" value="" id="serverIP" style="width:180px" />
                     </tbody>
                 </table>
                 <div style="text-align:center">
@@ -124,13 +166,11 @@
                     <br />
                     <br />
                     <br />
-                    <button type="button" onclick="ToggleConnectionClicked();" style="width:100px;height:40px;">连接服务器</button>
-                    <br />
-                    <br />
                     <button type="button" onclick="SendData();" style="width:100px;height:40px;">发送</button>
                     <br />
                     <br />
-                    <button type="button" onclick="seestate();" style="width:100px;height:40px; ">查看连接状态</button>
+                    <br />
+                    <button type="button" onclick="seestate();" style="width:100px;height:40px; ">查看发送状态</button>
                 </div>
             </div>
         </div>
