@@ -81,8 +81,31 @@
             }
         });
     });
-    function postData() {
+    function postDataBJB() {
+        var beijing1 = $("#beijing1").val();
+        var beijing2 = $("#beijing2").val();
+        var beijing3 = $("#beijing3").val();
+        var beijing4 = $("#beijing4").val();
 
+        var va = getCookie("deviceID");
+        var va1 = getCookie("fileName");
+        $.ajax({
+            url: '/AdvancedSetting/postDataBJB', //后台处理程序
+            type: 'post',         //数据发送方式
+            dataType: 'text',     //接受数据格式
+            data: {
+                deviceID: va, fileName: va1,
+                beijing1:beijing1,beijing2:beijing2,beijing3:beijing3,beijing4:beijing4
+            },        //要传递的数据
+            success: function (result) {
+                if (result == "Success") {
+                    alert("提交成功！");
+                }
+                else {
+                    alert("提交失败！");
+                }
+            }
+        });
     }
 </script>
 
@@ -144,7 +167,7 @@
 
                     </tbody>
                 </table><br />
-                <center><button id="submit" onclick="postData()">确定</button></center>
+                <center><button id="submit" onclick="postDataBJB()">确定</button></center>
             </div>
         </div>
     </div>
