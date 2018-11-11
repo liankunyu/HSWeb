@@ -30,10 +30,21 @@ namespace test.Controllers
         }
         public ActionResult VerifyDevice()
         {
+            string fileName, hs_sql, path, newPath;
             string deviceID = Request.Form["deviceID"];
             string AdminName = Request.Form["AdminName"];
             string SendTime = Request.Form["SendTime"];
-            string hs_sql = "INSERT INTO SendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
+            fileName = Request.Form["fileName"];
+            //获得文件路径
+            hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
+            path = DbHelperSQL.ExecuteQuery(hs_sql);
+            newPath = System.IO.Path.Combine(path, fileName);
+            newPath = newPath + ".xml";
+            //读取值
+            XMLHelper opXML = new XMLHelper(newPath);
+            opXML.ModifyNode("sendtime", SendTime);
+            opXML.saveFile();
+            hs_sql = "INSERT INTO SendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
             int row = DbHelperSQL.Execute(hs_sql);
             hs_sql = "INSERT INTO HistSendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
             int row1 = DbHelperSQL.Execute(hs_sql);
@@ -189,7 +200,7 @@ namespace test.Controllers
                 return Content("Error");
             }
         }
-        //删除设备信息
+        //删除用户信息
         public ActionResult User_Delete()
         {
             string userName = Request.Form["userName"];

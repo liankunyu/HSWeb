@@ -75,14 +75,15 @@
     function SendData() {
         var deviceID = $("#deviceID").val();
         var fileCode = $("#fileCode").val();
-        var AdminName=getCookie("AdminName");
+        var AdminName = getCookie("AdminName");
+        var fileName = getCookie("fileName");
         var SendTime = new Date().Format("yyyy-MM-dd HH:mm:ss.fff");
         setCookie("SendTime", SendTime);
         $.ajax({
             url: '/ConnectServer/VerifyDevice', //后台处理程序
             type: 'post',         //数据发送方式
             dataType: 'text',     //接受数据格式
-            data: { AdminName: AdminName, SendTime: SendTime, deviceID: deviceID },        //要传递的数据
+            data: { AdminName: AdminName, SendTime: SendTime, deviceID: deviceID, fileName: fileName },        //要传递的数据
             success: function (result) {
                 if (result == "Success") {
                     alert("已发送！");
