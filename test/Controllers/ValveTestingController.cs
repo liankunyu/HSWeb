@@ -66,13 +66,13 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num0501", Request.Form["mod1"]);
-                opXML.ModifyNode("num0502", Request.Form["mod2"]);
-                opXML.ModifyNode("num0503", Request.Form["mod3"]);
-                opXML.ModifyNode("num0504", Request.Form["mod4"]);
-                opXML.ModifyNode("num0505", Request.Form["mod5"]);
-                opXML.ModifyNode("num0506", Request.Form["mod6"]);
-                opXML.ModifyNode("num0507", Request.Form["mod7"]);
+                opXML.ModifyNode("num0501", Request.Form["famen1"]);
+                opXML.ModifyNode("num0502", Request.Form["famen2"]);
+                opXML.ModifyNode("num0503", Request.Form["famen3"]);
+                opXML.ModifyNode("num0504", Request.Form["famen4"]);
+                opXML.ModifyNode("num0505", Request.Form["famen5"]);
+                opXML.ModifyNode("num0506", Request.Form["famen6"]);
+                opXML.ModifyNode("num0507", Request.Form["famen7"]);
                 opXML.saveFile();
                 return Content("Success");
             }
