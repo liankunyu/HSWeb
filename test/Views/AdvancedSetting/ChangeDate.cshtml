@@ -146,15 +146,21 @@
     <div region="center" style="width: 100%; float: left; background: #333743;">
         <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
             <div title="日期设定" style="padding:10px" data-options="closable:false">
-                <div id="xz">
-                    <div id="patternxz" style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">
-                        使用日期设定
-                    </div>
-                    <p></p>
-                    <p style="position:absolute; left:410px;top:78px;font-weight: 900;font-size: 14px; font-family: YouYuan; ">使用日期:</p><input type="text" title="使用日期" id="expiryDate" style="position:absolute; left:470px;top:90px" /><br /><br />
-                    <br /><br />
-                    <button type="button" onclick="postDataCD();" style="width:100px;height:40px; position:absolute; left:480px; ">修改</button><br /><br />
-
+                <table class="dataintable" align="center">
+                    <caption style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">远程通信界面</caption>
+                    <tbody>
+                        <tr>
+                            <td>使用日期设定
+                            <td><input type="text" value="" title="使用日期" name="expiryDate" id="expiryDate" />
+                            <td>格式：2019-01-01
+                    </tbody>
+                </table>
+                <div style="text-align:center">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <button type="button" onclick="postDataCD();" style="width:100px;height:40px;">修改</button>
                 </div>
             </div>
         </div>
@@ -162,4 +168,22 @@
 </div>
 
 
+<div title="远程通信" style="padding:10px" data-options="closable:false">
 
+    <table class="dataintable" align="center">
+        <caption style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">远程通信界面</caption>
+        <tbody>
+            <tr>
+                <td>使用日期设定
+                <td><input type="text" value="" title="使用日期" name="expiryDate" id="expiryDate" />
+                <td>格式：2019-01-01
+</tbody>
+    </table>
+    <div style="text-align:center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <button type="button" onclick="postDataCD();" style="width:100px;height:40px; position:absolute; left:480px; ">修改</button>
+        </div>
+</div>
