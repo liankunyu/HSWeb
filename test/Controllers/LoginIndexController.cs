@@ -6,10 +6,7 @@ using System.Web.Mvc;
 using DA;
 using MvcDaMing.Util;
 using System.Data;
-
-
-using TMC_SZ;
-namespace TMC_SZ.Controllers
+namespace test.Controllers
 {
     public class LoginIndexController : Controller
     {

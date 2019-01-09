@@ -5,9 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using test.Controllers.Filter;
 
 namespace test.Controllers
 {
+    [LoginFilter]
     public class FlowSetController : Controller
     {
         // GET: FlowSet

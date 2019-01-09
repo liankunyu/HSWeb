@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using MvcDaMing.Util;
 //using DA;
-namespace TMC_SZ.Controllers.Filter
+namespace test.Controllers.Filter
 {
     public class LoginFilter : ActionFilterAttribute
     {
@@ -23,14 +23,14 @@ namespace TMC_SZ.Controllers.Filter
                 if (cookie == null)
                 {
 
-                    filterContext.Result = new RedirectResult("/Login/Login");
+                    filterContext.Result = new RedirectResult("/Loginindex/Loginindex");
                     return;
                 }
                 else
                 {
                     cookie.Value = "false";
                     cookie.Expires = DateTime.Now.AddDays(-1);
-                    filterContext.Result = new RedirectResult("/Login/Login");
+                    filterContext.Result = new RedirectResult("/Loginindex/Loginindex");
                     return;
                 }
             }

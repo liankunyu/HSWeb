@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcDaMing.Util;
-namespace TMC_SZ.Controllers
+namespace test.Controllers
 {
     public class ValidateCodeController : Controller
     {

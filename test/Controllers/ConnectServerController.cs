@@ -2,16 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using test.Controllers.Filter;
 
 namespace test.Controllers
 {
-
+    [LoginFilter]
     public class ConnectServerController : Controller
     {
         //Socket socketSend;
@@ -28,6 +30,7 @@ namespace test.Controllers
         {
             return View();
         }
+        //发送信息
         public ActionResult VerifyDevice()
         {
             string fileName, hs_sql, path, newPath;
@@ -234,5 +237,8 @@ namespace test.Controllers
                 return Content("Error");
             }
         }
+
+
+        
     }
 }
