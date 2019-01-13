@@ -58,6 +58,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[10];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -68,14 +70,22 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num0501", Request.Form["famen1"]);
-                opXML.ModifyNode("num0502", Request.Form["famen2"]);
-                opXML.ModifyNode("num0503", Request.Form["famen3"]);
-                opXML.ModifyNode("num0504", Request.Form["famen4"]);
-                opXML.ModifyNode("num0505", Request.Form["famen5"]);
-                opXML.ModifyNode("num0506", Request.Form["famen6"]);
-                opXML.ModifyNode("num0507", Request.Form["famen7"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num0501", Request.Form["famen1"]);
+                ROV[2] = opXML.ModifyNode("num0502", Request.Form["famen2"]);
+                ROV[3] = opXML.ModifyNode("num0503", Request.Form["famen3"]);
+                ROV[4] = opXML.ModifyNode("num0504", Request.Form["famen4"]);
+                ROV[5] = opXML.ModifyNode("num0505", Request.Form["famen5"]);
+                ROV[6] = opXML.ModifyNode("num0506", Request.Form["famen6"]);
+                ROV[7] = opXML.ModifyNode("num0507", Request.Form["famen7"]);
+                ROV[8] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 9; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch

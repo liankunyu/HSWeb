@@ -95,6 +95,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[30];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -105,30 +107,38 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num1001", Request.Form["firsttd"]);
-                opXML.ModifyNode("num1002", Request.Form["twotd"]);
-                opXML.ModifyNode("num1003", Request.Form["threetd"]);
-                opXML.ModifyNode("num1004", Request.Form["fourtd"]);
-                opXML.ModifyNode("num1005", Request.Form["fivetd"]);
-                opXML.ModifyNode("num1006", Request.Form["sixtd"]);
-                opXML.ModifyNode("num1007", Request.Form["seventd"]);
-                opXML.ModifyNode("num1008", Request.Form["eighttd"]);
-                opXML.ModifyNode("num1009", Request.Form["ninetd"]);
-                opXML.ModifyNode("num1010", Request.Form["tentd"]);
-                opXML.ModifyNode("num1011", Request.Form["ycll"]);
-                opXML.ModifyNode("num1012", Request.Form["ecll"]);
-                opXML.ModifyNode("num1013", Request.Form["scll"]);
-                opXML.ModifyNode("num3501", Request.Form["yitongdao"]);
-                opXML.ModifyNode("num3502", Request.Form["ertongdao"]);
-                opXML.ModifyNode("num3503", Request.Form["santongdao"]);
-                opXML.ModifyNode("num3504", Request.Form["sitongdao"]);
-                opXML.ModifyNode("num3505", Request.Form["wutongdao"]);
-                opXML.ModifyNode("num3506", Request.Form["liutongdao"]);
-                opXML.ModifyNode("num3507", Request.Form["qitongdao"]);
-                opXML.ModifyNode("num3508", Request.Form["batongdao"]);
-                opXML.ModifyNode("num3509", Request.Form["jiutongdao"]);
-                opXML.ModifyNode("num3510", Request.Form["shitongdao"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num1001", Request.Form["firsttd"]);
+                ROV[2] = opXML.ModifyNode("num1002", Request.Form["twotd"]);
+                ROV[3] = opXML.ModifyNode("num1003", Request.Form["threetd"]);
+                ROV[4] = opXML.ModifyNode("num1004", Request.Form["fourtd"]);
+                ROV[5] = opXML.ModifyNode("num1005", Request.Form["fivetd"]);
+                ROV[6] = opXML.ModifyNode("num1006", Request.Form["sixtd"]);
+                ROV[7] = opXML.ModifyNode("num1007", Request.Form["seventd"]);
+                ROV[8] = opXML.ModifyNode("num1008", Request.Form["eighttd"]);
+                ROV[9] = opXML.ModifyNode("num1009", Request.Form["ninetd"]);
+                ROV[10] = opXML.ModifyNode("num1010", Request.Form["tentd"]);
+                ROV[11] = opXML.ModifyNode("num1011", Request.Form["ycll"]);
+                ROV[12] = opXML.ModifyNode("num1012", Request.Form["ecll"]);
+                ROV[13] = opXML.ModifyNode("num1013", Request.Form["scll"]);
+                ROV[14] = opXML.ModifyNode("num3501", Request.Form["yitongdao"]);
+                ROV[15] = opXML.ModifyNode("num3502", Request.Form["ertongdao"]);
+                ROV[16] = opXML.ModifyNode("num3503", Request.Form["santongdao"]);
+                ROV[17] = opXML.ModifyNode("num3504", Request.Form["sitongdao"]);
+                ROV[18] = opXML.ModifyNode("num3505", Request.Form["wutongdao"]);
+                ROV[19] = opXML.ModifyNode("num3506", Request.Form["liutongdao"]);
+                ROV[20] = opXML.ModifyNode("num3507", Request.Form["qitongdao"]);
+                ROV[21] = opXML.ModifyNode("num3508", Request.Form["batongdao"]);
+                ROV[22] = opXML.ModifyNode("num3509", Request.Form["jiutongdao"]);
+                ROV[23] = opXML.ModifyNode("num3510", Request.Form["shitongdao"]);
+                ROV[24] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 24; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch

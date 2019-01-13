@@ -44,6 +44,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[10];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -54,10 +56,18 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num1301", Request.Form["daow"]);
-                opXML.ModifyNode("num1302", Request.Form["kongw"]);
-                opXML.ModifyNode("num1303", Request.Form["sud"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num1301", Request.Form["daow"]);
+                ROV[2] = opXML.ModifyNode("num1302", Request.Form["kongw"]);
+                ROV[3] = opXML.ModifyNode("num1303", Request.Form["sud"]);
+                ROV[4] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 5; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch

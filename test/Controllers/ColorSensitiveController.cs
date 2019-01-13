@@ -196,6 +196,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -206,60 +208,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2101", Request.Form["quyu1"]);
-                opXML.ModifyNode("num2102", Request.Form["quyu2"]);
-                opXML.ModifyNode("num2103", Request.Form["quyu3"]);
-                opXML.ModifyNode("num2104", Request.Form["quyu4"]);
-                opXML.ModifyNode("num2105", Request.Form["quyu5"]);
-                opXML.ModifyNode("num2106", Request.Form["quyu6"]);
-                opXML.ModifyNode("num2107", Request.Form["quyu7"]);
-                opXML.ModifyNode("num2108", Request.Form["quyu8"]);
-                opXML.ModifyNode("num2109", Request.Form["quyu9"]);
-                opXML.ModifyNode("num2110", Request.Form["quyu10"]);
-                opXML.ModifyNode("num2111", Request.Form["quyu11"]);
-                opXML.ModifyNode("num2112", Request.Form["quyu12"]);
+                ROV[1] = opXML.ModifyNode("num2101", Request.Form["quyu1"]);
+                ROV[2] = opXML.ModifyNode("num2102", Request.Form["quyu2"]);
+                ROV[3] = opXML.ModifyNode("num2103", Request.Form["quyu3"]);
+                ROV[4] = opXML.ModifyNode("num2104", Request.Form["quyu4"]);
+                ROV[5] = opXML.ModifyNode("num2105", Request.Form["quyu5"]);
+                ROV[6] = opXML.ModifyNode("num2106", Request.Form["quyu6"]);
+                ROV[7] = opXML.ModifyNode("num2107", Request.Form["quyu7"]);
+                ROV[8] = opXML.ModifyNode("num2108", Request.Form["quyu8"]);
+                ROV[9] = opXML.ModifyNode("num2109", Request.Form["quyu9"]);
+                ROV[10] = opXML.ModifyNode("num2110", Request.Form["quyu10"]);
+                ROV[11] = opXML.ModifyNode("num2111", Request.Form["quyu11"]);
+                ROV[12] = opXML.ModifyNode("num2112", Request.Form["quyu12"]);
 
-                opXML.ModifyNode("num4001", Request.Form["quyuf1"]);
-                opXML.ModifyNode("num4002", Request.Form["quyuf2"]);
-                opXML.ModifyNode("num4003", Request.Form["quyuf3"]);
-                opXML.ModifyNode("num4004", Request.Form["quyuf4"]);
-                opXML.ModifyNode("num4005", Request.Form["quyuf5"]);
-                opXML.ModifyNode("num4006", Request.Form["quyuf6"]);
-                opXML.ModifyNode("num4007", Request.Form["quyuf7"]);
-                opXML.ModifyNode("num4008", Request.Form["quyuf8"]);
-                opXML.ModifyNode("num4009", Request.Form["quyuf9"]);
-                opXML.ModifyNode("num4010", Request.Form["quyuf10"]);
-                opXML.ModifyNode("num4011", Request.Form["quyuf11"]);
-                opXML.ModifyNode("num4012", Request.Form["quyuf12"]);
-                opXML.ModifyNode("num4013", Request.Form["quyuf13"]);
-                opXML.ModifyNode("num4014", Request.Form["quyuf14"]);
-                opXML.ModifyNode("num4015", Request.Form["quyuf15"]);
-                opXML.ModifyNode("num4016", Request.Form["quyuf16"]);
-                opXML.ModifyNode("num4017", Request.Form["quyuf17"]);
-                opXML.ModifyNode("num4018", Request.Form["quyuf18"]);
-                opXML.ModifyNode("num4019", Request.Form["quyuf19"]);
-                opXML.ModifyNode("num4020", Request.Form["quyuf20"]);
-                opXML.ModifyNode("num4021", Request.Form["quyuf21"]);
-                opXML.ModifyNode("num4022", Request.Form["quyuf22"]);
-                opXML.ModifyNode("num4023", Request.Form["quyuf23"]);
-                opXML.ModifyNode("num4024", Request.Form["quyuf24"]);
-                opXML.ModifyNode("num4025", Request.Form["quyuf25"]);
-                opXML.ModifyNode("num4026", Request.Form["quyuf26"]);
-                opXML.ModifyNode("num4027", Request.Form["quyuf27"]);
-                opXML.ModifyNode("num4028", Request.Form["quyuf28"]);
-                opXML.ModifyNode("num4029", Request.Form["quyuf29"]);
-                opXML.ModifyNode("num4030", Request.Form["quyuf30"]);
-                opXML.ModifyNode("num4031", Request.Form["quyuf31"]);
-                opXML.ModifyNode("num4032", Request.Form["quyuf32"]);
-                opXML.ModifyNode("num4033", Request.Form["quyuf33"]);
-                opXML.ModifyNode("num4034", Request.Form["quyuf34"]);
-                opXML.ModifyNode("num4035", Request.Form["quyuf35"]);
-                opXML.ModifyNode("num4036", Request.Form["quyuf36"]);
-                opXML.ModifyNode("num4037", Request.Form["quyuf37"]);
-                opXML.ModifyNode("num4038", Request.Form["quyuf38"]);
-                opXML.ModifyNode("num4039", Request.Form["quyuf39"]);
-                opXML.ModifyNode("num4040", Request.Form["quyuf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4001", Request.Form["quyuf1"]);
+                ROV[14] = opXML.ModifyNode("num4002", Request.Form["quyuf2"]);
+                ROV[15] = opXML.ModifyNode("num4003", Request.Form["quyuf3"]);
+                ROV[16] = opXML.ModifyNode("num4004", Request.Form["quyuf4"]);
+                ROV[17] = opXML.ModifyNode("num4005", Request.Form["quyuf5"]);
+                ROV[18] = opXML.ModifyNode("num4006", Request.Form["quyuf6"]);
+                ROV[19] = opXML.ModifyNode("num4007", Request.Form["quyuf7"]);
+                ROV[20] = opXML.ModifyNode("num4008", Request.Form["quyuf8"]);
+                ROV[21] = opXML.ModifyNode("num4009", Request.Form["quyuf9"]);
+                ROV[22] = opXML.ModifyNode("num4010", Request.Form["quyuf10"]);
+                ROV[23] = opXML.ModifyNode("num4011", Request.Form["quyuf11"]);
+                ROV[24] = opXML.ModifyNode("num4012", Request.Form["quyuf12"]);
+                ROV[25] = opXML.ModifyNode("num4013", Request.Form["quyuf13"]);
+                ROV[26] = opXML.ModifyNode("num4014", Request.Form["quyuf14"]);
+                ROV[27] = opXML.ModifyNode("num4015", Request.Form["quyuf15"]);
+                ROV[28] = opXML.ModifyNode("num4016", Request.Form["quyuf16"]);
+                ROV[29] = opXML.ModifyNode("num4017", Request.Form["quyuf17"]);
+                ROV[30] = opXML.ModifyNode("num4018", Request.Form["quyuf18"]);
+                ROV[31] = opXML.ModifyNode("num4019", Request.Form["quyuf19"]);
+                ROV[32] = opXML.ModifyNode("num4020", Request.Form["quyuf20"]);
+                ROV[33] = opXML.ModifyNode("num4021", Request.Form["quyuf21"]);
+                ROV[34] = opXML.ModifyNode("num4022", Request.Form["quyuf22"]);
+                ROV[35] = opXML.ModifyNode("num4023", Request.Form["quyuf23"]);
+                ROV[36] = opXML.ModifyNode("num4024", Request.Form["quyuf24"]);
+                ROV[37] = opXML.ModifyNode("num4025", Request.Form["quyuf25"]);
+                ROV[38] = opXML.ModifyNode("num4026", Request.Form["quyuf26"]);
+                ROV[39] = opXML.ModifyNode("num4027", Request.Form["quyuf27"]);
+                ROV[40] = opXML.ModifyNode("num4028", Request.Form["quyuf28"]);
+                ROV[41] = opXML.ModifyNode("num4029", Request.Form["quyuf29"]);
+                ROV[42] = opXML.ModifyNode("num4030", Request.Form["quyuf30"]);
+                ROV[43] = opXML.ModifyNode("num4031", Request.Form["quyuf31"]);
+                ROV[44] = opXML.ModifyNode("num4032", Request.Form["quyuf32"]);
+                ROV[45] = opXML.ModifyNode("num4033", Request.Form["quyuf33"]);
+                ROV[46] = opXML.ModifyNode("num4034", Request.Form["quyuf34"]);
+                ROV[47] = opXML.ModifyNode("num4035", Request.Form["quyuf35"]);
+                ROV[48] = opXML.ModifyNode("num4036", Request.Form["quyuf36"]);
+                ROV[49] = opXML.ModifyNode("num4037", Request.Form["quyuf37"]);
+                ROV[50] = opXML.ModifyNode("num4038", Request.Form["quyuf38"]);
+                ROV[51] = opXML.ModifyNode("num4039", Request.Form["quyuf39"]);
+                ROV[52] = opXML.ModifyNode("num4040", Request.Form["quyuf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -399,6 +409,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -409,60 +421,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num1401", Request.Form["quyuer1"]);
-                opXML.ModifyNode("num1402", Request.Form["quyuer2"]);
-                opXML.ModifyNode("num1403", Request.Form["quyuer3"]);
-                opXML.ModifyNode("num1404", Request.Form["quyuer4"]);
-                opXML.ModifyNode("num1405", Request.Form["quyuer5"]);
-                opXML.ModifyNode("num1406", Request.Form["quyuer6"]);
-                opXML.ModifyNode("num1407", Request.Form["quyuer7"]);
-                opXML.ModifyNode("num1408", Request.Form["quyuer8"]);
-                opXML.ModifyNode("num1409", Request.Form["quyuer9"]);
-                opXML.ModifyNode("num1410", Request.Form["quyuer10"]);
-                opXML.ModifyNode("num1411", Request.Form["quyuer11"]);
-                opXML.ModifyNode("num1412", Request.Form["quyuer12"]);
+                ROV[1]= opXML.ModifyNode("num1401", Request.Form["quyuer1"]);
+                ROV[2]= opXML.ModifyNode("num1402", Request.Form["quyuer2"]);
+                ROV[3]= opXML.ModifyNode("num1403", Request.Form["quyuer3"]);
+                ROV[4]= opXML.ModifyNode("num1404", Request.Form["quyuer4"]);
+                ROV[5]= opXML.ModifyNode("num1405", Request.Form["quyuer5"]);
+                ROV[6]= opXML.ModifyNode("num1406", Request.Form["quyuer6"]);
+                ROV[7]= opXML.ModifyNode("num1407", Request.Form["quyuer7"]);
+                ROV[8]= opXML.ModifyNode("num1408", Request.Form["quyuer8"]);
+                ROV[9]= opXML.ModifyNode("num1409", Request.Form["quyuer9"]);
+                ROV[10]= opXML.ModifyNode("num1410", Request.Form["quyuer10"]);
+                ROV[11]= opXML.ModifyNode("num1411", Request.Form["quyuer11"]);
+                ROV[12]= opXML.ModifyNode("num1412", Request.Form["quyuer12"]);
 
-                opXML.ModifyNode("num4101", Request.Form["quyuerf1"]);
-                opXML.ModifyNode("num4102", Request.Form["quyuerf2"]);
-                opXML.ModifyNode("num4103", Request.Form["quyuerf3"]);
-                opXML.ModifyNode("num4104", Request.Form["quyuerf4"]);
-                opXML.ModifyNode("num4105", Request.Form["quyuerf5"]);
-                opXML.ModifyNode("num4106", Request.Form["quyuerf6"]);
-                opXML.ModifyNode("num4107", Request.Form["quyuerf7"]);
-                opXML.ModifyNode("num4108", Request.Form["quyuerf8"]);
-                opXML.ModifyNode("num4109", Request.Form["quyuerf9"]);
-                opXML.ModifyNode("num4110", Request.Form["quyuerf10"]);
-                opXML.ModifyNode("num4111", Request.Form["quyuerf11"]);
-                opXML.ModifyNode("num4112", Request.Form["quyuerf12"]);
-                opXML.ModifyNode("num4113", Request.Form["quyuerf13"]);
-                opXML.ModifyNode("num4114", Request.Form["quyuerf14"]);
-                opXML.ModifyNode("num4115", Request.Form["quyuerf15"]);
-                opXML.ModifyNode("num4116", Request.Form["quyuerf16"]);
-                opXML.ModifyNode("num4117", Request.Form["quyuerf17"]);
-                opXML.ModifyNode("num4118", Request.Form["quyuerf18"]);
-                opXML.ModifyNode("num4119", Request.Form["quyuerf19"]);
-                opXML.ModifyNode("num4120", Request.Form["quyuerf20"]);
-                opXML.ModifyNode("num4121", Request.Form["quyuerf21"]);
-                opXML.ModifyNode("num4122", Request.Form["quyuerf22"]);
-                opXML.ModifyNode("num4123", Request.Form["quyuerf23"]);
-                opXML.ModifyNode("num4124", Request.Form["quyuerf24"]);
-                opXML.ModifyNode("num4125", Request.Form["quyuerf25"]);
-                opXML.ModifyNode("num4126", Request.Form["quyuerf26"]);
-                opXML.ModifyNode("num4127", Request.Form["quyuerf27"]);
-                opXML.ModifyNode("num4128", Request.Form["quyuerf28"]);
-                opXML.ModifyNode("num4129", Request.Form["quyuerf29"]);
-                opXML.ModifyNode("num4130", Request.Form["quyuerf30"]);
-                opXML.ModifyNode("num4131", Request.Form["quyuerf31"]);
-                opXML.ModifyNode("num4132", Request.Form["quyuerf32"]);
-                opXML.ModifyNode("num4133", Request.Form["quyuerf33"]);
-                opXML.ModifyNode("num4134", Request.Form["quyuerf34"]);
-                opXML.ModifyNode("num4135", Request.Form["quyuerf35"]);
-                opXML.ModifyNode("num4136", Request.Form["quyuerf36"]);
-                opXML.ModifyNode("num4137", Request.Form["quyuerf37"]);
-                opXML.ModifyNode("num4138", Request.Form["quyuerf38"]);
-                opXML.ModifyNode("num4139", Request.Form["quyuerf39"]);
-                opXML.ModifyNode("num4140", Request.Form["quyuerf40"]);
-                opXML.saveFile();
+                ROV[13]= opXML.ModifyNode("num4101", Request.Form["quyuerf1"]);
+                ROV[14]= opXML.ModifyNode("num4102", Request.Form["quyuerf2"]);
+                ROV[15]= opXML.ModifyNode("num4103", Request.Form["quyuerf3"]);
+                ROV[16]= opXML.ModifyNode("num4104", Request.Form["quyuerf4"]);
+                ROV[17]= opXML.ModifyNode("num4105", Request.Form["quyuerf5"]);
+                ROV[18]= opXML.ModifyNode("num4106", Request.Form["quyuerf6"]);
+                ROV[19]= opXML.ModifyNode("num4107", Request.Form["quyuerf7"]);
+                ROV[20]= opXML.ModifyNode("num4108", Request.Form["quyuerf8"]);
+                ROV[21]= opXML.ModifyNode("num4109", Request.Form["quyuerf9"]);
+                ROV[22]= opXML.ModifyNode("num4110", Request.Form["quyuerf10"]);
+                ROV[23]= opXML.ModifyNode("num4111", Request.Form["quyuerf11"]);
+                ROV[24]= opXML.ModifyNode("num4112", Request.Form["quyuerf12"]);
+                ROV[25]= opXML.ModifyNode("num4113", Request.Form["quyuerf13"]);
+                ROV[26]= opXML.ModifyNode("num4114", Request.Form["quyuerf14"]);
+                ROV[27]= opXML.ModifyNode("num4115", Request.Form["quyuerf15"]);
+                ROV[28]= opXML.ModifyNode("num4116", Request.Form["quyuerf16"]);
+                ROV[29]= opXML.ModifyNode("num4117", Request.Form["quyuerf17"]);
+                ROV[30]= opXML.ModifyNode("num4118", Request.Form["quyuerf18"]);
+                ROV[31]= opXML.ModifyNode("num4119", Request.Form["quyuerf19"]);
+                ROV[32]= opXML.ModifyNode("num4120", Request.Form["quyuerf20"]);
+                ROV[33]= opXML.ModifyNode("num4121", Request.Form["quyuerf21"]);
+                ROV[34]= opXML.ModifyNode("num4122", Request.Form["quyuerf22"]);
+                ROV[35]= opXML.ModifyNode("num4123", Request.Form["quyuerf23"]);
+                ROV[36]= opXML.ModifyNode("num4124", Request.Form["quyuerf24"]);
+                ROV[37]= opXML.ModifyNode("num4125", Request.Form["quyuerf25"]);
+                ROV[38]= opXML.ModifyNode("num4126", Request.Form["quyuerf26"]);
+                ROV[39]= opXML.ModifyNode("num4127", Request.Form["quyuerf27"]);
+                ROV[40]= opXML.ModifyNode("num4128", Request.Form["quyuerf28"]);
+                ROV[41]= opXML.ModifyNode("num4129", Request.Form["quyuerf29"]);
+                ROV[42]= opXML.ModifyNode("num4130", Request.Form["quyuerf30"]);
+                ROV[43]= opXML.ModifyNode("num4131", Request.Form["quyuerf31"]);
+                ROV[44]= opXML.ModifyNode("num4132", Request.Form["quyuerf32"]);
+                ROV[45]= opXML.ModifyNode("num4133", Request.Form["quyuerf33"]);
+                ROV[46]= opXML.ModifyNode("num4134", Request.Form["quyuerf34"]);
+                ROV[47]= opXML.ModifyNode("num4135", Request.Form["quyuerf35"]);
+                ROV[48]= opXML.ModifyNode("num4136", Request.Form["quyuerf36"]);
+                ROV[49]= opXML.ModifyNode("num4137", Request.Form["quyuerf37"]);
+                ROV[50]= opXML.ModifyNode("num4138", Request.Form["quyuerf38"]);
+                ROV[51]= opXML.ModifyNode("num4139", Request.Form["quyuerf39"]);
+                ROV[52]= opXML.ModifyNode("num4140", Request.Form["quyuerf40"]);
+                ROV[53]= opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -603,6 +623,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -613,60 +635,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2601", Request.Form["quyusan1"]);
-                opXML.ModifyNode("num2602", Request.Form["quyusan2"]);
-                opXML.ModifyNode("num2603", Request.Form["quyusan3"]);
-                opXML.ModifyNode("num2604", Request.Form["quyusan4"]);
-                opXML.ModifyNode("num2605", Request.Form["quyusan5"]);
-                opXML.ModifyNode("num2606", Request.Form["quyusan6"]);
-                opXML.ModifyNode("num2607", Request.Form["quyusan7"]);
-                opXML.ModifyNode("num2608", Request.Form["quyusan8"]);
-                opXML.ModifyNode("num2609", Request.Form["quyusan9"]);
-                opXML.ModifyNode("num2610", Request.Form["quyusan10"]);
-                opXML.ModifyNode("num2611", Request.Form["quyusan11"]);
-                opXML.ModifyNode("num2612", Request.Form["quyusan12"]);
+                ROV[1]= opXML.ModifyNode("num2601", Request.Form["quyusan1"]);
+                ROV[2]= opXML.ModifyNode("num2602", Request.Form["quyusan2"]);
+                ROV[3]= opXML.ModifyNode("num2603", Request.Form["quyusan3"]);
+                ROV[4]= opXML.ModifyNode("num2604", Request.Form["quyusan4"]);
+                ROV[5]= opXML.ModifyNode("num2605", Request.Form["quyusan5"]);
+                ROV[6]= opXML.ModifyNode("num2606", Request.Form["quyusan6"]);
+                ROV[7]= opXML.ModifyNode("num2607", Request.Form["quyusan7"]);
+                ROV[8]= opXML.ModifyNode("num2608", Request.Form["quyusan8"]);
+                ROV[9]= opXML.ModifyNode("num2609", Request.Form["quyusan9"]);
+                ROV[10]= opXML.ModifyNode("num2610", Request.Form["quyusan10"]);
+                ROV[11]= opXML.ModifyNode("num2611", Request.Form["quyusan11"]);
+                ROV[12]= opXML.ModifyNode("num2612", Request.Form["quyusan12"]);
 
-                opXML.ModifyNode("num4201", Request.Form["quyusanf1"]);
-                opXML.ModifyNode("num4202", Request.Form["quyusanf2"]);
-                opXML.ModifyNode("num4203", Request.Form["quyusanf3"]);
-                opXML.ModifyNode("num4204", Request.Form["quyusanf4"]);
-                opXML.ModifyNode("num4205", Request.Form["quyusanf5"]);
-                opXML.ModifyNode("num4206", Request.Form["quyusanf6"]);
-                opXML.ModifyNode("num4207", Request.Form["quyusanf7"]);
-                opXML.ModifyNode("num4208", Request.Form["quyusanf8"]);
-                opXML.ModifyNode("num4209", Request.Form["quyusanf9"]);
-                opXML.ModifyNode("num4210", Request.Form["quyusanf10"]);
-                opXML.ModifyNode("num4211", Request.Form["quyusanf11"]);
-                opXML.ModifyNode("num4212", Request.Form["quyusanf12"]);
-                opXML.ModifyNode("num4213", Request.Form["quyusanf13"]);
-                opXML.ModifyNode("num4214", Request.Form["quyusanf14"]);
-                opXML.ModifyNode("num4215", Request.Form["quyusanf15"]);
-                opXML.ModifyNode("num4216", Request.Form["quyusanf16"]);
-                opXML.ModifyNode("num4217", Request.Form["quyusanf17"]);
-                opXML.ModifyNode("num4218", Request.Form["quyusanf18"]);
-                opXML.ModifyNode("num4219", Request.Form["quyusanf19"]);
-                opXML.ModifyNode("num4220", Request.Form["quyusanf20"]);
-                opXML.ModifyNode("num4221", Request.Form["quyusanf21"]);
-                opXML.ModifyNode("num4222", Request.Form["quyusanf22"]);
-                opXML.ModifyNode("num4223", Request.Form["quyusanf23"]);
-                opXML.ModifyNode("num4224", Request.Form["quyusanf24"]);
-                opXML.ModifyNode("num4225", Request.Form["quyusanf25"]);
-                opXML.ModifyNode("num4226", Request.Form["quyusanf26"]);
-                opXML.ModifyNode("num4227", Request.Form["quyusanf27"]);
-                opXML.ModifyNode("num4228", Request.Form["quyusanf28"]);
-                opXML.ModifyNode("num4229", Request.Form["quyusanf29"]);
-                opXML.ModifyNode("num4230", Request.Form["quyusanf30"]);
-                opXML.ModifyNode("num4231", Request.Form["quyusanf31"]);
-                opXML.ModifyNode("num4232", Request.Form["quyusanf32"]);
-                opXML.ModifyNode("num4233", Request.Form["quyusanf33"]);
-                opXML.ModifyNode("num4234", Request.Form["quyusanf34"]);
-                opXML.ModifyNode("num4235", Request.Form["quyusanf35"]);
-                opXML.ModifyNode("num4236", Request.Form["quyusanf36"]);
-                opXML.ModifyNode("num4237", Request.Form["quyusanf37"]);
-                opXML.ModifyNode("num4238", Request.Form["quyusanf38"]);
-                opXML.ModifyNode("num4239", Request.Form["quyusanf39"]);
-                opXML.ModifyNode("num4240", Request.Form["quyusanf40"]);
-                opXML.saveFile();
+                ROV[13]= opXML.ModifyNode("num4201", Request.Form["quyusanf1"]);
+                ROV[14]= opXML.ModifyNode("num4202", Request.Form["quyusanf2"]);
+                ROV[15]= opXML.ModifyNode("num4203", Request.Form["quyusanf3"]);
+                ROV[16]= opXML.ModifyNode("num4204", Request.Form["quyusanf4"]);
+                ROV[17]= opXML.ModifyNode("num4205", Request.Form["quyusanf5"]);
+                ROV[18]= opXML.ModifyNode("num4206", Request.Form["quyusanf6"]);
+                ROV[19]= opXML.ModifyNode("num4207", Request.Form["quyusanf7"]);
+                ROV[20]= opXML.ModifyNode("num4208", Request.Form["quyusanf8"]);
+                ROV[21]= opXML.ModifyNode("num4209", Request.Form["quyusanf9"]);
+                ROV[22]= opXML.ModifyNode("num4210", Request.Form["quyusanf10"]);
+                ROV[23]= opXML.ModifyNode("num4211", Request.Form["quyusanf11"]);
+                ROV[24]= opXML.ModifyNode("num4212", Request.Form["quyusanf12"]);
+                ROV[25]= opXML.ModifyNode("num4213", Request.Form["quyusanf13"]);
+                ROV[26]= opXML.ModifyNode("num4214", Request.Form["quyusanf14"]);
+                ROV[27]= opXML.ModifyNode("num4215", Request.Form["quyusanf15"]);
+                ROV[28]= opXML.ModifyNode("num4216", Request.Form["quyusanf16"]);
+                ROV[29]= opXML.ModifyNode("num4217", Request.Form["quyusanf17"]);
+                ROV[30]= opXML.ModifyNode("num4218", Request.Form["quyusanf18"]);
+                ROV[31]= opXML.ModifyNode("num4219", Request.Form["quyusanf19"]);
+                ROV[32]= opXML.ModifyNode("num4220", Request.Form["quyusanf20"]);
+                ROV[33]= opXML.ModifyNode("num4221", Request.Form["quyusanf21"]);
+                ROV[34]= opXML.ModifyNode("num4222", Request.Form["quyusanf22"]);
+                ROV[35]= opXML.ModifyNode("num4223", Request.Form["quyusanf23"]);
+                ROV[36]= opXML.ModifyNode("num4224", Request.Form["quyusanf24"]);
+                ROV[37]= opXML.ModifyNode("num4225", Request.Form["quyusanf25"]);
+                ROV[38]= opXML.ModifyNode("num4226", Request.Form["quyusanf26"]);
+                ROV[39]= opXML.ModifyNode("num4227", Request.Form["quyusanf27"]);
+                ROV[40]= opXML.ModifyNode("num4228", Request.Form["quyusanf28"]);
+                ROV[41]= opXML.ModifyNode("num4229", Request.Form["quyusanf29"]);
+                ROV[42]= opXML.ModifyNode("num4230", Request.Form["quyusanf30"]);
+                ROV[43]= opXML.ModifyNode("num4231", Request.Form["quyusanf31"]);
+                ROV[44]= opXML.ModifyNode("num4232", Request.Form["quyusanf32"]);
+                ROV[45]= opXML.ModifyNode("num4233", Request.Form["quyusanf33"]);
+                ROV[46]= opXML.ModifyNode("num4234", Request.Form["quyusanf34"]);
+                ROV[47]= opXML.ModifyNode("num4235", Request.Form["quyusanf35"]);
+                ROV[48]= opXML.ModifyNode("num4236", Request.Form["quyusanf36"]);
+                ROV[49]= opXML.ModifyNode("num4237", Request.Form["quyusanf37"]);
+                ROV[50]= opXML.ModifyNode("num4238", Request.Form["quyusanf38"]);
+                ROV[51]= opXML.ModifyNode("num4239", Request.Form["quyusanf39"]);
+                ROV[52]= opXML.ModifyNode("num4240", Request.Form["quyusanf40"]);
+                ROV[53]= opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -806,6 +836,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -816,60 +848,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2701", Request.Form["quyusi1"]);
-                opXML.ModifyNode("num2702", Request.Form["quyusi2"]);
-                opXML.ModifyNode("num2703", Request.Form["quyusi3"]);
-                opXML.ModifyNode("num2704", Request.Form["quyusi4"]);
-                opXML.ModifyNode("num2705", Request.Form["quyusi5"]);
-                opXML.ModifyNode("num2706", Request.Form["quyusi6"]);
-                opXML.ModifyNode("num2707", Request.Form["quyusi7"]);
-                opXML.ModifyNode("num2708", Request.Form["quyusi8"]);
-                opXML.ModifyNode("num2709", Request.Form["quyusi9"]);
-                opXML.ModifyNode("num2710", Request.Form["quyusi10"]);
-                opXML.ModifyNode("num2711", Request.Form["quyusi11"]);
-                opXML.ModifyNode("num2712", Request.Form["quyusi12"]);
+                ROV[1] = opXML.ModifyNode("num2701", Request.Form["quyusi1"]);
+                ROV[2] = opXML.ModifyNode("num2702", Request.Form["quyusi2"]);
+                ROV[3] = opXML.ModifyNode("num2703", Request.Form["quyusi3"]);
+                ROV[4] = opXML.ModifyNode("num2704", Request.Form["quyusi4"]);
+                ROV[5] = opXML.ModifyNode("num2705", Request.Form["quyusi5"]);
+                ROV[6] = opXML.ModifyNode("num2706", Request.Form["quyusi6"]);
+                ROV[7] = opXML.ModifyNode("num2707", Request.Form["quyusi7"]);
+                ROV[8] = opXML.ModifyNode("num2708", Request.Form["quyusi8"]);
+                ROV[9] = opXML.ModifyNode("num2709", Request.Form["quyusi9"]);
+                ROV[10] = opXML.ModifyNode("num2710", Request.Form["quyusi10"]);
+                ROV[11] = opXML.ModifyNode("num2711", Request.Form["quyusi11"]);
+                ROV[12] = opXML.ModifyNode("num2712", Request.Form["quyusi12"]);
 
-                opXML.ModifyNode("num4301", Request.Form["quyusif1"]);
-                opXML.ModifyNode("num4302", Request.Form["quyusif2"]);
-                opXML.ModifyNode("num4303", Request.Form["quyusif3"]);
-                opXML.ModifyNode("num4304", Request.Form["quyusif4"]);
-                opXML.ModifyNode("num4305", Request.Form["quyusif5"]);
-                opXML.ModifyNode("num4306", Request.Form["quyusif6"]);
-                opXML.ModifyNode("num4307", Request.Form["quyusif7"]);
-                opXML.ModifyNode("num4308", Request.Form["quyusif8"]);
-                opXML.ModifyNode("num4309", Request.Form["quyusif9"]);
-                opXML.ModifyNode("num4310", Request.Form["quyusif10"]);
-                opXML.ModifyNode("num4311", Request.Form["quyusif11"]);
-                opXML.ModifyNode("num4312", Request.Form["quyusif12"]);
-                opXML.ModifyNode("num4313", Request.Form["quyusif13"]);
-                opXML.ModifyNode("num4314", Request.Form["quyusif14"]);
-                opXML.ModifyNode("num4315", Request.Form["quyusif15"]);
-                opXML.ModifyNode("num4316", Request.Form["quyusif16"]);
-                opXML.ModifyNode("num4317", Request.Form["quyusif17"]);
-                opXML.ModifyNode("num4318", Request.Form["quyusif18"]);
-                opXML.ModifyNode("num4319", Request.Form["quyusif19"]);
-                opXML.ModifyNode("num4320", Request.Form["quyusif20"]);
-                opXML.ModifyNode("num4321", Request.Form["quyusif21"]);
-                opXML.ModifyNode("num4322", Request.Form["quyusif22"]);
-                opXML.ModifyNode("num4323", Request.Form["quyusif23"]);
-                opXML.ModifyNode("num4324", Request.Form["quyusif24"]);
-                opXML.ModifyNode("num4325", Request.Form["quyusif25"]);
-                opXML.ModifyNode("num4326", Request.Form["quyusif26"]);
-                opXML.ModifyNode("num4327", Request.Form["quyusif27"]);
-                opXML.ModifyNode("num4328", Request.Form["quyusif28"]);
-                opXML.ModifyNode("num4329", Request.Form["quyusif29"]);
-                opXML.ModifyNode("num4330", Request.Form["quyusif30"]);
-                opXML.ModifyNode("num4331", Request.Form["quyusif31"]);
-                opXML.ModifyNode("num4332", Request.Form["quyusif32"]);
-                opXML.ModifyNode("num4333", Request.Form["quyusif33"]);
-                opXML.ModifyNode("num4334", Request.Form["quyusif34"]);
-                opXML.ModifyNode("num4335", Request.Form["quyusif35"]);
-                opXML.ModifyNode("num4336", Request.Form["quyusif36"]);
-                opXML.ModifyNode("num4337", Request.Form["quyusif37"]);
-                opXML.ModifyNode("num4338", Request.Form["quyusif38"]);
-                opXML.ModifyNode("num4339", Request.Form["quyusif39"]);
-                opXML.ModifyNode("num4340", Request.Form["quyusif40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4301", Request.Form["quyusif1"]);
+                ROV[14] = opXML.ModifyNode("num4302", Request.Form["quyusif2"]);
+                ROV[15] = opXML.ModifyNode("num4303", Request.Form["quyusif3"]);
+                ROV[16] = opXML.ModifyNode("num4304", Request.Form["quyusif4"]);
+                ROV[17] = opXML.ModifyNode("num4305", Request.Form["quyusif5"]);
+                ROV[18] = opXML.ModifyNode("num4306", Request.Form["quyusif6"]);
+                ROV[19] = opXML.ModifyNode("num4307", Request.Form["quyusif7"]);
+                ROV[20] = opXML.ModifyNode("num4308", Request.Form["quyusif8"]);
+                ROV[21] = opXML.ModifyNode("num4309", Request.Form["quyusif9"]);
+                ROV[22] = opXML.ModifyNode("num4310", Request.Form["quyusif10"]);
+                ROV[23] = opXML.ModifyNode("num4311", Request.Form["quyusif11"]);
+                ROV[24] = opXML.ModifyNode("num4312", Request.Form["quyusif12"]);
+                ROV[25] = opXML.ModifyNode("num4313", Request.Form["quyusif13"]);
+                ROV[26] = opXML.ModifyNode("num4314", Request.Form["quyusif14"]);
+                ROV[27] = opXML.ModifyNode("num4315", Request.Form["quyusif15"]);
+                ROV[28] = opXML.ModifyNode("num4316", Request.Form["quyusif16"]);
+                ROV[29] = opXML.ModifyNode("num4317", Request.Form["quyusif17"]);
+                ROV[30] = opXML.ModifyNode("num4318", Request.Form["quyusif18"]);
+                ROV[31] = opXML.ModifyNode("num4319", Request.Form["quyusif19"]);
+                ROV[32] = opXML.ModifyNode("num4320", Request.Form["quyusif20"]);
+                ROV[33] = opXML.ModifyNode("num4321", Request.Form["quyusif21"]);
+                ROV[34] = opXML.ModifyNode("num4322", Request.Form["quyusif22"]);
+                ROV[35] = opXML.ModifyNode("num4323", Request.Form["quyusif23"]);
+                ROV[36] = opXML.ModifyNode("num4324", Request.Form["quyusif24"]);
+                ROV[37] = opXML.ModifyNode("num4325", Request.Form["quyusif25"]);
+                ROV[38] = opXML.ModifyNode("num4326", Request.Form["quyusif26"]);
+                ROV[39] = opXML.ModifyNode("num4327", Request.Form["quyusif27"]);
+                ROV[40] = opXML.ModifyNode("num4328", Request.Form["quyusif28"]);
+                ROV[41] = opXML.ModifyNode("num4329", Request.Form["quyusif29"]);
+                ROV[42] = opXML.ModifyNode("num4330", Request.Form["quyusif30"]);
+                ROV[43] = opXML.ModifyNode("num4331", Request.Form["quyusif31"]);
+                ROV[44] = opXML.ModifyNode("num4332", Request.Form["quyusif32"]);
+                ROV[45] = opXML.ModifyNode("num4333", Request.Form["quyusif33"]);
+                ROV[46] = opXML.ModifyNode("num4334", Request.Form["quyusif34"]);
+                ROV[47] = opXML.ModifyNode("num4335", Request.Form["quyusif35"]);
+                ROV[48] = opXML.ModifyNode("num4336", Request.Form["quyusif36"]);
+                ROV[49] = opXML.ModifyNode("num4337", Request.Form["quyusif37"]);
+                ROV[50] = opXML.ModifyNode("num4338", Request.Form["quyusif38"]);
+                ROV[51] = opXML.ModifyNode("num4339", Request.Form["quyusif39"]);
+                ROV[52] = opXML.ModifyNode("num4340", Request.Form["quyusif40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1008,6 +1048,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1018,60 +1060,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2801", Request.Form["quyuwu1"]);
-                opXML.ModifyNode("num2802", Request.Form["quyuwu2"]);
-                opXML.ModifyNode("num2803", Request.Form["quyuwu3"]);
-                opXML.ModifyNode("num2804", Request.Form["quyuwu4"]);
-                opXML.ModifyNode("num2805", Request.Form["quyuwu5"]);
-                opXML.ModifyNode("num2806", Request.Form["quyuwu6"]);
-                opXML.ModifyNode("num2807", Request.Form["quyuwu7"]);
-                opXML.ModifyNode("num2808", Request.Form["quyuwu8"]);
-                opXML.ModifyNode("num2809", Request.Form["quyuwu9"]);
-                opXML.ModifyNode("num2810", Request.Form["quyuwu10"]);
-                opXML.ModifyNode("num2811", Request.Form["quyuwu11"]);
-                opXML.ModifyNode("num2812", Request.Form["quyuwu12"]);
+                ROV[1] = opXML.ModifyNode("num2801", Request.Form["quyuwu1"]);
+                ROV[2] = opXML.ModifyNode("num2802", Request.Form["quyuwu2"]);
+                ROV[3] = opXML.ModifyNode("num2803", Request.Form["quyuwu3"]);
+                ROV[4] = opXML.ModifyNode("num2804", Request.Form["quyuwu4"]);
+                ROV[5] = opXML.ModifyNode("num2805", Request.Form["quyuwu5"]);
+                ROV[6] = opXML.ModifyNode("num2806", Request.Form["quyuwu6"]);
+                ROV[7] = opXML.ModifyNode("num2807", Request.Form["quyuwu7"]);
+                ROV[8] = opXML.ModifyNode("num2808", Request.Form["quyuwu8"]);
+                ROV[9] = opXML.ModifyNode("num2809", Request.Form["quyuwu9"]);
+                ROV[10] = opXML.ModifyNode("num2810", Request.Form["quyuwu10"]);
+                ROV[11] = opXML.ModifyNode("num2811", Request.Form["quyuwu11"]);
+                ROV[12] = opXML.ModifyNode("num2812", Request.Form["quyuwu12"]);
 
-                opXML.ModifyNode("num4401", Request.Form["quyuwuf1"]);
-                opXML.ModifyNode("num4402", Request.Form["quyuwuf2"]);
-                opXML.ModifyNode("num4403", Request.Form["quyuwuf3"]);
-                opXML.ModifyNode("num4404", Request.Form["quyuwuf4"]);
-                opXML.ModifyNode("num4405", Request.Form["quyuwuf5"]);
-                opXML.ModifyNode("num4406", Request.Form["quyuwuf6"]);
-                opXML.ModifyNode("num4407", Request.Form["quyuwuf7"]);
-                opXML.ModifyNode("num4408", Request.Form["quyuwuf8"]);
-                opXML.ModifyNode("num4409", Request.Form["quyuwuf9"]);
-                opXML.ModifyNode("num4410", Request.Form["quyuwuf10"]);
-                opXML.ModifyNode("num4411", Request.Form["quyuwuf11"]);
-                opXML.ModifyNode("num4412", Request.Form["quyuwuf12"]);
-                opXML.ModifyNode("num4413", Request.Form["quyuwuf13"]);
-                opXML.ModifyNode("num4414", Request.Form["quyuwuf14"]);
-                opXML.ModifyNode("num4415", Request.Form["quyuwuf15"]);
-                opXML.ModifyNode("num4416", Request.Form["quyuwuf16"]);
-                opXML.ModifyNode("num4417", Request.Form["quyuwuf17"]);
-                opXML.ModifyNode("num4418", Request.Form["quyuwuf18"]);
-                opXML.ModifyNode("num4419", Request.Form["quyuwuf19"]);
-                opXML.ModifyNode("num4420", Request.Form["quyuwuf20"]);
-                opXML.ModifyNode("num4421", Request.Form["quyuwuf21"]);
-                opXML.ModifyNode("num4422", Request.Form["quyuwuf22"]);
-                opXML.ModifyNode("num4423", Request.Form["quyuwuf23"]);
-                opXML.ModifyNode("num4424", Request.Form["quyuwuf24"]);
-                opXML.ModifyNode("num4425", Request.Form["quyuwuf25"]);
-                opXML.ModifyNode("num4426", Request.Form["quyuwuf26"]);
-                opXML.ModifyNode("num4427", Request.Form["quyuwuf27"]);
-                opXML.ModifyNode("num4428", Request.Form["quyuwuf28"]);
-                opXML.ModifyNode("num4429", Request.Form["quyuwuf29"]);
-                opXML.ModifyNode("num4430", Request.Form["quyuwuf30"]);
-                opXML.ModifyNode("num4431", Request.Form["quyuwuf31"]);
-                opXML.ModifyNode("num4432", Request.Form["quyuwuf32"]);
-                opXML.ModifyNode("num4433", Request.Form["quyuwuf33"]);
-                opXML.ModifyNode("num4434", Request.Form["quyuwuf34"]);
-                opXML.ModifyNode("num4435", Request.Form["quyuwuf35"]);
-                opXML.ModifyNode("num4436", Request.Form["quyuwuf36"]);
-                opXML.ModifyNode("num4437", Request.Form["quyuwuf37"]);
-                opXML.ModifyNode("num4438", Request.Form["quyuwuf38"]);
-                opXML.ModifyNode("num4439", Request.Form["quyuwuf39"]);
-                opXML.ModifyNode("num4440", Request.Form["quyuwuf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4401", Request.Form["quyuwuf1"]);
+                ROV[14] = opXML.ModifyNode("num4402", Request.Form["quyuwuf2"]);
+                ROV[15] = opXML.ModifyNode("num4403", Request.Form["quyuwuf3"]);
+                ROV[16] = opXML.ModifyNode("num4404", Request.Form["quyuwuf4"]);
+                ROV[17] = opXML.ModifyNode("num4405", Request.Form["quyuwuf5"]);
+                ROV[18] = opXML.ModifyNode("num4406", Request.Form["quyuwuf6"]);
+                ROV[19] = opXML.ModifyNode("num4407", Request.Form["quyuwuf7"]);
+                ROV[20] = opXML.ModifyNode("num4408", Request.Form["quyuwuf8"]);
+                ROV[21] = opXML.ModifyNode("num4409", Request.Form["quyuwuf9"]);
+                ROV[22] = opXML.ModifyNode("num4410", Request.Form["quyuwuf10"]);
+                ROV[23] = opXML.ModifyNode("num4411", Request.Form["quyuwuf11"]);
+                ROV[24] = opXML.ModifyNode("num4412", Request.Form["quyuwuf12"]);
+                ROV[25] = opXML.ModifyNode("num4413", Request.Form["quyuwuf13"]);
+                ROV[26] = opXML.ModifyNode("num4414", Request.Form["quyuwuf14"]);
+                ROV[27] = opXML.ModifyNode("num4415", Request.Form["quyuwuf15"]);
+                ROV[28] = opXML.ModifyNode("num4416", Request.Form["quyuwuf16"]);
+                ROV[29] = opXML.ModifyNode("num4417", Request.Form["quyuwuf17"]);
+                ROV[30] = opXML.ModifyNode("num4418", Request.Form["quyuwuf18"]);
+                ROV[31] = opXML.ModifyNode("num4419", Request.Form["quyuwuf19"]);
+                ROV[32] = opXML.ModifyNode("num4420", Request.Form["quyuwuf20"]);
+                ROV[33] = opXML.ModifyNode("num4421", Request.Form["quyuwuf21"]);
+                ROV[34] = opXML.ModifyNode("num4422", Request.Form["quyuwuf22"]);
+                ROV[35] = opXML.ModifyNode("num4423", Request.Form["quyuwuf23"]);
+                ROV[36] = opXML.ModifyNode("num4424", Request.Form["quyuwuf24"]);
+                ROV[37] = opXML.ModifyNode("num4425", Request.Form["quyuwuf25"]);
+                ROV[38] = opXML.ModifyNode("num4426", Request.Form["quyuwuf26"]);
+                ROV[39] = opXML.ModifyNode("num4427", Request.Form["quyuwuf27"]);
+                ROV[40] = opXML.ModifyNode("num4428", Request.Form["quyuwuf28"]);
+                ROV[41] = opXML.ModifyNode("num4429", Request.Form["quyuwuf29"]);
+                ROV[42] = opXML.ModifyNode("num4430", Request.Form["quyuwuf30"]);
+                ROV[43] = opXML.ModifyNode("num4431", Request.Form["quyuwuf31"]);
+                ROV[44] = opXML.ModifyNode("num4432", Request.Form["quyuwuf32"]);
+                ROV[45] = opXML.ModifyNode("num4433", Request.Form["quyuwuf33"]);
+                ROV[46] = opXML.ModifyNode("num4434", Request.Form["quyuwuf34"]);
+                ROV[47] = opXML.ModifyNode("num4435", Request.Form["quyuwuf35"]);
+                ROV[48] = opXML.ModifyNode("num4436", Request.Form["quyuwuf36"]);
+                ROV[49] = opXML.ModifyNode("num4437", Request.Form["quyuwuf37"]);
+                ROV[50] = opXML.ModifyNode("num4438", Request.Form["quyuwuf38"]);
+                ROV[51] = opXML.ModifyNode("num4439", Request.Form["quyuwuf39"]);
+                ROV[52] = opXML.ModifyNode("num4440", Request.Form["quyuwuf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1210,6 +1260,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1220,60 +1272,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2301", Request.Form["huidu1"]);
-                opXML.ModifyNode("num2302", Request.Form["huidu2"]);
-                opXML.ModifyNode("num2303", Request.Form["huidu3"]);
-                opXML.ModifyNode("num2304", Request.Form["huidu4"]);
-                opXML.ModifyNode("num2305", Request.Form["huidu5"]);
-                opXML.ModifyNode("num2306", Request.Form["huidu6"]);
-                opXML.ModifyNode("num2307", Request.Form["huidu7"]);
-                opXML.ModifyNode("num2308", Request.Form["huidu8"]);
-                opXML.ModifyNode("num2309", Request.Form["huidu9"]);
-                opXML.ModifyNode("num2310", Request.Form["huidu10"]);
-                opXML.ModifyNode("num2311", Request.Form["huidu11"]);
-                opXML.ModifyNode("num2312", Request.Form["huidu12"]);
+                ROV[1] = opXML.ModifyNode("num2301", Request.Form["huidu1"]);
+                ROV[2] = opXML.ModifyNode("num2302", Request.Form["huidu2"]);
+                ROV[3] = opXML.ModifyNode("num2303", Request.Form["huidu3"]);
+                ROV[4] = opXML.ModifyNode("num2304", Request.Form["huidu4"]);
+                ROV[5] = opXML.ModifyNode("num2305", Request.Form["huidu5"]);
+                ROV[6] = opXML.ModifyNode("num2306", Request.Form["huidu6"]);
+                ROV[7] = opXML.ModifyNode("num2307", Request.Form["huidu7"]);
+                ROV[8] = opXML.ModifyNode("num2308", Request.Form["huidu8"]);
+                ROV[9] = opXML.ModifyNode("num2309", Request.Form["huidu9"]);
+                ROV[10] = opXML.ModifyNode("num2310", Request.Form["huidu10"]);
+                ROV[11] = opXML.ModifyNode("num2311", Request.Form["huidu11"]);
+                ROV[12] = opXML.ModifyNode("num2312", Request.Form["huidu12"]);
 
-                opXML.ModifyNode("num4701", Request.Form["huiduf1"]);
-                opXML.ModifyNode("num4702", Request.Form["huiduf2"]);
-                opXML.ModifyNode("num4703", Request.Form["huiduf3"]);
-                opXML.ModifyNode("num4704", Request.Form["huiduf4"]);
-                opXML.ModifyNode("num4705", Request.Form["huiduf5"]);
-                opXML.ModifyNode("num4706", Request.Form["huiduf6"]);
-                opXML.ModifyNode("num4707", Request.Form["huiduf7"]);
-                opXML.ModifyNode("num4708", Request.Form["huiduf8"]);
-                opXML.ModifyNode("num4709", Request.Form["huiduf9"]);
-                opXML.ModifyNode("num4710", Request.Form["huiduf10"]);
-                opXML.ModifyNode("num4711", Request.Form["huiduf11"]);
-                opXML.ModifyNode("num4712", Request.Form["huiduf12"]);
-                opXML.ModifyNode("num4713", Request.Form["huiduf13"]);
-                opXML.ModifyNode("num4714", Request.Form["huiduf14"]);
-                opXML.ModifyNode("num4715", Request.Form["huiduf15"]);
-                opXML.ModifyNode("num4716", Request.Form["huiduf16"]);
-                opXML.ModifyNode("num4717", Request.Form["huiduf17"]);
-                opXML.ModifyNode("num4718", Request.Form["huiduf18"]);
-                opXML.ModifyNode("num4719", Request.Form["huiduf19"]);
-                opXML.ModifyNode("num4720", Request.Form["huiduf20"]);
-                opXML.ModifyNode("num4721", Request.Form["huiduf21"]);
-                opXML.ModifyNode("num4722", Request.Form["huiduf22"]);
-                opXML.ModifyNode("num4723", Request.Form["huiduf23"]);
-                opXML.ModifyNode("num4724", Request.Form["huiduf24"]);
-                opXML.ModifyNode("num4725", Request.Form["huiduf25"]);
-                opXML.ModifyNode("num4726", Request.Form["huiduf26"]);
-                opXML.ModifyNode("num4727", Request.Form["huiduf27"]);
-                opXML.ModifyNode("num4728", Request.Form["huiduf28"]);
-                opXML.ModifyNode("num4729", Request.Form["huiduf29"]);
-                opXML.ModifyNode("num4730", Request.Form["huiduf30"]);
-                opXML.ModifyNode("num4731", Request.Form["huiduf31"]);
-                opXML.ModifyNode("num4732", Request.Form["huiduf32"]);
-                opXML.ModifyNode("num4733", Request.Form["huiduf33"]);
-                opXML.ModifyNode("num4734", Request.Form["huiduf34"]);
-                opXML.ModifyNode("num4735", Request.Form["huiduf35"]);
-                opXML.ModifyNode("num4736", Request.Form["huiduf36"]);
-                opXML.ModifyNode("num4737", Request.Form["huiduf37"]);
-                opXML.ModifyNode("num4738", Request.Form["huiduf38"]);
-                opXML.ModifyNode("num4739", Request.Form["huiduf39"]);
-                opXML.ModifyNode("num4740", Request.Form["huiduf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4701", Request.Form["huiduf1"]);
+                ROV[14] = opXML.ModifyNode("num4702", Request.Form["huiduf2"]);
+                ROV[15] = opXML.ModifyNode("num4703", Request.Form["huiduf3"]);
+                ROV[16] = opXML.ModifyNode("num4704", Request.Form["huiduf4"]);
+                ROV[17] = opXML.ModifyNode("num4705", Request.Form["huiduf5"]);
+                ROV[18] = opXML.ModifyNode("num4706", Request.Form["huiduf6"]);
+                ROV[19] = opXML.ModifyNode("num4707", Request.Form["huiduf7"]);
+                ROV[20] = opXML.ModifyNode("num4708", Request.Form["huiduf8"]);
+                ROV[21] = opXML.ModifyNode("num4709", Request.Form["huiduf9"]);
+                ROV[22] = opXML.ModifyNode("num4710", Request.Form["huiduf10"]);
+                ROV[23] = opXML.ModifyNode("num4711", Request.Form["huiduf11"]);
+                ROV[24] = opXML.ModifyNode("num4712", Request.Form["huiduf12"]);
+                ROV[25] = opXML.ModifyNode("num4713", Request.Form["huiduf13"]);
+                ROV[26] = opXML.ModifyNode("num4714", Request.Form["huiduf14"]);
+                ROV[27] = opXML.ModifyNode("num4715", Request.Form["huiduf15"]);
+                ROV[28] = opXML.ModifyNode("num4716", Request.Form["huiduf16"]);
+                ROV[29] = opXML.ModifyNode("num4717", Request.Form["huiduf17"]);
+                ROV[30] = opXML.ModifyNode("num4718", Request.Form["huiduf18"]);
+                ROV[31] = opXML.ModifyNode("num4719", Request.Form["huiduf19"]);
+                ROV[32] = opXML.ModifyNode("num4720", Request.Form["huiduf20"]);
+                ROV[33] = opXML.ModifyNode("num4721", Request.Form["huiduf21"]);
+                ROV[34] = opXML.ModifyNode("num4722", Request.Form["huiduf22"]);
+                ROV[35] = opXML.ModifyNode("num4723", Request.Form["huiduf23"]);
+                ROV[36] = opXML.ModifyNode("num4724", Request.Form["huiduf24"]);
+                ROV[37] = opXML.ModifyNode("num4725", Request.Form["huiduf25"]);
+                ROV[38] = opXML.ModifyNode("num4726", Request.Form["huiduf26"]);
+                ROV[39] = opXML.ModifyNode("num4727", Request.Form["huiduf27"]);
+                ROV[40] = opXML.ModifyNode("num4728", Request.Form["huiduf28"]);
+                ROV[41] = opXML.ModifyNode("num4729", Request.Form["huiduf29"]);
+                ROV[42] = opXML.ModifyNode("num4730", Request.Form["huiduf30"]);
+                ROV[43] = opXML.ModifyNode("num4731", Request.Form["huiduf31"]);
+                ROV[44] = opXML.ModifyNode("num4732", Request.Form["huiduf32"]);
+                ROV[45] = opXML.ModifyNode("num4733", Request.Form["huiduf33"]);
+                ROV[46] = opXML.ModifyNode("num4734", Request.Form["huiduf34"]);
+                ROV[47] = opXML.ModifyNode("num4735", Request.Form["huiduf35"]);
+                ROV[48] = opXML.ModifyNode("num4736", Request.Form["huiduf36"]);
+                ROV[49] = opXML.ModifyNode("num4737", Request.Form["huiduf37"]);
+                ROV[50] = opXML.ModifyNode("num4738", Request.Form["huiduf38"]);
+                ROV[51] = opXML.ModifyNode("num4739", Request.Form["huiduf39"]);
+                ROV[52] = opXML.ModifyNode("num4740", Request.Form["huiduf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1411,6 +1471,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1421,60 +1483,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2401", Request.Form["huiduer1"]);
-                opXML.ModifyNode("num2402", Request.Form["huiduer2"]);
-                opXML.ModifyNode("num2403", Request.Form["huiduer3"]);
-                opXML.ModifyNode("num2404", Request.Form["huiduer4"]);
-                opXML.ModifyNode("num2405", Request.Form["huiduer5"]);
-                opXML.ModifyNode("num2406", Request.Form["huiduer6"]);
-                opXML.ModifyNode("num2407", Request.Form["huiduer7"]);
-                opXML.ModifyNode("num2408", Request.Form["huiduer8"]);
-                opXML.ModifyNode("num2409", Request.Form["huiduer9"]);
-                opXML.ModifyNode("num2410", Request.Form["huiduer10"]);
-                opXML.ModifyNode("num2411", Request.Form["huiduer11"]);
-                opXML.ModifyNode("num2412", Request.Form["huiduer12"]);
+                ROV[1] = opXML.ModifyNode("num2401", Request.Form["huiduer1"]);
+                ROV[2] = opXML.ModifyNode("num2402", Request.Form["huiduer2"]);
+                ROV[3] = opXML.ModifyNode("num2403", Request.Form["huiduer3"]);
+                ROV[4] = opXML.ModifyNode("num2404", Request.Form["huiduer4"]);
+                ROV[5] = opXML.ModifyNode("num2405", Request.Form["huiduer5"]);
+                ROV[6] = opXML.ModifyNode("num2406", Request.Form["huiduer6"]);
+                ROV[7] = opXML.ModifyNode("num2407", Request.Form["huiduer7"]);
+                ROV[8] = opXML.ModifyNode("num2408", Request.Form["huiduer8"]);
+                ROV[9] = opXML.ModifyNode("num2409", Request.Form["huiduer9"]);
+                ROV[10] = opXML.ModifyNode("num2410", Request.Form["huiduer10"]);
+                ROV[11] = opXML.ModifyNode("num2411", Request.Form["huiduer11"]);
+                ROV[12] = opXML.ModifyNode("num2412", Request.Form["huiduer12"]);
 
-                opXML.ModifyNode("num4801", Request.Form["huiduerf1"]);
-                opXML.ModifyNode("num4802", Request.Form["huiduerf2"]);
-                opXML.ModifyNode("num4803", Request.Form["huiduerf3"]);
-                opXML.ModifyNode("num4804", Request.Form["huiduerf4"]);
-                opXML.ModifyNode("num4805", Request.Form["huiduerf5"]);
-                opXML.ModifyNode("num4806", Request.Form["huiduerf6"]);
-                opXML.ModifyNode("num4807", Request.Form["huiduerf7"]);
-                opXML.ModifyNode("num4808", Request.Form["huiduerf8"]);
-                opXML.ModifyNode("num4809", Request.Form["huiduerf9"]);
-                opXML.ModifyNode("num4810", Request.Form["huiduerf10"]);
-                opXML.ModifyNode("num4811", Request.Form["huiduerf11"]);
-                opXML.ModifyNode("num4812", Request.Form["huiduerf12"]);
-                opXML.ModifyNode("num4813", Request.Form["huiduerf13"]);
-                opXML.ModifyNode("num4814", Request.Form["huiduerf14"]);
-                opXML.ModifyNode("num4815", Request.Form["huiduerf15"]);
-                opXML.ModifyNode("num4816", Request.Form["huiduerf16"]);
-                opXML.ModifyNode("num4817", Request.Form["huiduerf17"]);
-                opXML.ModifyNode("num4818", Request.Form["huiduerf18"]);
-                opXML.ModifyNode("num4819", Request.Form["huiduerf19"]);
-                opXML.ModifyNode("num4820", Request.Form["huiduerf20"]);
-                opXML.ModifyNode("num4821", Request.Form["huiduerf21"]);
-                opXML.ModifyNode("num4822", Request.Form["huiduerf22"]);
-                opXML.ModifyNode("num4823", Request.Form["huiduerf23"]);
-                opXML.ModifyNode("num4824", Request.Form["huiduerf24"]);
-                opXML.ModifyNode("num4825", Request.Form["huiduerf25"]);
-                opXML.ModifyNode("num4826", Request.Form["huiduerf26"]);
-                opXML.ModifyNode("num4827", Request.Form["huiduerf27"]);
-                opXML.ModifyNode("num4828", Request.Form["huiduerf28"]);
-                opXML.ModifyNode("num4829", Request.Form["huiduerf29"]);
-                opXML.ModifyNode("num4830", Request.Form["huiduerf30"]);
-                opXML.ModifyNode("num4831", Request.Form["huiduerf31"]);
-                opXML.ModifyNode("num4832", Request.Form["huiduerf32"]);
-                opXML.ModifyNode("num4833", Request.Form["huiduerf33"]);
-                opXML.ModifyNode("num4834", Request.Form["huiduerf34"]);
-                opXML.ModifyNode("num4835", Request.Form["huiduerf35"]);
-                opXML.ModifyNode("num4836", Request.Form["huiduerf36"]);
-                opXML.ModifyNode("num4837", Request.Form["huiduerf37"]);
-                opXML.ModifyNode("num4838", Request.Form["huiduerf38"]);
-                opXML.ModifyNode("num4839", Request.Form["huiduerf39"]);
-                opXML.ModifyNode("num4840", Request.Form["huiduerf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4801", Request.Form["huiduerf1"]);
+                ROV[14] = opXML.ModifyNode("num4802", Request.Form["huiduerf2"]);
+                ROV[15] = opXML.ModifyNode("num4803", Request.Form["huiduerf3"]);
+                ROV[16] = opXML.ModifyNode("num4804", Request.Form["huiduerf4"]);
+                ROV[17] = opXML.ModifyNode("num4805", Request.Form["huiduerf5"]);
+                ROV[18] = opXML.ModifyNode("num4806", Request.Form["huiduerf6"]);
+                ROV[19] = opXML.ModifyNode("num4807", Request.Form["huiduerf7"]);
+                ROV[20] = opXML.ModifyNode("num4808", Request.Form["huiduerf8"]);
+                ROV[21] = opXML.ModifyNode("num4809", Request.Form["huiduerf9"]);
+                ROV[22] = opXML.ModifyNode("num4810", Request.Form["huiduerf10"]);
+                ROV[23] = opXML.ModifyNode("num4811", Request.Form["huiduerf11"]);
+                ROV[24] = opXML.ModifyNode("num4812", Request.Form["huiduerf12"]);
+                ROV[25] = opXML.ModifyNode("num4813", Request.Form["huiduerf13"]);
+                ROV[26] = opXML.ModifyNode("num4814", Request.Form["huiduerf14"]);
+                ROV[27] = opXML.ModifyNode("num4815", Request.Form["huiduerf15"]);
+                ROV[28] = opXML.ModifyNode("num4816", Request.Form["huiduerf16"]);
+                ROV[29] = opXML.ModifyNode("num4817", Request.Form["huiduerf17"]);
+                ROV[30] = opXML.ModifyNode("num4818", Request.Form["huiduerf18"]);
+                ROV[31] = opXML.ModifyNode("num4819", Request.Form["huiduerf19"]);
+                ROV[32] = opXML.ModifyNode("num4820", Request.Form["huiduerf20"]);
+                ROV[33] = opXML.ModifyNode("num4821", Request.Form["huiduerf21"]);
+                ROV[34] = opXML.ModifyNode("num4822", Request.Form["huiduerf22"]);
+                ROV[35] = opXML.ModifyNode("num4823", Request.Form["huiduerf23"]);
+                ROV[36] = opXML.ModifyNode("num4824", Request.Form["huiduerf24"]);
+                ROV[37] = opXML.ModifyNode("num4825", Request.Form["huiduerf25"]);
+                ROV[38] = opXML.ModifyNode("num4826", Request.Form["huiduerf26"]);
+                ROV[39] = opXML.ModifyNode("num4827", Request.Form["huiduerf27"]);
+                ROV[40] = opXML.ModifyNode("num4828", Request.Form["huiduerf28"]);
+                ROV[41] = opXML.ModifyNode("num4829", Request.Form["huiduerf29"]);
+                ROV[42] = opXML.ModifyNode("num4830", Request.Form["huiduerf30"]);
+                ROV[43] = opXML.ModifyNode("num4831", Request.Form["huiduerf31"]);
+                ROV[44] = opXML.ModifyNode("num4832", Request.Form["huiduerf32"]);
+                ROV[45] = opXML.ModifyNode("num4833", Request.Form["huiduerf33"]);
+                ROV[46] = opXML.ModifyNode("num4834", Request.Form["huiduerf34"]);
+                ROV[47] = opXML.ModifyNode("num4835", Request.Form["huiduerf35"]);
+                ROV[48] = opXML.ModifyNode("num4836", Request.Form["huiduerf36"]);
+                ROV[49] = opXML.ModifyNode("num4837", Request.Form["huiduerf37"]);
+                ROV[50] = opXML.ModifyNode("num4838", Request.Form["huiduerf38"]);
+                ROV[51] = opXML.ModifyNode("num4839", Request.Form["huiduerf39"]);
+                ROV[52] = opXML.ModifyNode("num4840", Request.Form["huiduerf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1613,6 +1683,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1623,60 +1695,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num1701", Request.Form["shendu1"]);
-                opXML.ModifyNode("num1702", Request.Form["shendu2"]);
-                opXML.ModifyNode("num1703", Request.Form["shendu3"]);
-                opXML.ModifyNode("num1704", Request.Form["shendu4"]);
-                opXML.ModifyNode("num1705", Request.Form["shendu5"]);
-                opXML.ModifyNode("num1706", Request.Form["shendu6"]);
-                opXML.ModifyNode("num1707", Request.Form["shendu7"]);
-                opXML.ModifyNode("num1708", Request.Form["shendu8"]);
-                opXML.ModifyNode("num1709", Request.Form["shendu9"]);
-                opXML.ModifyNode("num1710", Request.Form["shendu10"]);
-                opXML.ModifyNode("num1711", Request.Form["shendu11"]);
-                opXML.ModifyNode("num1712", Request.Form["shendu12"]);
+                ROV[1] = opXML.ModifyNode("num1701", Request.Form["shendu1"]);
+                ROV[2] = opXML.ModifyNode("num1702", Request.Form["shendu2"]);
+                ROV[3] = opXML.ModifyNode("num1703", Request.Form["shendu3"]);
+                ROV[4] = opXML.ModifyNode("num1704", Request.Form["shendu4"]);
+                ROV[5] = opXML.ModifyNode("num1705", Request.Form["shendu5"]);
+                ROV[6] = opXML.ModifyNode("num1706", Request.Form["shendu6"]);
+                ROV[7] = opXML.ModifyNode("num1707", Request.Form["shendu7"]);
+                ROV[8] = opXML.ModifyNode("num1708", Request.Form["shendu8"]);
+                ROV[9] = opXML.ModifyNode("num1709", Request.Form["shendu9"]);
+                ROV[10] = opXML.ModifyNode("num1710", Request.Form["shendu10"]);
+                ROV[11] = opXML.ModifyNode("num1711", Request.Form["shendu11"]);
+                ROV[12] = opXML.ModifyNode("num1712", Request.Form["shendu12"]);
 
-                opXML.ModifyNode("num4501", Request.Form["shenduf1"]);
-                opXML.ModifyNode("num4502", Request.Form["shenduf2"]);
-                opXML.ModifyNode("num4503", Request.Form["shenduf3"]);
-                opXML.ModifyNode("num4504", Request.Form["shenduf4"]);
-                opXML.ModifyNode("num4505", Request.Form["shenduf5"]);
-                opXML.ModifyNode("num4506", Request.Form["shenduf6"]);
-                opXML.ModifyNode("num4507", Request.Form["shenduf7"]);
-                opXML.ModifyNode("num4508", Request.Form["shenduf8"]);
-                opXML.ModifyNode("num4509", Request.Form["shenduf9"]);
-                opXML.ModifyNode("num4510", Request.Form["shenduf10"]);
-                opXML.ModifyNode("num4511", Request.Form["shenduf11"]);
-                opXML.ModifyNode("num4512", Request.Form["shenduf12"]);
-                opXML.ModifyNode("num4513", Request.Form["shenduf13"]);
-                opXML.ModifyNode("num4514", Request.Form["shenduf14"]);
-                opXML.ModifyNode("num4515", Request.Form["shenduf15"]);
-                opXML.ModifyNode("num4516", Request.Form["shenduf16"]);
-                opXML.ModifyNode("num4517", Request.Form["shenduf17"]);
-                opXML.ModifyNode("num4518", Request.Form["shenduf18"]);
-                opXML.ModifyNode("num4519", Request.Form["shenduf19"]);
-                opXML.ModifyNode("num4520", Request.Form["shenduf20"]);
-                opXML.ModifyNode("num4521", Request.Form["shenduf21"]);
-                opXML.ModifyNode("num4522", Request.Form["shenduf22"]);
-                opXML.ModifyNode("num4523", Request.Form["shenduf23"]);
-                opXML.ModifyNode("num4524", Request.Form["shenduf24"]);
-                opXML.ModifyNode("num4525", Request.Form["shenduf25"]);
-                opXML.ModifyNode("num4526", Request.Form["shenduf26"]);
-                opXML.ModifyNode("num4527", Request.Form["shenduf27"]);
-                opXML.ModifyNode("num4528", Request.Form["shenduf28"]);
-                opXML.ModifyNode("num4529", Request.Form["shenduf29"]);
-                opXML.ModifyNode("num4530", Request.Form["shenduf30"]);
-                opXML.ModifyNode("num4531", Request.Form["shenduf31"]);
-                opXML.ModifyNode("num4532", Request.Form["shenduf32"]);
-                opXML.ModifyNode("num4533", Request.Form["shenduf33"]);
-                opXML.ModifyNode("num4534", Request.Form["shenduf34"]);
-                opXML.ModifyNode("num4535", Request.Form["shenduf35"]);
-                opXML.ModifyNode("num4536", Request.Form["shenduf36"]);
-                opXML.ModifyNode("num4537", Request.Form["shenduf37"]);
-                opXML.ModifyNode("num4538", Request.Form["shenduf38"]);
-                opXML.ModifyNode("num4539", Request.Form["shenduf39"]);
-                opXML.ModifyNode("num4540", Request.Form["shenduf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4501", Request.Form["shenduf1"]);
+                ROV[14] = opXML.ModifyNode("num4502", Request.Form["shenduf2"]);
+                ROV[15] = opXML.ModifyNode("num4503", Request.Form["shenduf3"]);
+                ROV[16] = opXML.ModifyNode("num4504", Request.Form["shenduf4"]);
+                ROV[17] = opXML.ModifyNode("num4505", Request.Form["shenduf5"]);
+                ROV[18] = opXML.ModifyNode("num4506", Request.Form["shenduf6"]);
+                ROV[19] = opXML.ModifyNode("num4507", Request.Form["shenduf7"]);
+                ROV[20] = opXML.ModifyNode("num4508", Request.Form["shenduf8"]);
+                ROV[21] = opXML.ModifyNode("num4509", Request.Form["shenduf9"]);
+                ROV[22] = opXML.ModifyNode("num4510", Request.Form["shenduf10"]);
+                ROV[23] = opXML.ModifyNode("num4511", Request.Form["shenduf11"]);
+                ROV[24] = opXML.ModifyNode("num4512", Request.Form["shenduf12"]);
+                ROV[25] = opXML.ModifyNode("num4513", Request.Form["shenduf13"]);
+                ROV[26] = opXML.ModifyNode("num4514", Request.Form["shenduf14"]);
+                ROV[27] = opXML.ModifyNode("num4515", Request.Form["shenduf15"]);
+                ROV[28] = opXML.ModifyNode("num4516", Request.Form["shenduf16"]);
+                ROV[29] = opXML.ModifyNode("num4517", Request.Form["shenduf17"]);
+                ROV[30] = opXML.ModifyNode("num4518", Request.Form["shenduf18"]);
+                ROV[31] = opXML.ModifyNode("num4519", Request.Form["shenduf19"]);
+                ROV[32] = opXML.ModifyNode("num4520", Request.Form["shenduf20"]);
+                ROV[33] = opXML.ModifyNode("num4521", Request.Form["shenduf21"]);
+                ROV[34] = opXML.ModifyNode("num4522", Request.Form["shenduf22"]);
+                ROV[35] = opXML.ModifyNode("num4523", Request.Form["shenduf23"]);
+                ROV[36] = opXML.ModifyNode("num4524", Request.Form["shenduf24"]);
+                ROV[37] = opXML.ModifyNode("num4525", Request.Form["shenduf25"]);
+                ROV[38] = opXML.ModifyNode("num4526", Request.Form["shenduf26"]);
+                ROV[39] = opXML.ModifyNode("num4527", Request.Form["shenduf27"]);
+                ROV[40] = opXML.ModifyNode("num4528", Request.Form["shenduf28"]);
+                ROV[41] = opXML.ModifyNode("num4529", Request.Form["shenduf29"]);
+                ROV[42] = opXML.ModifyNode("num4530", Request.Form["shenduf30"]);
+                ROV[43] = opXML.ModifyNode("num4531", Request.Form["shenduf31"]);
+                ROV[44] = opXML.ModifyNode("num4532", Request.Form["shenduf32"]);
+                ROV[45] = opXML.ModifyNode("num4533", Request.Form["shenduf33"]);
+                ROV[46] = opXML.ModifyNode("num4534", Request.Form["shenduf34"]);
+                ROV[47] = opXML.ModifyNode("num4535", Request.Form["shenduf35"]);
+                ROV[48] = opXML.ModifyNode("num4536", Request.Form["shenduf36"]);
+                ROV[49] = opXML.ModifyNode("num4537", Request.Form["shenduf37"]);
+                ROV[50] = opXML.ModifyNode("num4538", Request.Form["shenduf38"]);
+                ROV[51] = opXML.ModifyNode("num4539", Request.Form["shenduf39"]);
+                ROV[52] = opXML.ModifyNode("num4540", Request.Form["shenduf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1814,6 +1894,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[60];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1824,60 +1906,68 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num2901", Request.Form["shenduer1"]);
-                opXML.ModifyNode("num2902", Request.Form["shenduer2"]);
-                opXML.ModifyNode("num2903", Request.Form["shenduer3"]);
-                opXML.ModifyNode("num2904", Request.Form["shenduer4"]);
-                opXML.ModifyNode("num2905", Request.Form["shenduer5"]);
-                opXML.ModifyNode("num2906", Request.Form["shenduer6"]);
-                opXML.ModifyNode("num2907", Request.Form["shenduer7"]);
-                opXML.ModifyNode("num2908", Request.Form["shenduer8"]);
-                opXML.ModifyNode("num2909", Request.Form["shenduer9"]);
-                opXML.ModifyNode("num2910", Request.Form["shenduer10"]);
-                opXML.ModifyNode("num2911", Request.Form["shenduer11"]);
-                opXML.ModifyNode("num2912", Request.Form["shenduer12"]);
+                ROV[1] = opXML.ModifyNode("num2901", Request.Form["shenduer1"]);
+                ROV[2] = opXML.ModifyNode("num2902", Request.Form["shenduer2"]);
+                ROV[3] = opXML.ModifyNode("num2903", Request.Form["shenduer3"]);
+                ROV[4] = opXML.ModifyNode("num2904", Request.Form["shenduer4"]);
+                ROV[5] = opXML.ModifyNode("num2905", Request.Form["shenduer5"]);
+                ROV[6] = opXML.ModifyNode("num2906", Request.Form["shenduer6"]);
+                ROV[7] = opXML.ModifyNode("num2907", Request.Form["shenduer7"]);
+                ROV[8] = opXML.ModifyNode("num2908", Request.Form["shenduer8"]);
+                ROV[9] = opXML.ModifyNode("num2909", Request.Form["shenduer9"]);
+                ROV[10] = opXML.ModifyNode("num2910", Request.Form["shenduer10"]);
+                ROV[11] = opXML.ModifyNode("num2911", Request.Form["shenduer11"]);
+                ROV[12] = opXML.ModifyNode("num2912", Request.Form["shenduer12"]);
 
-                opXML.ModifyNode("num4601", Request.Form["shenduerf1"]);
-                opXML.ModifyNode("num4602", Request.Form["shenduerf2"]);
-                opXML.ModifyNode("num4603", Request.Form["shenduerf3"]);
-                opXML.ModifyNode("num4604", Request.Form["shenduerf4"]);
-                opXML.ModifyNode("num4605", Request.Form["shenduerf5"]);
-                opXML.ModifyNode("num4606", Request.Form["shenduerf6"]);
-                opXML.ModifyNode("num4607", Request.Form["shenduerf7"]);
-                opXML.ModifyNode("num4608", Request.Form["shenduerf8"]);
-                opXML.ModifyNode("num4609", Request.Form["shenduerf9"]);
-                opXML.ModifyNode("num4610", Request.Form["shenduerf10"]);
-                opXML.ModifyNode("num4611", Request.Form["shenduerf11"]);
-                opXML.ModifyNode("num4612", Request.Form["shenduerf12"]);
-                opXML.ModifyNode("num4613", Request.Form["shenduerf13"]);
-                opXML.ModifyNode("num4614", Request.Form["shenduerf14"]);
-                opXML.ModifyNode("num4615", Request.Form["shenduerf15"]);
-                opXML.ModifyNode("num4616", Request.Form["shenduerf16"]);
-                opXML.ModifyNode("num4617", Request.Form["shenduerf17"]);
-                opXML.ModifyNode("num4618", Request.Form["shenduerf18"]);
-                opXML.ModifyNode("num4619", Request.Form["shenduerf19"]);
-                opXML.ModifyNode("num4620", Request.Form["shenduerf20"]);
-                opXML.ModifyNode("num4621", Request.Form["shenduerf21"]);
-                opXML.ModifyNode("num4622", Request.Form["shenduerf22"]);
-                opXML.ModifyNode("num4623", Request.Form["shenduerf23"]);
-                opXML.ModifyNode("num4624", Request.Form["shenduerf24"]);
-                opXML.ModifyNode("num4625", Request.Form["shenduerf25"]);
-                opXML.ModifyNode("num4626", Request.Form["shenduerf26"]);
-                opXML.ModifyNode("num4627", Request.Form["shenduerf27"]);
-                opXML.ModifyNode("num4628", Request.Form["shenduerf28"]);
-                opXML.ModifyNode("num4629", Request.Form["shenduerf29"]);
-                opXML.ModifyNode("num4630", Request.Form["shenduerf30"]);
-                opXML.ModifyNode("num4631", Request.Form["shenduerf31"]);
-                opXML.ModifyNode("num4632", Request.Form["shenduerf32"]);
-                opXML.ModifyNode("num4633", Request.Form["shenduerf33"]);
-                opXML.ModifyNode("num4634", Request.Form["shenduerf34"]);
-                opXML.ModifyNode("num4635", Request.Form["shenduerf35"]);
-                opXML.ModifyNode("num4636", Request.Form["shenduerf36"]);
-                opXML.ModifyNode("num4637", Request.Form["shenduerf37"]);
-                opXML.ModifyNode("num4638", Request.Form["shenduerf38"]);
-                opXML.ModifyNode("num4639", Request.Form["shenduerf39"]);
-                opXML.ModifyNode("num4640", Request.Form["shenduerf40"]);
-                opXML.saveFile();
+                ROV[13] = opXML.ModifyNode("num4601", Request.Form["shenduerf1"]);
+                ROV[14] = opXML.ModifyNode("num4602", Request.Form["shenduerf2"]);
+                ROV[15] = opXML.ModifyNode("num4603", Request.Form["shenduerf3"]);
+                ROV[16] = opXML.ModifyNode("num4604", Request.Form["shenduerf4"]);
+                ROV[17] = opXML.ModifyNode("num4605", Request.Form["shenduerf5"]);
+                ROV[18] = opXML.ModifyNode("num4606", Request.Form["shenduerf6"]);
+                ROV[19] = opXML.ModifyNode("num4607", Request.Form["shenduerf7"]);
+                ROV[20] = opXML.ModifyNode("num4608", Request.Form["shenduerf8"]);
+                ROV[21] = opXML.ModifyNode("num4609", Request.Form["shenduerf9"]);
+                ROV[22] = opXML.ModifyNode("num4610", Request.Form["shenduerf10"]);
+                ROV[23] = opXML.ModifyNode("num4611", Request.Form["shenduerf11"]);
+                ROV[24] = opXML.ModifyNode("num4612", Request.Form["shenduerf12"]);
+                ROV[25] = opXML.ModifyNode("num4613", Request.Form["shenduerf13"]);
+                ROV[26] = opXML.ModifyNode("num4614", Request.Form["shenduerf14"]);
+                ROV[27] = opXML.ModifyNode("num4615", Request.Form["shenduerf15"]);
+                ROV[28] = opXML.ModifyNode("num4616", Request.Form["shenduerf16"]);
+                ROV[29] = opXML.ModifyNode("num4617", Request.Form["shenduerf17"]);
+                ROV[30] = opXML.ModifyNode("num4618", Request.Form["shenduerf18"]);
+                ROV[31] = opXML.ModifyNode("num4619", Request.Form["shenduerf19"]);
+                ROV[32] = opXML.ModifyNode("num4620", Request.Form["shenduerf20"]);
+                ROV[33] = opXML.ModifyNode("num4621", Request.Form["shenduerf21"]);
+                ROV[34] = opXML.ModifyNode("num4622", Request.Form["shenduerf22"]);
+                ROV[35] = opXML.ModifyNode("num4623", Request.Form["shenduerf23"]);
+                ROV[36] = opXML.ModifyNode("num4624", Request.Form["shenduerf24"]);
+                ROV[37] = opXML.ModifyNode("num4625", Request.Form["shenduerf25"]);
+                ROV[38] = opXML.ModifyNode("num4626", Request.Form["shenduerf26"]);
+                ROV[39] = opXML.ModifyNode("num4627", Request.Form["shenduerf27"]);
+                ROV[40] = opXML.ModifyNode("num4628", Request.Form["shenduerf28"]);
+                ROV[41] = opXML.ModifyNode("num4629", Request.Form["shenduerf29"]);
+                ROV[42] = opXML.ModifyNode("num4630", Request.Form["shenduerf30"]);
+                ROV[43] = opXML.ModifyNode("num4631", Request.Form["shenduerf31"]);
+                ROV[44] = opXML.ModifyNode("num4632", Request.Form["shenduerf32"]);
+                ROV[45] = opXML.ModifyNode("num4633", Request.Form["shenduerf33"]);
+                ROV[46] = opXML.ModifyNode("num4634", Request.Form["shenduerf34"]);
+                ROV[47] = opXML.ModifyNode("num4635", Request.Form["shenduerf35"]);
+                ROV[48] = opXML.ModifyNode("num4636", Request.Form["shenduerf36"]);
+                ROV[49] = opXML.ModifyNode("num4637", Request.Form["shenduerf37"]);
+                ROV[50] = opXML.ModifyNode("num4638", Request.Form["shenduerf38"]);
+                ROV[51] = opXML.ModifyNode("num4639", Request.Form["shenduerf39"]);
+                ROV[52] = opXML.ModifyNode("num4640", Request.Form["shenduerf40"]);
+                ROV[53] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 54; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -1949,6 +2039,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[30];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -1959,27 +2051,35 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num0101", Request.Form["bei1"]);
-                opXML.ModifyNode("num0102", Request.Form["bei2"]);
-                opXML.ModifyNode("num0103", Request.Form["bei3"]);
-                opXML.ModifyNode("num0104", Request.Form["bei4"]);
-                opXML.ModifyNode("num0105", Request.Form["bei5"]);
-                opXML.ModifyNode("num0106", Request.Form["bei6"]);
-                opXML.ModifyNode("num0107", Request.Form["bei7"]);
-                opXML.ModifyNode("num0108", Request.Form["bei8"]);
-                opXML.ModifyNode("num0109", Request.Form["bei9"]);
-                opXML.ModifyNode("num0110", Request.Form["bei10"]);
-                opXML.ModifyNode("num0111", Request.Form["bei11"]);
-                opXML.ModifyNode("num0112", Request.Form["bei12"]);
-                opXML.ModifyNode("num0113", Request.Form["bei13"]);
-                opXML.ModifyNode("num0114", Request.Form["bei14"]);
-                opXML.ModifyNode("num0115", Request.Form["bei15"]);
-                opXML.ModifyNode("num0116", Request.Form["bei16"]);
-                opXML.ModifyNode("num0117", Request.Form["bei17"]);
-                opXML.ModifyNode("num0118", Request.Form["bei18"]);
-                opXML.ModifyNode("num0119", Request.Form["bei19"]);
-                opXML.ModifyNode("num0120", Request.Form["bei20"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num0101", Request.Form["bei1"]);
+                ROV[2] = opXML.ModifyNode("num0102", Request.Form["bei2"]);
+                ROV[3] = opXML.ModifyNode("num0103", Request.Form["bei3"]);
+                ROV[4] = opXML.ModifyNode("num0104", Request.Form["bei4"]);
+                ROV[5] = opXML.ModifyNode("num0105", Request.Form["bei5"]);
+                ROV[6] = opXML.ModifyNode("num0106", Request.Form["bei6"]);
+                ROV[7] = opXML.ModifyNode("num0107", Request.Form["bei7"]);
+                ROV[8] = opXML.ModifyNode("num0108", Request.Form["bei8"]);
+                ROV[9] = opXML.ModifyNode("num0109", Request.Form["bei9"]);
+                ROV[10] = opXML.ModifyNode("num0110", Request.Form["bei10"]);
+                ROV[11] = opXML.ModifyNode("num0111", Request.Form["bei11"]);
+                ROV[12] = opXML.ModifyNode("num0112", Request.Form["bei12"]);
+                ROV[13] = opXML.ModifyNode("num0113", Request.Form["bei13"]);
+                ROV[14] = opXML.ModifyNode("num0114", Request.Form["bei14"]);
+                ROV[15] = opXML.ModifyNode("num0115", Request.Form["bei15"]);
+                ROV[16] = opXML.ModifyNode("num0116", Request.Form["bei16"]);
+                ROV[17] = opXML.ModifyNode("num0117", Request.Form["bei17"]);
+                ROV[18] = opXML.ModifyNode("num0118", Request.Form["bei18"]);
+                ROV[19] = opXML.ModifyNode("num0119", Request.Form["bei19"]);
+                ROV[20] = opXML.ModifyNode("num0120", Request.Form["bei20"]);
+                ROV[21] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 22; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -2054,6 +2154,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[30];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -2064,27 +2166,35 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num3201", Request.Form["hang1"]);
-                opXML.ModifyNode("num3202", Request.Form["hang2"]);
-                opXML.ModifyNode("num3203", Request.Form["hang3"]);
-                opXML.ModifyNode("num3204", Request.Form["hang4"]);
-                opXML.ModifyNode("num3205", Request.Form["hang5"]);
-                opXML.ModifyNode("num3206", Request.Form["hang6"]);
-                opXML.ModifyNode("num3207", Request.Form["hang7"]);
-                opXML.ModifyNode("num3208", Request.Form["hang8"]);
-                opXML.ModifyNode("num3209", Request.Form["hang9"]);
-                opXML.ModifyNode("num3210", Request.Form["hang10"]);
-                opXML.ModifyNode("num3211", Request.Form["hang11"]);
-                opXML.ModifyNode("num3212", Request.Form["hang12"]);
-                opXML.ModifyNode("num3213", Request.Form["hang13"]);
-                opXML.ModifyNode("num3214", Request.Form["hang14"]);
-                opXML.ModifyNode("num3215", Request.Form["hang15"]);
-                opXML.ModifyNode("num3216", Request.Form["hang16"]);
-                opXML.ModifyNode("num3217", Request.Form["hang17"]);
-                opXML.ModifyNode("num3218", Request.Form["hang18"]);
-                opXML.ModifyNode("num3219", Request.Form["hang19"]);
-                opXML.ModifyNode("num3220", Request.Form["hang20"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num3201", Request.Form["hang1"]);
+                ROV[2] = opXML.ModifyNode("num3202", Request.Form["hang2"]);
+                ROV[3] = opXML.ModifyNode("num3203", Request.Form["hang3"]);
+                ROV[4] = opXML.ModifyNode("num3204", Request.Form["hang4"]);
+                ROV[5] = opXML.ModifyNode("num3205", Request.Form["hang5"]);
+                ROV[6] = opXML.ModifyNode("num3206", Request.Form["hang6"]);
+                ROV[7] = opXML.ModifyNode("num3207", Request.Form["hang7"]);
+                ROV[8] = opXML.ModifyNode("num3208", Request.Form["hang8"]);
+                ROV[9] = opXML.ModifyNode("num3209", Request.Form["hang9"]);
+                ROV[10] = opXML.ModifyNode("num3210", Request.Form["hang10"]);
+                ROV[11] = opXML.ModifyNode("num3211", Request.Form["hang11"]);
+                ROV[12] = opXML.ModifyNode("num3212", Request.Form["hang12"]);
+                ROV[13] = opXML.ModifyNode("num3213", Request.Form["hang13"]);
+                ROV[14] = opXML.ModifyNode("num3214", Request.Form["hang14"]);
+                ROV[15] = opXML.ModifyNode("num3215", Request.Form["hang15"]);
+                ROV[16] = opXML.ModifyNode("num3216", Request.Form["hang16"]);
+                ROV[17] = opXML.ModifyNode("num3217", Request.Form["hang17"]);
+                ROV[18] = opXML.ModifyNode("num3218", Request.Form["hang18"]);
+                ROV[19] = opXML.ModifyNode("num3219", Request.Form["hang19"]);
+                ROV[20] = opXML.ModifyNode("num3220", Request.Form["hang20"]);
+                ROV[21] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 22; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch
@@ -2129,6 +2239,8 @@ namespace test.Controllers
         {
             //声明设备ID，文件名，查询语句，路径，路径，JSON
             string deviceID, fileName, hs_sql, path, newPath;
+            //ROV是Return on Value返回值
+            bool[] ROV = new bool[10];
             deviceID = Request.Form["deviceID"];
             fileName = Request.Form["fileName"];
             //获得文件路径
@@ -2139,13 +2251,21 @@ namespace test.Controllers
             try
             {
                 XMLHelper opXML = new XMLHelper(newPath);
-                opXML.ModifyNode("num3301", Request.Form["hang1"]);
-                opXML.ModifyNode("num3302", Request.Form["hang2"]);
-                opXML.ModifyNode("num3303", Request.Form["hang3"]);
-                opXML.ModifyNode("num3304", Request.Form["hang4"]);
-                opXML.ModifyNode("num3305", Request.Form["hang5"]);
-                opXML.ModifyNode("num3306", Request.Form["hang6"]);
-                opXML.saveFile();
+                ROV[1] = opXML.ModifyNode("num3301", Request.Form["hang1"]);
+                ROV[2] = opXML.ModifyNode("num3302", Request.Form["hang2"]);
+                ROV[3] = opXML.ModifyNode("num3303", Request.Form["hang3"]);
+                ROV[4] = opXML.ModifyNode("num3304", Request.Form["hang4"]);
+                ROV[5] = opXML.ModifyNode("num3305", Request.Form["hang5"]);
+                ROV[6] = opXML.ModifyNode("num3306", Request.Form["hang6"]);
+                ROV[7] = opXML.saveFile();
+                //用ROV判断写入是否成功，false失败
+                for (int i = 1; i < 8; i++)
+                {
+                    if (ROV[i] == false)
+                    {
+                        return Content("Error");
+                    }
+                }
                 return Content("Success");
             }
             catch

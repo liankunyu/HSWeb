@@ -45,13 +45,13 @@ namespace test.Controllers
             newPath = newPath + ".xml";
             //读取值
             XMLHelper opXML = new XMLHelper(newPath);
-            opXML.ModifyNode("sendtime", SendTime);
+            bool ROV=opXML.ModifyNode("sendtime", SendTime);
             opXML.saveFile();
             hs_sql = "INSERT INTO SendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
             int row = DbHelperSQL.Execute(hs_sql);
             hs_sql = "INSERT INTO HistSendTable (UserName,DeviceID,SendTime) VALUES ('" + AdminName + "','" + deviceID + "','" + SendTime + "')";
             int row1 = DbHelperSQL.Execute(hs_sql);
-            if (row > 0 && row1 > 0)
+            if ((row > 0) &&( row1 > 0)&&(ROV==true))
             {
                 return Content("Success");
             }
