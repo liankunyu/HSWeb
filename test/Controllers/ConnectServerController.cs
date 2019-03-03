@@ -78,6 +78,32 @@ namespace test.Controllers
             }
         }
 
+        //查询发送后的状态
+        public ActionResult ClearFile()
+        {
+            try
+            {
+                string deviceID = Request.Form["deviceID"];
+                string path = Path.Combine("D:/HS", deviceID); //组装文件夹绝对地址
+                DirectoryInfo dir = new DirectoryInfo(path);
+                if (dir.Exists)
+                {
+                    DirectoryInfo[] childs = dir.GetDirectories();
+                    foreach (DirectoryInfo child in childs)
+                    {
+                        child.Delete(true);
+                    }
+                    dir.Delete(true);
+                }
+                return Content("成功清除!");
+            }
+            catch 
+            {
+                return Content("删除失败!");
+            }
+
+        }
+
         //设备信息读
         public ActionResult DeviceInfo()
         {
