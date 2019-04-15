@@ -48,8 +48,8 @@ namespace test.Controllers
                           + "\"famen3\":\"" + famen[3] + "\","
                           + "\"famen4\":\"" + famen[4] + "\","
                           + "\"famen5\":\"" + famen[5] + "\","
-                          + "\"famen6\":\"" + famen[6] + "\","
-                          + "\"famen7\":\"" + famen[7] + "\"}";
+                          + "\"famen6\":\"" + famen[7] + "\","
+                          + "\"famen7\":\"" + famen[6] + "\"}";
             return Content(json);
 
         }
@@ -75,8 +75,8 @@ namespace test.Controllers
                 ROV[3] = opXML.ModifyNode("num0503", Request.Form["famen3"]);
                 ROV[4] = opXML.ModifyNode("num0504", Request.Form["famen4"]);
                 ROV[5] = opXML.ModifyNode("num0505", Request.Form["famen5"]);
-                ROV[6] = opXML.ModifyNode("num0506", Request.Form["famen6"]);
-                ROV[7] = opXML.ModifyNode("num0507", Request.Form["famen7"]);
+                ROV[6] = opXML.ModifyNode("num0506", Request.Form["famen7"]);//三次开阀和开阀周期有错误，进行修正
+                ROV[7] = opXML.ModifyNode("num0507", Request.Form["famen6"]);//三次开阀和开阀周期有错误，进行修正
                 ROV[8] = opXML.saveFile();
                 //用ROV判断写入是否成功，false失败
                 for (int i = 1; i < 9; i++)
