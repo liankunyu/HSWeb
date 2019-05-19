@@ -67,6 +67,10 @@ namespace test.Controllers
         {
             return View();
         }
+        public ActionResult CommState()
+        {
+            return View();
+        }
         public ActionResult ChangeDate()
         {
             return View();
@@ -1645,6 +1649,69 @@ namespace test.Controllers
                 return Content("Error");
             }
         }
+       
+        //通信状态读
+        public ActionResult SendDataCommState()
+        {
+            //声明设备ID，文件名，查询语句，路径，路径，JSON
+            string deviceID, fileName, hs_sql, path, newPath, json;
+            string[] commState = new string[30];
+            deviceID = Request.Form["deviceID"];
+            fileName = Request.Form["fileName"];
+            //获得文件路径
+            hs_sql = "select pathName from DeviceInfo where DeviceID='" + deviceID + "'";
+            path = DbHelperSQL.ExecuteQuery(hs_sql);
+            newPath = System.IO.Path.Combine(path, fileName);
+            newPath = newPath + ".xml";
+            //读取值
+            XMLHelper opXML = new XMLHelper(newPath);
+            commState[1] = opXML.QueryNodeText("num4901");
+            commState[2] = opXML.QueryNodeText("num4902");
+            commState[3] = opXML.QueryNodeText("num4903");
+            commState[4] = opXML.QueryNodeText("num4904");
+            commState[5] = opXML.QueryNodeText("num4905");
+            commState[6] = opXML.QueryNodeText("num4906");
+            commState[7] = opXML.QueryNodeText("num4907");
+            commState[8] = opXML.QueryNodeText("num4908");
+            commState[9] = opXML.QueryNodeText("num4909");
+            commState[10] = opXML.QueryNodeText("num4910");
+            commState[11] = opXML.QueryNodeText("num4911");
+            commState[12] = opXML.QueryNodeText("num4912");
+            commState[13] = opXML.QueryNodeText("num4913");
+            commState[14] = opXML.QueryNodeText("num4914");
+            commState[15] = opXML.QueryNodeText("num4915");
+            commState[16] = opXML.QueryNodeText("num4916");
+            commState[17] = opXML.QueryNodeText("num4917");
+            commState[18] = opXML.QueryNodeText("num4918");
+            commState[19] = opXML.QueryNodeText("num4919");
+            commState[20] = opXML.QueryNodeText("num4920");
+            commState[21] = opXML.QueryNodeText("num4921");
+
+            json = "{\"zhuban\":\"" + commState[1] + "\","
+                          + "\"xiangji1\":\"" + commState[2] + "\","
+                          + "\"xiangji2\":\"" + commState[3] + "\","
+                          + "\"xiangji3\":\"" + commState[4] + "\","
+                          + "\"xiangji4\":\"" + commState[5] + "\","
+                          + "\"xiangji5\":\"" + commState[6] + "\","
+                          + "\"xiangji6\":\"" + commState[7] + "\","
+                          + "\"xiangji7\":\"" + commState[8] + "\","
+                          + "\"xiangji8\":\"" + commState[9] + "\","
+                          + "\"xiangji9\":\"" + commState[10] + "\","
+                          + "\"xiangji10\":\"" + commState[11] + "\","
+                          + "\"xiangji11\":\"" + commState[12] + "\","
+                          + "\"xiangji12\":\"" + commState[13] + "\","
+                          + "\"xiangji13\":\"" + commState[14] + "\","
+                          + "\"xiangji14\":\"" + commState[15] + "\","
+                          + "\"xiangji15\":\"" + commState[16] + "\","
+                          + "\"xiangji16\":\"" + commState[17] + "\","
+                          + "\"xiangji17\":\"" + commState[18] + "\","
+                          + "\"xiangji18\":\"" + commState[19] + "\","
+                          + "\"xiangji19\":\"" + commState[20] + "\","
+                          + "\"xiangji20\":\"" + commState[21] + "\"}";
+            return Content(json);
+        }
+
+
 
         //使用日期设定读
         public ActionResult SendDataCD()

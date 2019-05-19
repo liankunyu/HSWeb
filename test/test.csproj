@@ -719,6 +719,7 @@
     <Content Include="Views\ConnectServer\deviceManage.cshtml" />
     <Content Include="Views\ConnectServer\UserManage.cshtml" />
     <Content Include="Views\AdvancedSetting\ChangeDate.cshtml" />
+    <Content Include="Views\AdvancedSetting\CommState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

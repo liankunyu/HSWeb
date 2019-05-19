@@ -61,12 +61,12 @@
         document.getElementById('Advanced_id').style.background = '#48484A';
         document.getElementById('Advanced_id').style.borderButton = '1px solid ';
         document.getElementById('Advanced_id').style.padding = '7px 12px 17px 12px ';
+ 
 
         var va = getCookie("deviceID");
         var va1 = getCookie("fileName");
-        //传入初值
         $.ajax({
-            url: '/AdvancedSetting/SendDataCD', //后台处理程序
+            url: '/AdvancedSetting/SendDataCommState', //后台处理程序
             type: 'post',         //数据发送方式
             dataType: 'text',     //接受数据格式
             data: { deviceID: va, fileName: va1 },        //要传递的数据
@@ -74,32 +74,31 @@
 
                 var val = eval('(' + result + ')'); //把传过来的json字符串变换成json对象
 
-                $('#expiryDate').val(val.expiryDate);
+                $('#zhuban').val(val.zhuban);
+                $('#xiangji1').val(val.xiangji1);
+                $('#xiangji2').val(val.xiangji2);
+                $('#xiangji3').val(val.xiangji3);
+                $('#xiangji4').val(val.xiangji4);
+                $('#xiangji5').val(val.xiangji5);
+                $('#xiangji6').val(val.xiangji6);
+                $('#xiangji7').val(val.xiangji7);
+                $('#xiangji8').val(val.xiangji8);
+                $('#xiangji9').val(val.xiangji9);
+                $('#xiangji10').val(val.xiangji10);
+                $('#xiangji11').val(val.xiangji11);
+                $('#xiangji12').val(val.xiangji12);
+                $('#xiangji13').val(val.xiangji13);
+                $('#xiangji14').val(val.xiangji14);
+                $('#xiangji15').val(val.xiangji15);
+                $('#xiangji16').val(val.xiangji16);
+                $('#xiangji17').val(val.xiangji17);
+                $('#xiangji18').val(val.xiangji18);
+                $('#xiangji19').val(val.xiangji19);
+                $('#xiangji20').val(val.xiangji20);
             }
         });
     });
-    function postDataCD() {
-        var expiryDate = $("#expiryDate").val();
-
-        var va = getCookie("deviceID");
-        var va1 = getCookie("fileName");
-        $.ajax({
-            url: '/AdvancedSetting/postDataCD', //后台处理程序
-            type: 'post',         //数据发送方式
-            dataType: 'text',     //接受数据格式
-            data: {
-                deviceID: va, fileName: va1, expiryDate: expiryDate
-            },        //要传递的数据
-            success: function (result) {
-                if (result == "Success") {
-                    alert("提交成功！");
-                }
-                else {
-                    alert("提交失败！");
-                }
-            }
-        });
-    }
+  
 </script>
 
 <div class="easyui-layout" style="width: 100%; height: 100%; border: 1px solid #484A56" data-options="fit:true">
@@ -135,56 +134,63 @@
             <div title="相机划分" iconCls="icon-ok" style="padding:10px">
                 <a href="/AdvancedSetting/CameraDivision" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">相机划分</a>
             </div>
-            <div title="通信状态" iconCls="icon-ok" style="padding:10px">
+            <div title="通信状态" iconCls="icon-ok" style="padding:10px" selected="true">
                 <a href="/AdvancedSetting/CommState" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">通信状态</a>
             </div>
-            <div title="日期设定" iconCls="icon-ok" style="padding:10px"  selected="true">
+            <div title="日期设定" iconCls="icon-ok" style="padding:10px">
                 <a href="/AdvancedSetting/ChangeDate" style="line-height: 150%; font-size: 14px; font-family: YouYuan; text-decoration: none">日期设定</a>
             </div>
         </div>
     </div>
     <!--中间布局-->
-    <div region="center" style="width: 100%; float: left; background: #333743;">
+    <div region="center" style="width: 100%; float: left; background: #333743">
         <div id="tt" class="easyui-tabs" style="width:700px;height:250px" fit="true">
-            <div title="日期设定" style="padding:10px" data-options="closable:false">
+            <div title="通信状态" style="padding:10px" data-options="closable:true">
+
                 <table class="dataintable" align="center">
-                    <caption style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">远程通信界面</caption>
+
+                    <caption>通信状态</caption>
+
                     <tbody>
                         <tr>
-                            <td>使用日期设定
-                            <td><input type="text" value="" title="使用日期" name="expiryDate" id="expiryDate" />
-                            <td>格式：2019-01-01
+                            <td>1
+                            <td>2
+                            <td>3
+                            <td>4
+                            <td>5
+                            <td>6
+                            <td>7
+                            <td>8
+                            <td>9
+                            <td>10
+                        <tr>
+                            <td><input type="text" maxlength="3" id="zhuban" style="width:50px" disabled="disabled"/>
+                        <tr>
+                            <td><input type="text" maxlength="3" id="xiangji1" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji2" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji3" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji4" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji5" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji6" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji7" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji8" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji9" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji10" style="width:50px" disabled="disabled"/>
+                        <tr>
+                            <td><input type="text" maxlength="3" id="xiangji11" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji12" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji13" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji14" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji15" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji16" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji17" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji18" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji19" style="width:50px" disabled="disabled"/>
+                            <td><input type="text" maxlength="3" id="xiangji20" style="width:50px" disabled="disabled"/>
                     </tbody>
-                </table>
-                <div style="text-align:center">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <button type="button" onclick="postDataCD();" style="width:100px;height:40px;">修改</button>
-                </div>
+                </table><br />
+
             </div>
         </div>
     </div>
-</div>
-
-
-<div title="远程通信" style="padding:10px" data-options="closable:false">
-
-    <table class="dataintable" align="center">
-        <caption style="color: #15181d; font-weight: 900; font-size: 25px;text-align:center;letter-spacing:5px; ">远程通信界面</caption>
-        <tbody>
-            <tr>
-                <td>使用日期设定
-                <td><input type="text" value="" title="使用日期" name="expiryDate" id="expiryDate" />
-                <td>格式：2019-01-01
-</tbody>
-    </table>
-    <div style="text-align:center">
-        <br />
-        <br />
-        <br />
-        <br />
-        <button type="button" onclick="postDataCD();" style="width:100px;height:40px; position:absolute; left:480px; ">修改</button>
-        </div>
 </div>
